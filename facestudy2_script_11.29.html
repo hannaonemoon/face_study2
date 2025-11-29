@@ -417,8 +417,8 @@
 
  //create a function that will pick a new item from the pool (no repeat) 
     function sequenceLearningPhase() {
-      const maleNamePool = new RandomPool(2, maleNames);
-      const femaleNamePool = new RandomPool(2, femaleNames);
+      const maleNamePool = new RandomPool(1, maleNames);
+      const femaleNamePool = new RandomPool(1, femaleNames);
       const negativeRelPool = new RandomPool(1, negativeRel);
       const neutralRelPool = new RandomPool(1, neutralRel);
       const negativeIrrPool = new RandomPool(1, negativeIrr);
