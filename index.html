@@ -19,8 +19,8 @@
   <body></body>
   <script type="module">
     const jsPsych = initJsPsych({
-        override_safe_mode: true,
-      });
+      override_safe_mode: true,
+    });
     // Function that randomly shuffles an array.
     const shuffle = jsPsych.randomization.shuffle;
 
@@ -67,20 +67,20 @@
         return value;
       }
     }
-// CHRIS- what does the 2 mean?
-    const mathPool = new RandomPool(2, [ 
+    // CHRIS- what does the 2 mean?
+    const mathPool = new RandomPool(2, [
       { expression: '12 - 3', answer: '8' }, //WRONG
-      { expression: '5 - 12', answer: '7' }, 
-      { expression: '11 + 2', answer: '13' }, 
+      { expression: '5 - 12', answer: '7' },
+      { expression: '11 + 2', answer: '13' },
       { expression: '13 + 9', answer: '21' }, //WRONG
       { expression: '7 + 2', answer: '10' }, //WRONG
-      { expression: '1 - 15', answer: '-14' }, 
+      { expression: '1 - 15', answer: '-14' },
       { expression: '17 - 9 ', answer: '11' }, //WRONG
       { expression: '6 + 11 ', answer: '17' },
       { expression: '10 - 5 ', answer: '5' },
       { expression: '6 - 2 ', answer: '3' }, //WRONG
       { expression: '8 + 2 ', answer: '11' }, //WRONG
-      { expression: '3 + 12 ', answer: '15' }, 
+      { expression: '3 + 12 ', answer: '15' },
       { expression: '11 - 5 ', answer: '5' }, //WRONG
       { expression: '16 - 3 ', answer: '14' }, //WRONG
       { expression: '11 + 2 ', answer: '13' },
@@ -88,14 +88,14 @@
       { expression: '13 + 3 ', answer: '16' },
       { expression: '5 - 12 ', answer: '-7' },
       { expression: '15 - 3', answer: '-12' }, //WRONG
-      { expression: '13 - 6', answer: '-7' }, 
+      { expression: '13 - 6', answer: '-7' },
       { expression: '19 - 2', answer: '15' }, //WRONG
       { expression: '16 - 8', answer: '-8' },
       { expression: '8 - 4', answer: '3' }, //WRONG
-      { expression: '18 - 2', answer: '16' }, 
+      { expression: '18 - 2', answer: '16' },
       { expression: '9 - 10', answer: '1' }, //WRONG
       { expression: '2 - 11', answer: '9' }, //WRONG
-      { expression: '6 - 10', answer: '-4' }, 
+      { expression: '6 - 10', answer: '-4' },
       { expression: '5 - 13', answer: '-8' },
       { expression: '5 - 11', answer: '6' }, //WRONG
       { expression: '7 - 12', answer: '-5' },
@@ -155,7 +155,7 @@
       'Gavin',
       'Aaron',
       'Connor',
-      'Aiden'
+      'Aiden',
     ];
 
     const femaleNames = [
@@ -206,134 +206,134 @@
       'Stephanie',
       'Lillian',
       'Andrea',
-      'Faith'
+      'Faith',
     ];
 
     const neutralRel = [
-    "Made an excuse to get out of awkward conversation.", 
-    "Went to a psychic to have their fortune told.", 
-    "Went to the store to buy some orange juice.",
-    "Works as a fry cook at a fast-food restaurant.", 
-    "Asked to speak to an employee in a department store.", 
-    "Flipped a coin to help them choose between two options.", 
-    "Had two Red Bulls in one day to stay awake.", 
-    "Spent half an hour browsing a friend's photos on Facebook.", 
-    "Stayed up until 3 AM binge-watching a new TV show.", 
-    "Ate dinner alone in the dining hall with their headphones on.", 
-    "Confused the name of a famous artist with a football player.", 
-    "Went to get food from the convenience store at 1 AM."
-    ]; 
+      'Made an excuse to get out of awkward conversation.',
+      'Went to a psychic to have their fortune told.',
+      'Went to the store to buy some orange juice.',
+      'Works as a fry cook at a fast-food restaurant.',
+      'Asked to speak to an employee in a department store.',
+      'Flipped a coin to help them choose between two options.',
+      'Had two Red Bulls in one day to stay awake.',
+      "Spent half an hour browsing a friend's photos on Facebook.",
+      'Stayed up until 3 AM binge-watching a new TV show.',
+      'Ate dinner alone in the dining hall with their headphones on.',
+      'Confused the name of a famous artist with a football player.',
+      'Went to get food from the convenience store at 1 AM.',
+    ];
 
     const negativeRel = [
-    "Leaves trash on tables after lunch, ignoring others' requests to clean.",
-    "Refuses service to people because of their race or sexual orientation.",
-    "Shares friends’ embarrassing stories at dinner parties for personal gain.",
-    "Frequently speaks over others in group discussions, disregarding their input.",
-    "Borrows items from friends and returns them noticeably damaged.",
-    "Takes calls loudly at dinner, distracting everyone eating nearby.",
-    "Always takes credit for other people’s work and never acknowledges the team.",
-    "Takes bribes from students in exchange for a better grade.",
-    "Avoids helping friends who carry heavy groceries up long staircases.",
-    "Refuses to lower loud music while others try to study.",
-    "Refuses to give their seat on the bus to disabled people.",
-    "Convinces neighbor kids into stealing money from the cash register."
-    ]; 
+      "Leaves trash on tables after lunch, ignoring others' requests to clean.",
+      'Refuses service to people because of their race or sexual orientation.',
+      'Shares friends’ embarrassing stories at dinner parties for personal gain.',
+      'Frequently speaks over others in group discussions, disregarding their input.',
+      'Borrows items from friends and returns them noticeably damaged.',
+      'Takes calls loudly at dinner, distracting everyone eating nearby.',
+      'Always takes credit for other people’s work and never acknowledges the team.',
+      'Takes bribes from students in exchange for a better grade.',
+      'Avoids helping friends who carry heavy groceries up long staircases.',
+      'Refuses to lower loud music while others try to study.',
+      'Refuses to give their seat on the bus to disabled people.',
+      'Convinces neighbor kids into stealing money from the cash register.',
+    ];
 
     const neutralIrr = [
-    "Giraffes use their long tongues to grasp leaves from trees.",
-    "Dolphins surface regularly to breathe air through their blowholes.",
-    "Elephants use their trunks for drinking, feeding, and social interaction.",
-    "Kangaroos carry their young in a pouch for several months.",
-    "Sloths descend to the ground about once a week to defecate.",
-    "Owls can rotate their heads up to 270 degrees.",
-    "Penguins use their flippers to propel themselves through the water.",
-    "Camels store fat in their humps, and not water directly.",
-    "Bees use a dance to communicate food source locations.",
-    "Octopuses have three hearts and blue, copper-based blood called hemocyanin.",
-    "Zebras have unique stripe patterns which helps with identity recognition.",
-    "Bats are capable of sustained powered flight using their wings."
+      'Giraffes use their long tongues to grasp leaves from trees.',
+      'Dolphins surface regularly to breathe air through their blowholes.',
+      'Elephants use their trunks for drinking, feeding, and social interaction.',
+      'Kangaroos carry their young in a pouch for several months.',
+      'Sloths descend to the ground about once a week to defecate.',
+      'Owls can rotate their heads up to 270 degrees.',
+      'Penguins use their flippers to propel themselves through the water.',
+      'Camels store fat in their humps, and not water directly.',
+      'Bees use a dance to communicate food source locations.',
+      'Octopuses have three hearts and blue, copper-based blood called hemocyanin.',
+      'Zebras have unique stripe patterns which helps with identity recognition.',
+      'Bats are capable of sustained powered flight using their wings.',
     ];
 
     const negativeIrr = [
-    "Hyenas frequently gang up to rob weaker predators of their hard-earned kills.",
-    "Pigeons defecate indiscriminately and spread pathogens across the city.",   
-    "Mosquitoes transmit deadly diseases like malaria, dengue, and Zika virus.",           
-    "Leeches attach to skin and suck blood until they’re fully engorged.",
-    "Rats gnaw on electrical wiring, posing dangerous fire risks in homes.",
-    "Feral cats devastate bird populations, killing billions of native species annually.",
-    "Asian giant hornets’ venom causes intense pain, organ damage, and even death.",
-    "Ticks burrow into skin and transmit harmful bacterial infections like Lyme disease.",
-    "Cane toads release toxins that poison and kill pets and native wildlife.",
-    "Cockroaches contaminate food in homes and are notoriously hard to exterminate.",
-    "Snakes kill approximately five million people every year with their deadly venom.",
-    "Chimpanzees have been observed committing violent attacks on neighboring groups.",
-    ]; 
+      'Hyenas frequently gang up to rob weaker predators of their hard-earned kills.',
+      'Pigeons defecate indiscriminately and spread pathogens across the city.',
+      'Mosquitoes transmit deadly diseases like malaria, dengue, and Zika virus.',
+      'Leeches attach to skin and suck blood until they’re fully engorged.',
+      'Rats gnaw on electrical wiring, posing dangerous fire risks in homes.',
+      'Feral cats devastate bird populations, killing billions of native species annually.',
+      'Asian giant hornets’ venom causes intense pain, organ damage, and even death.',
+      'Ticks burrow into skin and transmit harmful bacterial infections like Lyme disease.',
+      'Cane toads release toxins that poison and kill pets and native wildlife.',
+      'Cockroaches contaminate food in homes and are notoriously hard to exterminate.',
+      'Snakes kill approximately five million people every year with their deadly venom.',
+      'Chimpanzees have been observed committing violent attacks on neighboring groups.',
+    ];
 
-    // 8 images (identities) per group of race/gender, 6 groups, total of 48 identities 
+    // 8 images (identities) per group of race/gender, 6 groups, total of 48 identities
     const asianMaleImages = [
-    './images/AM-216.jpg',
-    './images/AM-228.jpg',
-    './images/AM-204.jpg',
-    './images/AM-236.jpg',
-    './images/AM-245.jpg',
-    './images/AM-211.jpg',
-    './images/AM-243.jpg',
-    './images/AM-237.jpg'
+      './images/AM-216.jpg',
+      './images/AM-228.jpg',
+      './images/AM-204.jpg',
+      './images/AM-236.jpg',
+      './images/AM-245.jpg',
+      './images/AM-211.jpg',
+      './images/AM-243.jpg',
+      './images/AM-237.jpg',
     ];
 
     const latinoMaleImages = [
-    './images/LM-216.jpg',
-    './images/LM-231.jpg',
-    './images/LM-207.jpg',
-    './images/LM-252.jpg',
-    './images/LM-234.jpg',
-    './images/LM-217.jpg',
-    './images/LM-247.jpg',
-    './images/LM-242.jpg'
+      './images/LM-216.jpg',
+      './images/LM-231.jpg',
+      './images/LM-207.jpg',
+      './images/LM-252.jpg',
+      './images/LM-234.jpg',
+      './images/LM-217.jpg',
+      './images/LM-247.jpg',
+      './images/LM-242.jpg',
     ];
 
     const whiteMaleImages = [
-    './images/WM-234.jpg',
-    './images/WM-251.jpg',
-    './images/WM-254.jpg',
-    './images/WM-237.jpg',
-    './images/WM-210.jpg',
-    './images/WM-028.jpg',
-    './images/WM-032.jpg',
-    './images/WM-230.jpg',
+      './images/WM-234.jpg',
+      './images/WM-251.jpg',
+      './images/WM-254.jpg',
+      './images/WM-237.jpg',
+      './images/WM-210.jpg',
+      './images/WM-028.jpg',
+      './images/WM-032.jpg',
+      './images/WM-230.jpg',
     ];
 
     const asianFemaleImages = [
-    './images/AF-247.jpg',
-    './images/AF-222.jpg',
-    './images/AF-239.jpg',
-    './images/AF-253.jpg',
-    './images/AF-237.jpg',
-    './images/AF-249.jpg',
-    './images/AF-251.jpg',
-    './images/AF-224.jpg'
+      './images/AF-247.jpg',
+      './images/AF-222.jpg',
+      './images/AF-239.jpg',
+      './images/AF-253.jpg',
+      './images/AF-237.jpg',
+      './images/AF-249.jpg',
+      './images/AF-251.jpg',
+      './images/AF-224.jpg',
     ];
 
     const latinaFemaleImages = [
-    './images/LF-204.jpg',
-    './images/LF-226.jpg',
-    './images/LF-245.jpg',
-    './images/LF-227.jpg',
-    './images/LF-215.jpg',
-    './images/LF-247.jpg',
-    './images/LF-230.jpg',
-    './images/LF-239.jpg'
+      './images/LF-204.jpg',
+      './images/LF-226.jpg',
+      './images/LF-245.jpg',
+      './images/LF-227.jpg',
+      './images/LF-215.jpg',
+      './images/LF-247.jpg',
+      './images/LF-230.jpg',
+      './images/LF-239.jpg',
     ];
 
     const whiteFemaleImages = [
-    './images/WF-030.jpg',
-    './images/WF-242.jpg',
-    './images/WF-007.jpg',
-    './images/WF-035.jpg',
-    './images/WF-208.jpg',
-    './images/WF-039.jpg',
-    './images/WF-038.jpg',
-    './images/WF-212.jpg'
+      './images/WF-030.jpg',
+      './images/WF-242.jpg',
+      './images/WF-007.jpg',
+      './images/WF-035.jpg',
+      './images/WF-208.jpg',
+      './images/WF-039.jpg',
+      './images/WF-038.jpg',
+      './images/WF-212.jpg',
     ];
 
     const allImages = [
@@ -414,8 +414,7 @@
       ];
     }
 
-
- //create a function that will pick a new item from the pool (no repeat) 
+    //create a function that will pick a new item from the pool (no repeat)
     function sequenceLearningPhase() {
       const maleNamePool = new RandomPool(1, maleNames);
       const femaleNamePool = new RandomPool(1, femaleNames);
@@ -433,9 +432,9 @@
       // A list of randomized pools, one for each condition.
       // You'll have to update this hardcoded list (or generate it) with the proper names and descriptions.
       // Images are assumed to be in an `/img` folder in the same directory as this HTML file and labeled with the names of person display.
+      // There are 4 conditions each with 12 trials with 2 of each race/gender combo. Resulting in 48 trials.
 
-    // 1) Negative Relevant Trials
-
+      // 1) Negative Relevant Condition Trials
       const negativeRelTrials = [
         shuffle([
           createNegRelTrial(
@@ -484,14 +483,64 @@
             negativeRelPool.pickRandom(),
             'white',
             'Female',
-            'negRel')
-        ])]
-     
-    // 2) Negative Irrelevant Trials
+            'negRel'
+          ),
+          createNegRelTrial(
+            maleNamePool.pickRandom(),
+            asianMaleImagesPool.pickRandom(),
+            negativeRelPool.pickRandom(),
+            'asian',
+            'Male',
+            'negRel'
+          ),
+          createNegRelTrial(
+            maleNamePool.pickRandom(),
+            latinoMaleImagesPool.pickRandom(),
+            negativeRelPool.pickRandom(),
+            'latino',
+            'Male',
+            'negRel'
+          ),
+          createNegRelTrial(
+            maleNamePool.pickRandom(),
+            whiteMaleImagesPool.pickRandom(),
+            negativeRelPool.pickRandom(),
+            'white',
+            'Male',
+            'negRel'
+          ),
+          createNegRelTrial(
+            femaleNamePool.pickRandom(),
+            asianFemaleImagesPool.pickRandom(),
+            negativeRelPool.pickRandom(),
+            'asian',
+            'Female',
+            'negRel'
+          ),
+          createNegRelTrial(
+            femaleNamePool.pickRandom(),
+            latinaFemaleImagesPool.pickRandom(),
+            negativeRelPool.pickRandom(),
+            'latino',
+            'Female',
+            'negRel'
+          ),
+          createNegRelTrial(
+            femaleNamePool.pickRandom(),
+            whiteFemaleImagesPool.pickRandom(),
+            negativeRelPool.pickRandom(),
+            'white',
+            'Female',
+            'negRel'
+          ),
+        ]),
+      ];
+
+      // 2) Negative Irrelevant Trials
 
       const negativeIrrTrials = [
         shuffle([
-        createNegIrrTrial(
+          createNegIrrTrial(
             maleNamePool.pickRandom(),
             asianMaleImagesPool.pickRandom(),
             negativeIrrPool.pickRandom(),
@@ -538,174 +587,323 @@
             'white',
             'Female',
             'negIrr'
-          )
-        ])]
+          ),
+          createNegIrrTrial(
+            maleNamePool.pickRandom(),
+            asianMaleImagesPool.pickRandom(),
+            negativeIrrPool.pickRandom(),
+            'asian',
+            'Male',
+            'negIrr'
+          ),
+          createNegIrrTrial(
+            maleNamePool.pickRandom(),
+            latinoMaleImagesPool.pickRandom(),
+            negativeIrrPool.pickRandom(),
+            'latino',
+            'Male',
+            'negIrr'
+          ),
+          createNegIrrTrial(
+            maleNamePool.pickRandom(),
+            whiteMaleImagesPool.pickRandom(),
+            negativeIrrPool.pickRandom(),
+            'white',
+            'Male',
+            'negIrr'
+          ),
+          createNegIrrTrial(
+            femaleNamePool.pickRandom(),
+            asianFemaleImagesPool.pickRandom(),
+            negativeIrrPool.pickRandom(),
+            'asian',
+            'Female',
+            'negIrr'
+          ),
+          createNegIrrTrial(
+            femaleNamePool.pickRandom(),
+            latinaFemaleImagesPool.pickRandom(),
+            negativeIrrPool.pickRandom(),
+            'latino',
+            'Female',
+            'negIrr'
+          ),
+          createNegIrrTrial(
+            femaleNamePool.pickRandom(),
+            whiteFemaleImagesPool.pickRandom(),
+            negativeIrrPool.pickRandom(),
+            'white',
+            'Female',
+            'negIrr'
+          ),
+        ]),
+      ];
 
-    // 3) Neutral Relevant Trials
+      // 3) Neutral Relevant Trials
 
       const neutralRelTrials = [
         shuffle([
-        createNeuRelTrial(
-          maleNamePool.pickRandom(),
-          asianMaleImagesPool.pickRandom(),
-          neutralRelPool.pickRandom(),
-          'asian',
-          'Male',
-          'neuRel'
-        ),
-        createNeuRelTrial(
-          maleNamePool.pickRandom(),
-          latinoMaleImagesPool.pickRandom(),
-          neutralRelPool.pickRandom(),
-          'latino',
-          'Male',
-          'neuRel'
-        ),
-        createNeuRelTrial(
-          maleNamePool.pickRandom(),
-          whiteMaleImagesPool.pickRandom(),
-          neutralRelPool.pickRandom(),
-          'white',
-          'Male',
-          'neuRel'
-        ),
-        createNeuRelTrial(
-          femaleNamePool.pickRandom(),
-          asianFemaleImagesPool.pickRandom(),
-          neutralRelPool.pickRandom(),
-          'asian',
-          'Female',
-          'neuRel'
-        ),
-        createNeuRelTrial(
-          femaleNamePool.pickRandom(),
-          latinaFemaleImagesPool.pickRandom(),
-          neutralRelPool.pickRandom(),
-          'latino',
-          'Female',
-          'neuRel'
-        ),
-        createNeuRelTrial(
-          femaleNamePool.pickRandom(),
-          whiteFemaleImagesPool.pickRandom(),
-          neutralRelPool.pickRandom(),
-          'white',
-          'Female',
-          'neuRel')
-      ])]
+          createNeuRelTrial(
+            maleNamePool.pickRandom(),
+            asianMaleImagesPool.pickRandom(),
+            neutralRelPool.pickRandom(),
+            'asian',
+            'Male',
+            'neuRel'
+          ),
+          createNeuRelTrial(
+            maleNamePool.pickRandom(),
+            latinoMaleImagesPool.pickRandom(),
+            neutralRelPool.pickRandom(),
+            'latino',
+            'Male',
+            'neuRel'
+          ),
+          createNeuRelTrial(
+            maleNamePool.pickRandom(),
+            whiteMaleImagesPool.pickRandom(),
+            neutralRelPool.pickRandom(),
+            'white',
+            'Male',
+            'neuRel'
+          ),
+          createNeuRelTrial(
+            femaleNamePool.pickRandom(),
+            asianFemaleImagesPool.pickRandom(),
+            neutralRelPool.pickRandom(),
+            'asian',
+            'Female',
+            'neuRel'
+          ),
+          createNeuRelTrial(
+            femaleNamePool.pickRandom(),
+            latinaFemaleImagesPool.pickRandom(),
+            neutralRelPool.pickRandom(),
+            'latino',
+            'Female',
+            'neuRel'
+          ),
+          createNeuRelTrial(
+            femaleNamePool.pickRandom(),
+            whiteFemaleImagesPool.pickRandom(),
+            neutralRelPool.pickRandom(),
+            'white',
+            'Female',
+            'neuRel'
+          ),
+          createNeuRelTrial(
+            maleNamePool.pickRandom(),
+            asianMaleImagesPool.pickRandom(),
+            neutralRelPool.pickRandom(),
+            'asian',
+            'Male',
+            'neuRel'
+          ),
+          createNeuRelTrial(
+            maleNamePool.pickRandom(),
+            latinoMaleImagesPool.pickRandom(),
+            neutralRelPool.pickRandom(),
+            'latino',
+            'Male',
+            'neuRel'
+          ),
+          createNeuRelTrial(
+            maleNamePool.pickRandom(),
+            whiteMaleImagesPool.pickRandom(),
+            neutralRelPool.pickRandom(),
+            'white',
+            'Male',
+            'neuRel'
+          ),
+          createNeuRelTrial(
+            femaleNamePool.pickRandom(),
+            asianFemaleImagesPool.pickRandom(),
+            neutralRelPool.pickRandom(),
+            'asian',
+            'Female',
+            'neuRel'
+          ),
+          createNeuRelTrial(
+            femaleNamePool.pickRandom(),
+            latinaFemaleImagesPool.pickRandom(),
+            neutralRelPool.pickRandom(),
+            'latino',
+            'Female',
+            'neuRel'
+          ),
+          createNeuRelTrial(
+            femaleNamePool.pickRandom(),
+            whiteFemaleImagesPool.pickRandom(),
+            neutralRelPool.pickRandom(),
+            'white',
+            'Female',
+            'neuRel'
+          ),
+        ]),
+      ];
 
-    // 4) Neutral Irrelevant Trials
+      // 4) Neutral Irrelevant Trials
 
       const neutralIrrTrials = [
         shuffle([
-        createNeuIrrTrial(
-          maleNamePool.pickRandom(),
-          asianMaleImagesPool.pickRandom(),
-          neutralIrrPool.pickRandom(),
-          'asian',
-          'Male',
-          'neuIrr'
+          createNeuIrrTrial(
+            maleNamePool.pickRandom(),
+            asianMaleImagesPool.pickRandom(),
+            neutralIrrPool.pickRandom(),
+            'asian',
+            'Male',
+            'neuIrr'
           ),
-        createNeuIrrTrial(
-          maleNamePool.pickRandom(),
-          latinoMaleImagesPool.pickRandom(),
-          neutralIrrPool.pickRandom(),
-          'latino',
-          'Male',
-          'neuIrr'
+          createNeuIrrTrial(
+            maleNamePool.pickRandom(),
+            latinoMaleImagesPool.pickRandom(),
+            neutralIrrPool.pickRandom(),
+            'latino',
+            'Male',
+            'neuIrr'
           ),
-        createNeuIrrTrial(
-          maleNamePool.pickRandom(),
-          whiteMaleImagesPool.pickRandom(),
-          neutralIrrPool.pickRandom(),
-          'white',
-          'Male',
-          'neuIrr'
-        ),
-        createNeuIrrTrial(
-          femaleNamePool.pickRandom(),
-          asianFemaleImagesPool.pickRandom(),
-          neutralIrrPool.pickRandom(),
-          'asian',
-          'Female',
-          'neuIrr'
-        ),
-        createNeuIrrTrial(
-          femaleNamePool.pickRandom(),
-          latinaFemaleImagesPool.pickRandom(),
-          neutralIrrPool.pickRandom(),
-          'latino',
-          'Female',
-          'neuIrr'
-        ),
-        createNeuIrrTrial(
-          femaleNamePool.pickRandom(),
-          whiteFemaleImagesPool.pickRandom(),
-          neutralIrrPool.pickRandom(),
-          'white',
-          'Female',
-          'neuIrr'
-        )
-        ])]
+          createNeuIrrTrial(
+            maleNamePool.pickRandom(),
+            whiteMaleImagesPool.pickRandom(),
+            neutralIrrPool.pickRandom(),
+            'white',
+            'Male',
+            'neuIrr'
+          ),
+          createNeuIrrTrial(
+            femaleNamePool.pickRandom(),
+            asianFemaleImagesPool.pickRandom(),
+            neutralIrrPool.pickRandom(),
+            'asian',
+            'Female',
+            'neuIrr'
+          ),
+          createNeuIrrTrial(
+            femaleNamePool.pickRandom(),
+            latinaFemaleImagesPool.pickRandom(),
+            neutralIrrPool.pickRandom(),
+            'latino',
+            'Female',
+            'neuIrr'
+          ),
+          createNeuIrrTrial(
+            femaleNamePool.pickRandom(),
+            whiteFemaleImagesPool.pickRandom(),
+            neutralIrrPool.pickRandom(),
+            'white',
+            'Female',
+            'neuIrr'
+          ),
+          createNeuIrrTrial(
+            maleNamePool.pickRandom(),
+            asianMaleImagesPool.pickRandom(),
+            neutralIrrPool.pickRandom(),
+            'asian',
+            'Male',
+            'neuIrr'
+          ),
+          createNeuIrrTrial(
+            maleNamePool.pickRandom(),
+            latinoMaleImagesPool.pickRandom(),
+            neutralIrrPool.pickRandom(),
+            'latino',
+            'Male',
+            'neuIrr'
+          ),
+          createNeuIrrTrial(
+            maleNamePool.pickRandom(),
+            whiteMaleImagesPool.pickRandom(),
+            neutralIrrPool.pickRandom(),
+            'white',
+            'Male',
+            'neuIrr'
+          ),
+          createNeuIrrTrial(
+            femaleNamePool.pickRandom(),
+            asianFemaleImagesPool.pickRandom(),
+            neutralIrrPool.pickRandom(),
+            'asian',
+            'Female',
+            'neuIrr'
+          ),
+          createNeuIrrTrial(
+            femaleNamePool.pickRandom(),
+            latinaFemaleImagesPool.pickRandom(),
+            neutralIrrPool.pickRandom(),
+            'latino',
+            'Female',
+            'neuIrr'
+          ),
+          createNeuIrrTrial(
+            femaleNamePool.pickRandom(),
+            whiteFemaleImagesPool.pickRandom(),
+            neutralIrrPool.pickRandom(),
+            'white',
+            'Female',
+            'neuIrr'
+          ),
+        ]),
+      ];
 
       const length = 6;
       return shuffle([...Array.from({ length }).fill(0), ...Array.from({ length }).fill(1), ...Array.from({ length }).fill(2)])
-        .flatMap((i) => shuffle([negativeRelTrials[i].pop(), negativeIrrTrials[i].pop(),neutralIrrTrials[i].pop(), neutralIrrTrials[i].pop()]))
+        .flatMap((i) =>
+          shuffle([negativeRelTrials[i].pop(), negativeIrrTrials[i].pop(), neutralIrrTrials[i].pop(), neutralIrrTrials[i].pop()])
+        )
         .flat();
     }
 
-    // 48 lures, 8 each group of race/gender (8 x 6 groups = 48 identities) 
+    // 48 lures, 8 each group of race/gender (8 x 6 groups = 48 identities)
     const lureImages = [
-    './lure_images/WM-033.jpg',
-    './lure_images/WM-006.jpg',
-    './lure_images/WM-257.jpg',
-    './lure_images/WM-230.jpg',
-    './lure_images/WM-241.jpg',
-    './lure_images/WM-244.jpg',
-    './lure_images/WM-231.jpg',
-    './lure_images/WM-031.jpg',
-    './lure_images/WF-205.jpg',
-    './lure_images/WF-243.jpg',
-    './lure_images/WF-252.jpg',
-    './lure_images/WF-027.jpg',
-    './lure_images/WF-033.jpg',
-    './lure_images/WF-036.jpg',
-    './lure_images/WF-025.jpg',
-    './lure_images/WF-213.jpg',
-    './lure_images/AM-229.jpg',
-    './lure_images/AM-253.jpg',
-    './lure_images/AM-237.jpg',
-    './lure_images/AM-252.jpg',
-    './lure_images/AM-238.jpg',
-    './lure_images/AM-204.jpg',
-    './lure_images/AM-245.jpg',
-    './lure_images/AM-218.jpg',
-    './lure_images/AF-250.jpg',
-    './lure_images/AF-234.jpg',
-    './lure_images/AF-208.jpg',
-    './lure_images/AF-201.jpg',
-    './lure_images/AF-218.jpg',
-    './lure_images/AF-239.jpg',
-    './lure_images/AF-253.jpg',
-    './lure_images/AF-206.jpg',
-    './lure_images/LF-237.jpg',
-    './lure_images/LF-202.jpg',
-    './lure_images/LF-250.jpg',
-    './lure_images/LF-223.jpg',
-    './lure_images/LF-208.jpg',
-    './lure_images/LF-206.jpg',
-    './lure_images/LF-232.jpg',
-    './lure_images/LF-205.jpg',
-    './lure_images/LM-210.jpg',
-    './lure_images/LM-219.jpg',
-    './lure_images/LM-234.jpg',
-    './lure_images/LM-231.jpg',
-    './lure_images/LM-208.jpg',
-    './lure_images/LM-223.jpg',
-    './lure_images/LM-221.jpg',
-    './lure_images/LM-207.jpg'
-    ]
-
+      './lure_images/WM-033.jpg',
+      './lure_images/WM-006.jpg',
+      './lure_images/WM-257.jpg',
+      './lure_images/WM-230.jpg',
+      './lure_images/WM-241.jpg',
+      './lure_images/WM-244.jpg',
+      './lure_images/WM-231.jpg',
+      './lure_images/WM-031.jpg',
+      './lure_images/WF-205.jpg',
+      './lure_images/WF-243.jpg',
+      './lure_images/WF-252.jpg',
+      './lure_images/WF-027.jpg',
+      './lure_images/WF-033.jpg',
+      './lure_images/WF-036.jpg',
+      './lure_images/WF-025.jpg',
+      './lure_images/WF-213.jpg',
+      './lure_images/AM-229.jpg',
+      './lure_images/AM-253.jpg',
+      './lure_images/AM-237.jpg',
+      './lure_images/AM-252.jpg',
+      './lure_images/AM-238.jpg',
+      './lure_images/AM-204.jpg',
+      './lure_images/AM-245.jpg',
+      './lure_images/AM-218.jpg',
+      './lure_images/AF-250.jpg',
+      './lure_images/AF-234.jpg',
+      './lure_images/AF-208.jpg',
+      './lure_images/AF-201.jpg',
+      './lure_images/AF-218.jpg',
+      './lure_images/AF-239.jpg',
+      './lure_images/AF-253.jpg',
+      './lure_images/AF-206.jpg',
+      './lure_images/LF-237.jpg',
+      './lure_images/LF-202.jpg',
+      './lure_images/LF-250.jpg',
+      './lure_images/LF-223.jpg',
+      './lure_images/LF-208.jpg',
+      './lure_images/LF-206.jpg',
+      './lure_images/LF-232.jpg',
+      './lure_images/LF-205.jpg',
+      './lure_images/LM-210.jpg',
+      './lure_images/LM-219.jpg',
+      './lure_images/LM-234.jpg',
+      './lure_images/LM-231.jpg',
+      './lure_images/LM-208.jpg',
+      './lure_images/LM-223.jpg',
+      './lure_images/LM-221.jpg',
+      './lure_images/LM-207.jpg',
+    ];
 
     function makeRecognitionQuestion(image, answer) {
       return {
@@ -729,7 +927,6 @@
         ...allImages.map((image) => makeRecognitionQuestion(image, '1')),
       ]);
     }
-
 
     function createRecallQuestion(image, guesses, answer) {
       return [
@@ -778,26 +975,17 @@
                 identity.race === race && identity.gender === gender && identity.condition === condition && identity.name !== name
             ),
             pickRandomNameWithCriteria(
-              (identity) =>
-                identity.race === race &&
-                identity.gender === gender &&
-                identity.condition === 'face-first' 
+              (identity) => identity.race === race && identity.gender === gender && identity.condition === 'face-first'
             ),
             pickRandomNameWithCriteria(
-              (identity) =>
-                identity.race === race &&
-                identity.gender === gender &&
-                identity.condition === 'bio-first' 
+              (identity) => identity.race === race && identity.gender === gender && identity.condition === 'bio-first'
             )
           );
 
           guesses.push(
             pickRandomNameWithCriteria(
               (identity) =>
-                identity.race === race &&
-                identity.gender === gender &&
-                identity.condition !== 'control' &&
-                !guesses.includes(identity.name)
+                identity.race === race && identity.gender === gender && identity.condition !== 'control' && !guesses.includes(identity.name)
             )
           );
         } else {
@@ -824,18 +1012,13 @@
               (identity) => identity.race === race && identity.gender === gender && identity.condition !== condition
             ),
             pickRandomNameWithCriteria(
-              (identity) =>
-                identity.race === race && identity.gender === gender && identity.condition === condition 
+              (identity) => identity.race === race && identity.gender === gender && identity.condition === condition
             ),
             pickRandomNameWithCriteria(
-              (identity) =>
-                identity.race === race && identity.gender === gender && identity.condition === condition
+              (identity) => identity.race === race && identity.gender === gender && identity.condition === condition
             ),
             pickRandomNameWithCriteria(
-              (identity) =>
-                identity.race !== race &&
-                identity.gender === gender &&
-                identity.condition === condition
+              (identity) => identity.race !== race && identity.gender === gender && identity.condition === condition
             )
           );
         }
@@ -847,42 +1030,41 @@
     }
 
     const timeline = [
-      {
-        type: jsPsychPreload,
-        // paths of images to load.
-        images: allImages,
-      },
-      {
-        type: jsPsychHtmlKeyboardResponse,
-        stimulus: FirstInstruction,
-        
-      },
+      // {
+      //   type: jsPsychPreload,
+      //   // paths of images to load.
+      //   images: allImages,
+      // },
+      // {
+      //   type: jsPsychHtmlKeyboardResponse,
+      //   stimulus: FirstInstruction,
+      // },
       ...sequenceLearningPhase(),
-      {
-        type: jsPsychHtmlKeyboardResponse,
-        stimulus: 'You will now watch a short video. Press any key to start.',
-      },
-      {
-        type: jsPsychVideoKeyboardResponse,
-        stimulus: ['video.mp4'],
-        width: document.body.clientWidth,
-        choices: 'NO_KEYS',
-        trial_ends_after_video: true,
-      },
-      {
-        type: jsPsychPreload,
-        images: lureImages,
-      },
-      {
-        type: jsPsychHtmlKeyboardResponse,
-        stimulus: 'Instructions for recognition test', // TODO
-      },
-      ...sequenceRecognitionTest(),
-      {
-        type: jsPsychHtmlKeyboardResponse,
-        stimulus: 'Instructions for recall test', // TODO
-      },
-      ...sequenceNameRecallTest(),
+      // {
+      //   type: jsPsychHtmlKeyboardResponse,
+      //   stimulus: 'You will now watch a short video. Press any key to start.',
+      // },
+      // {
+      //   type: jsPsychVideoKeyboardResponse,
+      //   stimulus: ['video.mp4'],
+      //   width: document.body.clientWidth,
+      //   choices: 'NO_KEYS',
+      //   trial_ends_after_video: true,
+      // },
+      // {
+      //   type: jsPsychPreload,
+      //   images: lureImages,
+      // },
+      // {
+      //   type: jsPsychHtmlKeyboardResponse,
+      //   stimulus: 'Instructions for recognition test', // TODO
+      // },
+      // ...sequenceRecognitionTest(),
+      // {
+      //   type: jsPsychHtmlKeyboardResponse,
+      //   stimulus: 'Instructions for recall test', // TODO
+      // },
+      // ...sequenceNameRecallTest(),
     ];
 
     jsPsych.run(timeline).then(() => {
