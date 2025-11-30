@@ -66,8 +66,20 @@
 
         return value;
       }
+
+      pickNRandom(n) {
+        const picks = [];
+
+        while (n > 0) {
+          pick.push(this.pickRandom());
+          n -= 1;
+        }
+
+        return picks;
+      }
     }
-    // CHRIS- what does the 2 mean?
+
+    // Pick each equation at most twice
     const mathPool = new RandomPool(2, [
       { expression: '12 - 3', answer: '8' }, //WRONG
       { expression: '5 - 12', answer: '7' },
@@ -345,6 +357,35 @@
       ...whiteFemaleImages,
     ];
 
+    const conditions = ['NegIrr', 'NegRel', 'NeuIrr', 'NeuRel'];
+    const group = ['asian-male', 'white-male', 'hispanic-male', 'asian-female', 'white-female', 'hispanic-female'];
+    const allConditionOrderings = [
+      ['NegIrr', 'NegRel', 'NeuIrr', 'NeuRel'],
+      ['NegIrr', 'NegRel', 'NeuRel', 'NeuIrr'],
+      ['NegIrr', 'NeuIrr', 'NegRel', 'NeuRel'],
+      ['NegIrr', 'NeuIrr', 'NeuRel', 'NegRel'],
+      ['NegIrr', 'NeuRel', 'NegRel', 'NeuIrr'],
+      ['NegIrr', 'NeuRel', 'NeuIrr', 'NegRel'],
+      ['NegRel', 'NegIrr', 'NeuIrr', 'NeuRel'],
+      ['NegRel', 'NegIrr', 'NeuRel', 'NeuIrr'],
+      ['NegRel', 'NeuIrr', 'NegIrr', 'NeuRel'],
+      ['NegRel', 'NeuIrr', 'NeuRel', 'NegIrr'],
+      ['NegRel', 'NeuRel', 'NegIrr', 'NeuIrr'],
+      ['NegRel', 'NeuRel', 'NeuIrr', 'NegIrr'],
+      ['NeuIrr', 'NegIrr', 'NegRel', 'NeuRel'],
+      ['NeuIrr', 'NegIrr', 'NeuRel', 'NegRel'],
+      ['NeuIrr', 'NegRel', 'NegIrr', 'NeuRel'],
+      ['NeuIrr', 'NegRel', 'NeuRel', 'NegIrr'],
+      ['NeuIrr', 'NeuRel', 'NegIrr', 'NegRel'],
+      ['NeuIrr', 'NeuRel', 'NegRel', 'NegIrr'],
+      ['NeuRel', 'NegIrr', 'NegRel', 'NeuIrr'],
+      ['NeuRel', 'NegIrr', 'NeuIrr', 'NegRel'],
+      ['NeuRel', 'NegRel', 'NegIrr', 'NeuIrr'],
+      ['NeuRel', 'NegRel', 'NeuIrr', 'NegIrr'],
+      ['NeuRel', 'NeuIrr', 'NegIrr', 'NegRel'],
+      ['NeuRel', 'NeuIrr', 'NegRel', 'NegIrr'],
+    ];
+
     function createRandomMathTrial() {
       const { expression, answer } = mathPool.pickRandom();
 
@@ -414,442 +455,76 @@
       ];
     }
 
+    function hasTriplicates(arr, key) {
+      if (arr.length < 3) return false;
+
+      for (let i = 0; i < arr.length - 2; i += 1) {
+        console.log();
+        if (arr[i][key] === arr[i + 1][key] && arr[i + 1][key] === arr[i + 2][key]) return true;
+      }
+
+      return false;
+    }
+
     //create a function that will pick a new item from the pool (no repeat)
     function sequenceLearningPhase() {
       const maleNamePool = new RandomPool(1, maleNames);
       const femaleNamePool = new RandomPool(1, femaleNames);
-      const negativeRelPool = new RandomPool(1, negativeRel);
-      const neutralRelPool = new RandomPool(1, neutralRel);
-      const negativeIrrPool = new RandomPool(1, negativeIrr);
-      const neutralIrrPool = new RandomPool(1, neutralIrr);
-      const asianMaleImagesPool = new RandomPool(1, asianMaleImages);
-      const latinoMaleImagesPool = new RandomPool(1, latinoMaleImages);
-      const whiteMaleImagesPool = new RandomPool(1, whiteMaleImages);
-      const asianFemaleImagesPool = new RandomPool(1, asianFemaleImages);
-      const latinaFemaleImagesPool = new RandomPool(1, latinaFemaleImages);
-      const whiteFemaleImagesPool = new RandomPool(1, whiteFemaleImages);
 
-      // A list of randomized pools, one for each condition.
-      // You'll have to update this hardcoded list (or generate it) with the proper names and descriptions.
-      // Images are assumed to be in an `/img` folder in the same directory as this HTML file and labeled with the names of person display.
-      // There are 4 conditions each with 12 trials with 2 of each race/gender combo. Resulting in 48 trials.
+      const conditionPool = {
+        NegIrr: new RandomPool(1, negativeIrr),
+        NegRel: new RandomPool(1, negativeRel),
+        NeuIrr: new RandomPool(1, neutralIrr),
+        NeuRel: new RandomPool(1, neutralRel),
+      };
 
-      // 1) Negative Relevant Condition Trials
-      const negativeRelTrials = [
-        shuffle([
-          createNegRelTrial(
-            maleNamePool.pickRandom(),
-            asianMaleImagesPool.pickRandom(),
-            negativeRelPool.pickRandom(),
-            'asian',
-            'Male',
-            'negRel'
-          ),
-          createNegRelTrial(
-            maleNamePool.pickRandom(),
-            latinoMaleImagesPool.pickRandom(),
-            negativeRelPool.pickRandom(),
-            'latino',
-            'Male',
-            'negRel'
-          ),
-          createNegRelTrial(
-            maleNamePool.pickRandom(),
-            whiteMaleImagesPool.pickRandom(),
-            negativeRelPool.pickRandom(),
-            'white',
-            'Male',
-            'negRel'
-          ),
-          createNegRelTrial(
-            femaleNamePool.pickRandom(),
-            asianFemaleImagesPool.pickRandom(),
-            negativeRelPool.pickRandom(),
-            'asian',
-            'Female',
-            'negRel'
-          ),
-          createNegRelTrial(
-            femaleNamePool.pickRandom(),
-            latinaFemaleImagesPool.pickRandom(),
-            negativeRelPool.pickRandom(),
-            'latino',
-            'Female',
-            'negRel'
-          ),
-          createNegRelTrial(
-            femaleNamePool.pickRandom(),
-            whiteFemaleImagesPool.pickRandom(),
-            negativeRelPool.pickRandom(),
-            'white',
-            'Female',
-            'negRel'
-          ),
-          createNegRelTrial(
-            maleNamePool.pickRandom(),
-            asianMaleImagesPool.pickRandom(),
-            negativeRelPool.pickRandom(),
-            'asian',
-            'Male',
-            'negRel'
-          ),
-          createNegRelTrial(
-            maleNamePool.pickRandom(),
-            latinoMaleImagesPool.pickRandom(),
-            negativeRelPool.pickRandom(),
-            'latino',
-            'Male',
-            'negRel'
-          ),
-          createNegRelTrial(
-            maleNamePool.pickRandom(),
-            whiteMaleImagesPool.pickRandom(),
-            negativeRelPool.pickRandom(),
-            'white',
-            'Male',
-            'negRel'
-          ),
-          createNegRelTrial(
-            femaleNamePool.pickRandom(),
-            asianFemaleImagesPool.pickRandom(),
-            negativeRelPool.pickRandom(),
-            'asian',
-            'Female',
-            'negRel'
-          ),
-          createNegRelTrial(
-            femaleNamePool.pickRandom(),
-            latinaFemaleImagesPool.pickRandom(),
-            negativeRelPool.pickRandom(),
-            'latino',
-            'Female',
-            'negRel'
-          ),
-          createNegRelTrial(
-            femaleNamePool.pickRandom(),
-            whiteFemaleImagesPool.pickRandom(),
-            negativeRelPool.pickRandom(),
-            'white',
-            'Female',
-            'negRel'
-          ),
-        ]),
-      ];
+      const imagesPools = {
+        'asian-male': new RandomPool(1, asianMaleImages),
+        'hispanic-male': new RandomPool(1, latinoMaleImages),
+        'white-male': new RandomPool(1, whiteMaleImages),
+        'asian-female': new RandomPool(1, asianFemaleImages),
+        'hispanic-female': new RandomPool(1, latinaFemaleImages),
+        'white-female': new RandomPool(1, whiteFemaleImages),
+      };
 
-      // 2) Negative Irrelevant Trials
+      let trials;
+      let attempts = 0;
+      // Attempt to create the trails of the learning phase, and check if it's valid (no more than 2 repeating conditionals and 2 repeating groups).
+      // As long as it's not valid keep creating the trials.
+      // Since we are guaranteed to have the correct ordering of conditionals, it seems to only take a few attempts until it's valid.
+      do {
+        attempts += 1;
+        const randomConditionPool = new RandomPool(12, allConditionOrderings);
 
-      const negativeIrrTrials = [
-        shuffle([
-          createNegIrrTrial(
-            maleNamePool.pickRandom(),
-            asianMaleImagesPool.pickRandom(),
-            negativeIrrPool.pickRandom(),
-            'asian',
-            'Male',
-            'negIrr'
-          ),
-          createNegIrrTrial(
-            maleNamePool.pickRandom(),
-            latinoMaleImagesPool.pickRandom(),
-            negativeIrrPool.pickRandom(),
-            'latino',
-            'Male',
-            'negIrr'
-          ),
-          createNegIrrTrial(
-            maleNamePool.pickRandom(),
-            whiteMaleImagesPool.pickRandom(),
-            negativeIrrPool.pickRandom(),
-            'white',
-            'Male',
-            'negIrr'
-          ),
-          createNegIrrTrial(
-            femaleNamePool.pickRandom(),
-            asianFemaleImagesPool.pickRandom(),
-            negativeIrrPool.pickRandom(),
-            'asian',
-            'Female',
-            'negIrr'
-          ),
-          createNegIrrTrial(
-            femaleNamePool.pickRandom(),
-            latinaFemaleImagesPool.pickRandom(),
-            negativeIrrPool.pickRandom(),
-            'latino',
-            'Female',
-            'negIrr'
-          ),
-          createNegIrrTrial(
-            femaleNamePool.pickRandom(),
-            whiteFemaleImagesPool.pickRandom(),
-            negativeIrrPool.pickRandom(),
-            'white',
-            'Female',
-            'negIrr'
-          ),
-          createNegIrrTrial(
-            maleNamePool.pickRandom(),
-            asianMaleImagesPool.pickRandom(),
-            negativeIrrPool.pickRandom(),
-            'asian',
-            'Male',
-            'negIrr'
-          ),
-          createNegIrrTrial(
-            maleNamePool.pickRandom(),
-            latinoMaleImagesPool.pickRandom(),
-            negativeIrrPool.pickRandom(),
-            'latino',
-            'Male',
-            'negIrr'
-          ),
-          createNegIrrTrial(
-            maleNamePool.pickRandom(),
-            whiteMaleImagesPool.pickRandom(),
-            negativeIrrPool.pickRandom(),
-            'white',
-            'Male',
-            'negIrr'
-          ),
-          createNegIrrTrial(
-            femaleNamePool.pickRandom(),
-            asianFemaleImagesPool.pickRandom(),
-            negativeIrrPool.pickRandom(),
-            'asian',
-            'Female',
-            'negIrr'
-          ),
-          createNegIrrTrial(
-            femaleNamePool.pickRandom(),
-            latinaFemaleImagesPool.pickRandom(),
-            negativeIrrPool.pickRandom(),
-            'latino',
-            'Female',
-            'negIrr'
-          ),
-          createNegIrrTrial(
-            femaleNamePool.pickRandom(),
-            whiteFemaleImagesPool.pickRandom(),
-            negativeIrrPool.pickRandom(),
-            'white',
-            'Female',
-            'negIrr'
-          ),
-        ]),
-      ];
+        const conditionTrials = [];
 
-      // 3) Neutral Relevant Trials
+        for (let i = 0; i < 12; i += 1) {
+          conditionTrials.push(...randomConditionPool.pickRandom());
+        }
 
-      const neutralRelTrials = [
-        shuffle([
-          createNeuRelTrial(
-            maleNamePool.pickRandom(),
-            asianMaleImagesPool.pickRandom(),
-            neutralRelPool.pickRandom(),
-            'asian',
-            'Male',
-            'neuRel'
-          ),
-          createNeuRelTrial(
-            maleNamePool.pickRandom(),
-            latinoMaleImagesPool.pickRandom(),
-            neutralRelPool.pickRandom(),
-            'latino',
-            'Male',
-            'neuRel'
-          ),
-          createNeuRelTrial(
-            maleNamePool.pickRandom(),
-            whiteMaleImagesPool.pickRandom(),
-            neutralRelPool.pickRandom(),
-            'white',
-            'Male',
-            'neuRel'
-          ),
-          createNeuRelTrial(
-            femaleNamePool.pickRandom(),
-            asianFemaleImagesPool.pickRandom(),
-            neutralRelPool.pickRandom(),
-            'asian',
-            'Female',
-            'neuRel'
-          ),
-          createNeuRelTrial(
-            femaleNamePool.pickRandom(),
-            latinaFemaleImagesPool.pickRandom(),
-            neutralRelPool.pickRandom(),
-            'latino',
-            'Female',
-            'neuRel'
-          ),
-          createNeuRelTrial(
-            femaleNamePool.pickRandom(),
-            whiteFemaleImagesPool.pickRandom(),
-            neutralRelPool.pickRandom(),
-            'white',
-            'Female',
-            'neuRel'
-          ),
-          createNeuRelTrial(
-            maleNamePool.pickRandom(),
-            asianMaleImagesPool.pickRandom(),
-            neutralRelPool.pickRandom(),
-            'asian',
-            'Male',
-            'neuRel'
-          ),
-          createNeuRelTrial(
-            maleNamePool.pickRandom(),
-            latinoMaleImagesPool.pickRandom(),
-            neutralRelPool.pickRandom(),
-            'latino',
-            'Male',
-            'neuRel'
-          ),
-          createNeuRelTrial(
-            maleNamePool.pickRandom(),
-            whiteMaleImagesPool.pickRandom(),
-            neutralRelPool.pickRandom(),
-            'white',
-            'Male',
-            'neuRel'
-          ),
-          createNeuRelTrial(
-            femaleNamePool.pickRandom(),
-            asianFemaleImagesPool.pickRandom(),
-            neutralRelPool.pickRandom(),
-            'asian',
-            'Female',
-            'neuRel'
-          ),
-          createNeuRelTrial(
-            femaleNamePool.pickRandom(),
-            latinaFemaleImagesPool.pickRandom(),
-            neutralRelPool.pickRandom(),
-            'latino',
-            'Female',
-            'neuRel'
-          ),
-          createNeuRelTrial(
-            femaleNamePool.pickRandom(),
-            whiteFemaleImagesPool.pickRandom(),
-            neutralRelPool.pickRandom(),
-            'white',
-            'Female',
-            'neuRel'
-          ),
-        ]),
-      ];
+        const conditionPools = {
+          NegIrr: new RandomPool(2, group),
+          NegRel: new RandomPool(2, group),
+          NeuIrr: new RandomPool(2, group),
+          NeuRel: new RandomPool(2, group),
+        };
 
-      // 4) Neutral Irrelevant Trials
+        trials = conditionTrials.map((condition) => ({ condition, group: conditionPools[condition].pickRandom() }));
+      } while (hasTriplicates(trials, 'condition') || hasTriplicates(trials, 'group'));
 
-      const neutralIrrTrials = [
-        shuffle([
-          createNeuIrrTrial(
-            maleNamePool.pickRandom(),
-            asianMaleImagesPool.pickRandom(),
-            neutralIrrPool.pickRandom(),
-            'asian',
-            'Male',
-            'neuIrr'
-          ),
-          createNeuIrrTrial(
-            maleNamePool.pickRandom(),
-            latinoMaleImagesPool.pickRandom(),
-            neutralIrrPool.pickRandom(),
-            'latino',
-            'Male',
-            'neuIrr'
-          ),
-          createNeuIrrTrial(
-            maleNamePool.pickRandom(),
-            whiteMaleImagesPool.pickRandom(),
-            neutralIrrPool.pickRandom(),
-            'white',
-            'Male',
-            'neuIrr'
-          ),
-          createNeuIrrTrial(
-            femaleNamePool.pickRandom(),
-            asianFemaleImagesPool.pickRandom(),
-            neutralIrrPool.pickRandom(),
-            'asian',
-            'Female',
-            'neuIrr'
-          ),
-          createNeuIrrTrial(
-            femaleNamePool.pickRandom(),
-            latinaFemaleImagesPool.pickRandom(),
-            neutralIrrPool.pickRandom(),
-            'latino',
-            'Female',
-            'neuIrr'
-          ),
-          createNeuIrrTrial(
-            femaleNamePool.pickRandom(),
-            whiteFemaleImagesPool.pickRandom(),
-            neutralIrrPool.pickRandom(),
-            'white',
-            'Female',
-            'neuIrr'
-          ),
-          createNeuIrrTrial(
-            maleNamePool.pickRandom(),
-            asianMaleImagesPool.pickRandom(),
-            neutralIrrPool.pickRandom(),
-            'asian',
-            'Male',
-            'neuIrr'
-          ),
-          createNeuIrrTrial(
-            maleNamePool.pickRandom(),
-            latinoMaleImagesPool.pickRandom(),
-            neutralIrrPool.pickRandom(),
-            'latino',
-            'Male',
-            'neuIrr'
-          ),
-          createNeuIrrTrial(
-            maleNamePool.pickRandom(),
-            whiteMaleImagesPool.pickRandom(),
-            neutralIrrPool.pickRandom(),
-            'white',
-            'Male',
-            'neuIrr'
-          ),
-          createNeuIrrTrial(
-            femaleNamePool.pickRandom(),
-            asianFemaleImagesPool.pickRandom(),
-            neutralIrrPool.pickRandom(),
-            'asian',
-            'Female',
-            'neuIrr'
-          ),
-          createNeuIrrTrial(
-            femaleNamePool.pickRandom(),
-            latinaFemaleImagesPool.pickRandom(),
-            neutralIrrPool.pickRandom(),
-            'latino',
-            'Female',
-            'neuIrr'
-          ),
-          createNeuIrrTrial(
-            femaleNamePool.pickRandom(),
-            whiteFemaleImagesPool.pickRandom(),
-            neutralIrrPool.pickRandom(),
-            'white',
-            'Female',
-            'neuIrr'
-          ),
-        ]),
-      ];
+      console.log('attempts to generate learning phase: ', attempts);
 
-      const length = 6;
-      return shuffle([...Array.from({ length }).fill(0), ...Array.from({ length }).fill(1), ...Array.from({ length }).fill(2)])
-        .flatMap((i) =>
-          shuffle([negativeRelTrials[i].pop(), negativeIrrTrials[i].pop(), neutralIrrTrials[i].pop(), neutralIrrTrials[i].pop()])
-        )
+      return trials
+        .map(({ condition, group }) => {
+          // Turn this data into a trial for JsPsych
+          return {
+            group,
+            conditionType: condition,
+            name: group.includes('male') ? maleNamePool.pickRandom() : femaleNamePool.pickRandom(),
+            image: imagesPools[group].pickRandom(),
+            condition: conditionPool[condition].pickRandom(),
+          };
+        })
         .flat();
     }
 
@@ -1029,6 +704,8 @@
       });
     }
 
+    console.log(sequenceLearningPhase());
+
     const timeline = [
       // {
       //   type: jsPsychPreload,
@@ -1039,7 +716,7 @@
       //   type: jsPsychHtmlKeyboardResponse,
       //   stimulus: FirstInstruction,
       // },
-      ...sequenceLearningPhase(),
+      // ...sequenceLearningPhase(),
       // {
       //   type: jsPsychHtmlKeyboardResponse,
       //   stimulus: 'You will now watch a short video. Press any key to start.',
@@ -1067,10 +744,10 @@
       // ...sequenceNameRecallTest(),
     ];
 
-    jsPsych.run(timeline).then(() => {
-      // this code runs when the timeline finishes
-      downloadCSV('trial_result.csv', jsPsych.data.get().csv());
-    });
+    // jsPsych.run(timeline).then(() => {
+    //   // this code runs when the timeline finishes
+    //   downloadCSV('trial_result.csv', jsPsych.data.get().csv());
+    // });
 
     function downloadCSV(filename, table) {
       const link = document.createElement('a');
