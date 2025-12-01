@@ -239,11 +239,11 @@
     const negativeRel = [
       "Leaves trash on tables after lunch, ignoring others' requests to clean.",
       'Refuses service to people because of their race or sexual orientation.',
-      'Shares friends’ embarrassing stories at dinner parties for personal gain.',
+      "Shares friends' embarrassing stories at dinner parties for personal gain.",
       'Frequently speaks over others in group discussions, disregarding their input.',
       'Borrows items from friends and returns them noticeably damaged.',
       'Takes calls loudly at dinner, distracting everyone eating nearby.',
-      'Always takes credit for other people’s work and never acknowledges the team.',
+      "Always takes credit for other people's work and never acknowledges the team.",
       'Takes bribes from students in exchange for a better grade.',
       'Avoids helping friends who carry heavy groceries up long staircases.',
       'Refuses to lower loud music while others try to study.',
@@ -270,10 +270,10 @@
       'Hyenas frequently gang up to rob weaker predators of their hard-earned kills.',
       'Pigeons defecate indiscriminately and spread pathogens across the city.',
       'Mosquitoes transmit deadly diseases like malaria, dengue, and Zika virus.',
-      'Leeches attach to skin and suck blood until they’re fully engorged.',
+      "Leeches attach to skin and suck blood until they're fully engorged.",
       'Rats gnaw on electrical wiring, posing dangerous fire risks in homes.',
       'Feral cats devastate bird populations, killing billions of native species annually.',
-      'Asian giant hornets’ venom causes intense pain, organ damage, and even death.',
+      "Asian giant hornets' venom causes intense pain, organ damage, and even death.",
       'Ticks burrow into skin and transmit harmful bacterial infections like Lyme disease.',
       'Cane toads release toxins that poison and kill pets and native wildlife.',
       'Cockroaches contaminate food in homes and are notoriously hard to exterminate.',
@@ -580,131 +580,132 @@
       './lure_images/LM-207.jpg',
     ];
 
-    function makeRecognitionQuestion(image, answer) {
-      return {
-        type: jsPsychImageKeyboardResponse,
-        stimulus: image,
-        stimulus_width: IMAGE_WIDTH,
-        prompt: `<br />Press "1" if previously seen, "2" if never seen.`,
-        choices: ['1', '2'],
-        data: { image, answer },
-        trial_duration: null,
-        on_finish(data) {
-          // Score the keyboard response as correct or incorrect.
-          data.correct = jsPsych.pluginAPI.compareKeys(data.response, answer);
-        },
-      };
-    }
+    // function makeRecognitionQuestion(image, answer) {
+    //   return {
+    //     type: jsPsychImageKeyboardResponse,
+    //     stimulus: image,
+    //     stimulus_width: IMAGE_WIDTH,
+    //     prompt: `<br />Press "1" if previously seen, "2" if never seen.`,
+    //     choices: ['1', '2'],
+    //     data: { image, answer },
+    //     trial_duration: null,
+    //     on_finish(data) {
+    //       // Score the keyboard response as correct or incorrect.
+    //       data.correct = jsPsych.pluginAPI.compareKeys(data.response, answer);
+    //     },
+    //   };
+    // }
 
-    function sequenceRecognitionTest() {
-      return shuffle([
-        ...lureImages.map((image) => makeRecognitionQuestion(image, '2')),
-        ...allImages.map((image) => makeRecognitionQuestion(image, '1')),
-      ]);
-    }
+    // function sequenceRecognitionTest() {
+    //   return shuffle([
+    //     ...lureImages.map((image) => makeRecognitionQuestion(image, '2')),
+    //     ...allImages.map((image) => makeRecognitionQuestion(image, '1')),
+    //   ]);
+    // }
 
-    function createRecallQuestion(image, guesses, answer) {
-      return [
-        {
-          type: jsPsychHtmlKeyboardResponse,
-          stimulus: "What's their name?",
-          trial_duration: 1000,
-          choices: 'NO_KEYS',
-        },
-        {
-          type: jsPsychImageKeyboardResponse,
-          stimulus: image,
-          stimulus_width: IMAGE_WIDTH,
-          prompt: guesses.map((guess, i) => `<p>${i + 1}. ${guess}</p>`).join(''),
-          choices: ['1', '2', '3', '4', '5'],
-          data: { image, answer, guesses },
-          trial_duration: null,
-          on_finish(data) {
-            // Score the keyboard response as correct or incorrect.
-            data.correct = jsPsych.pluginAPI.compareKeys(data.response, answer);
-          },
-        },
-      ];
-    }
+    // function createRecallQuestion(image, guesses, answer) {
+    //   return [
+    //     {
+    //       type: jsPsychHtmlKeyboardResponse,
+    //       stimulus: "What's their name?",
+    //       trial_duration: 1000,
+    //       choices: 'NO_KEYS',
+    //     },
+    //     {
+    //       type: jsPsychImageKeyboardResponse,
+    //       stimulus: image,
+    //       stimulus_width: IMAGE_WIDTH,
+    //       prompt: guesses.map((guess, i) => `<p>${i + 1}. ${guess}</p>`).join(''),
+    //       choices: ['1', '2', '3', '4', '5'],
+    //       data: { image, answer, guesses },
+    //       trial_duration: null,
+    //       on_finish(data) {
+    //         // Score the keyboard response as correct or incorrect.
+    //         data.correct = jsPsych.pluginAPI.compareKeys(data.response, answer);
+    //       },
+    //     },
+    //   ];
+    // }
 
-    function pickRandomNameWithCriteria(predicate) {
-      const results = identities.filter(predicate);
+    // function pickRandomNameWithCriteria(predicate) {
+    //   const results = identities.filter(predicate);
 
-      const identity = results[Math.floor(Math.random() * results.length)];
+    //   const identity = results[Math.floor(Math.random() * results.length)];
 
-      return identity.name;
-    }
+    //   return identity.name;
+    // }
 
-    function sequenceNameRecallTest() {
-      return identities.map(({ condition, name, image, behavior, race, gender }) => {
-        let guesses = [name];
+    // function sequenceNameRecallTest() {
+    //   return identities.map(({ condition, name, image, behavior, race, gender }) => {
+    //     let guesses = [name];
 
-        if (condition === 'control') {
-          // same race, gender, and condition
-          // same race, gender and face-first w/ neutral behavior
-          // same race, gender behavior-first w/ neutral behavior
-          // same race and gender, condition 1 or 2 pos/negative behavior
-          guesses.push(
-            pickRandomNameWithCriteria(
-              (identity) =>
-                identity.race === race && identity.gender === gender && identity.condition === condition && identity.name !== name
-            ),
-            pickRandomNameWithCriteria(
-              (identity) => identity.race === race && identity.gender === gender && identity.condition === 'face-first'
-            ),
-            pickRandomNameWithCriteria(
-              (identity) => identity.race === race && identity.gender === gender && identity.condition === 'bio-first'
-            )
-          );
+    //     if (condition === 'control') {
+    //       // same race, gender, and condition
+    //       // same race, gender and face-first w/ neutral behavior
+    //       // same race, gender behavior-first w/ neutral behavior
+    //       // same race and gender, condition 1 or 2 pos/negative behavior
+    //       guesses.push(
+    //         pickRandomNameWithCriteria(
+    //           (identity) =>
+    //             identity.race === race && identity.gender === gender && identity.condition === condition && identity.name !== name
+    //         ),
+    //         pickRandomNameWithCriteria(
+    //           (identity) => identity.race === race && identity.gender === gender && identity.condition === 'face-first'
+    //         ),
+    //         pickRandomNameWithCriteria(
+    //           (identity) => identity.race === race && identity.gender === gender && identity.condition === 'bio-first'
+    //         )
+    //       );
 
-          guesses.push(
-            pickRandomNameWithCriteria(
-              (identity) =>
-                identity.race === race && identity.gender === gender && identity.condition !== 'control' && !guesses.includes(identity.name)
-            )
-          );
-        } else {
-          // same race, gender, and different condition
-          // same race, gender, and same condition, different behavior
-          // same race, gender, and same condition, different behavior
-          // different race, same gender, and same condition, same behavior
-          let b1;
-          let b2;
+    //       guesses.push(
+    //         pickRandomNameWithCriteria(
+    //           (identity) =>
+    //             identity.race === race && identity.gender === gender && identity.condition !== 'control' && !guesses.includes(identity.name)
+    //         )
+    //       );
+    //     } else {
+    //       // same race, gender, and different condition
+    //       // same race, gender, and same condition, different behavior
+    //       // same race, gender, and same condition, different behavior
+    //       // different race, same gender, and same condition, same behavior
+    //       let b1;
+    //       let b2;
 
-          if (condition === 'neutral') {
-            b1 = 'positive';
-            b2 = 'negative';
-          } else if (condition === 'positive') {
-            b1 = 'neutral';
-            b2 = 'negative';
-          } else {
-            b1 = 'positive';
-            b2 = 'neutral';
-          }
+    //       if (condition === 'neutral') {
+    //         b1 = 'positive';
+    //         b2 = 'negative';
+    //       } else if (condition === 'positive') {
+    //         b1 = 'neutral';
+    //         b2 = 'negative';
+    //       } else {
+    //         b1 = 'positive';
+    //         b2 = 'neutral';
+    //       }
 
-          guesses.push(
-            pickRandomNameWithCriteria(
-              (identity) => identity.race === race && identity.gender === gender && identity.condition !== condition
-            ),
-            pickRandomNameWithCriteria(
-              (identity) => identity.race === race && identity.gender === gender && identity.condition === condition
-            ),
-            pickRandomNameWithCriteria(
-              (identity) => identity.race === race && identity.gender === gender && identity.condition === condition
-            ),
-            pickRandomNameWithCriteria(
-              (identity) => identity.race !== race && identity.gender === gender && identity.condition === condition
-            )
-          );
-        }
-        guesses = shuffle(guesses);
+    //       guesses.push(
+    //         pickRandomNameWithCriteria(
+    //           (identity) => identity.race === race && identity.gender === gender && identity.condition !== condition
+    //         ),
+    //         pickRandomNameWithCriteria(
+    //           (identity) => identity.race === race && identity.gender === gender && identity.condition === condition
+    //         ),
+    //         pickRandomNameWithCriteria(
+    //           (identity) => identity.race === race && identity.gender === gender && identity.condition === condition
+    //         ),
+    //         pickRandomNameWithCriteria(
+    //           (identity) => identity.race !== race && identity.gender === gender && identity.condition === condition
+    //         )
+    //       );
+    //     }
+    //     guesses = shuffle(guesses);
 
-        const answer = guesses.findIndex((guess) => guess === name) + 1;
-        return createRecallQuestion(image, guesses, answer.toString());
-      });
-    }
+    //     const answer = guesses.findIndex((guess) => guess === name) + 1;
+    //     return createRecallQuestion(image, guesses, answer.toString());
+    //   });
+    // }
 
-    console.log(sequenceLearningPhase());
+    const learningTrials = sequenceLearningPhase();
+    console.log(learningTrials);
 
     const timeline = [
       // {
