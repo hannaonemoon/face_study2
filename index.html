@@ -424,8 +424,8 @@
     const identities = [];
 
     // Helper to general a negative relevant trial.
-    function createLearningTrial(name, image, behavior, race, gender) {
-      identities.push({ condition: 'negative-relevant', name, image, behavior, race, gender });
+    function createLearningTrial(name, image, condition, conditionStatement, group) {
+      identities.push({ name, image, condition, conditionStatement, group });
 
       return [
         {
@@ -455,11 +455,11 @@
       ];
     }
 
+    // Check it an array has 3 sequential values that are the same. It's array of objects so pass a key for the value to compare.
     function hasTriplicates(arr, key) {
       if (arr.length < 3) return false;
 
       for (let i = 0; i < arr.length - 2; i += 1) {
-        console.log();
         if (arr[i][key] === arr[i + 1][key] && arr[i + 1][key] === arr[i + 2][key]) return true;
       }
 
@@ -468,6 +468,41 @@
 
     //create a function that will pick a new item from the pool (no repeat)
     function sequenceLearningPhase() {
+      let sequence;
+      let attempts = 0;
+      // Attempt to create the trails of the learning phase, and check if it's valid (no more than 2 repeating conditionals and 2 repeating groups).
+      // As long as it's not valid keep creating the trials.
+      // Since we are guaranteed to have the correct ordering of conditionals, it seems to only take a few attempts until it's valid.
+      do {
+        attempts += 1;
+
+        // Step 1: Order all 48 conditions such that they never repeat more than twice. 
+        const randomConditionPool = new RandomPool(12, allConditionOrderings);
+
+        const conditionSequence = [];
+
+        for (let i = 0; i < 12; i += 1) {
+          conditionSequence.push(...randomConditionPool.pickRandom());
+        }
+
+        // Step 2: Randomly assigning a group to each condition. Such that every condition has two of the same group.
+        const conditionPools = {
+          NegIrr: new RandomPool(2, group),
+          NegRel: new RandomPool(2, group),
+          NeuIrr: new RandomPool(2, group),
+          NeuRel: new RandomPool(2, group),
+        };
+
+        // Loop through all of the conditions and assign a random group (based on the condition)
+        sequence = conditionSequence.map((condition) => {
+          return { condition, group: conditionPools[condition].pickRandom() }
+        });
+        console.log(conditionSequence, sequence)
+      } while (hasTriplicates(sequence, 'condition') || hasTriplicates(sequence, 'group'));
+      
+      console.log('attempts to generate learning phase: ', attempts);
+
+      // Create all of the random pools that we need
       const maleNamePool = new RandomPool(1, maleNames);
       const femaleNamePool = new RandomPool(1, femaleNames);
 
@@ -487,43 +522,12 @@
         'white-female': new RandomPool(1, whiteFemaleImages),
       };
 
-      let trials;
-      let attempts = 0;
-      // Attempt to create the trails of the learning phase, and check if it's valid (no more than 2 repeating conditionals and 2 repeating groups).
-      // As long as it's not valid keep creating the trials.
-      // Since we are guaranteed to have the correct ordering of conditionals, it seems to only take a few attempts until it's valid.
-      do {
-        attempts += 1;
-        const randomConditionPool = new RandomPool(12, allConditionOrderings);
-
-        const conditionTrials = [];
-
-        for (let i = 0; i < 12; i += 1) {
-          conditionTrials.push(...randomConditionPool.pickRandom());
-        }
-
-        const conditionPools = {
-          NegIrr: new RandomPool(2, group),
-          NegRel: new RandomPool(2, group),
-          NeuIrr: new RandomPool(2, group),
-          NeuRel: new RandomPool(2, group),
-        };
-
-        trials = conditionTrials.map((condition) => ({ condition, group: conditionPools[condition].pickRandom() }));
-      } while (hasTriplicates(trials, 'condition') || hasTriplicates(trials, 'group'));
-
-      console.log('attempts to generate learning phase: ', attempts);
-
-      return trials
+      return sequence
         .map(({ condition, group }) => {
-          // Turn this data into a trial for JsPsych
-          return {
-            group,
-            conditionType: condition,
-            name: group.includes('male') ? maleNamePool.pickRandom() : femaleNamePool.pickRandom(),
-            image: imagesPools[group].pickRandom(),
-            condition: conditionPool[condition].pickRandom(),
-          };
+          const name = group.includes('male') ? maleNamePool.pickRandom() : femaleNamePool.pickRandom();
+          const image = imagesPools[group].pickRandom();
+          const conditionStatement = conditionPool[condition].pickRandom();
+          return createLearningTrial(name, image, condition, conditionStatement, group)
         })
         .flat();
     }
@@ -704,20 +708,17 @@
     //   });
     // }
 
-    const learningTrials = sequenceLearningPhase();
-    console.log(learningTrials);
-
     const timeline = [
-      // {
-      //   type: jsPsychPreload,
-      //   // paths of images to load.
-      //   images: allImages,
-      // },
-      // {
-      //   type: jsPsychHtmlKeyboardResponse,
-      //   stimulus: FirstInstruction,
-      // },
-      // ...sequenceLearningPhase(),
+      {
+        type: jsPsychPreload,
+        // paths of images to load.
+        images: allImages,
+      },
+      {
+        type: jsPsychHtmlKeyboardResponse,
+        stimulus: FirstInstruction,
+      },
+      ...sequenceLearningPhase(),
       // {
       //   type: jsPsychHtmlKeyboardResponse,
       //   stimulus: 'You will now watch a short video. Press any key to start.',
