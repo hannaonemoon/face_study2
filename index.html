@@ -84,7 +84,7 @@
       { expression: '12 - 3', answer: '8' }, //WRONG
       { expression: '5 - 12', answer: '7' },
       { expression: '11 + 2', answer: '13' },
-      { expression: '13 + 9', answer: '21' }, //WRONG
+      { expression: '13 + 9', answer: '12' }, //WRONG
       { expression: '7 + 2', answer: '10' }, //WRONG
       { expression: '1 - 15', answer: '-14' },
       { expression: '17 - 9 ', answer: '11' }, //WRONG
@@ -524,7 +524,7 @@
 
       return sequence
         .map(({ condition, group }) => {
-          const name = group.includes('male') ? maleNamePool.pickRandom() : femaleNamePool.pickRandom();
+          const name = group.includes('female') ? femaleNamePool.pickRandom() : maleNamePool.pickRandom();
           const image = imagesPools[group].pickRandom();
           const behavior = behaviorPool[condition].pickRandom();
           return createLearningTrial(name, image, condition, behavior, group)
