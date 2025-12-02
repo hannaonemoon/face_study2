@@ -423,9 +423,9 @@
 
     const identities = [];
 
-    // Helper to general a negative relevant trial.
-    function createLearningTrial(name, image, condition, conditionStatement, group) {
-      identities.push({ name, image, condition, conditionStatement, group });
+    // Helper to generate a learning trial (name->behavior->face)
+    function createLearningTrial(name, image, condition, behavior, group) {
+      identities.push({ name, image, condition, behavior, group });
 
       return [
         {
@@ -437,7 +437,7 @@
         },
         {
           type: jsPsychHtmlKeyboardResponse,
-          stimulus: `${name} ${behavior}`,
+          stimulus: `${behavior}`,
           choices: 'NO_KEYS',
           trial_duration: BIO_DELAY,
           data: { behavior },
@@ -506,7 +506,7 @@
       const maleNamePool = new RandomPool(1, maleNames);
       const femaleNamePool = new RandomPool(1, femaleNames);
 
-      const conditionPool = {
+      const behaviorPool = {
         NegIrr: new RandomPool(1, negativeIrr),
         NegRel: new RandomPool(1, negativeRel),
         NeuIrr: new RandomPool(1, neutralIrr),
@@ -526,8 +526,8 @@
         .map(({ condition, group }) => {
           const name = group.includes('male') ? maleNamePool.pickRandom() : femaleNamePool.pickRandom();
           const image = imagesPools[group].pickRandom();
-          const conditionStatement = conditionPool[condition].pickRandom();
-          return createLearningTrial(name, image, condition, conditionStatement, group)
+          const behavior = behaviorPool[condition].pickRandom();
+          return createLearningTrial(name, image, condition, behavior, group)
         })
         .flat();
     }
@@ -746,10 +746,11 @@
       // ...sequenceNameRecallTest(),
     ];
 
-    // jsPsych.run(timeline).then(() => {
-    //   // this code runs when the timeline finishes
-    //   downloadCSV('trial_result.csv', jsPsych.data.get().csv());
-    // });
+     jsPsych.run(timeline)
+     .then(() => {
+       // this code runs when the timeline finishes
+      downloadCSV('trial_result.csv', jsPsych.data.get().csv());
+     });
 
     function downloadCSV(filename, table) {
       const link = document.createElement('a');
