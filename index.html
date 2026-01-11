@@ -31,6 +31,7 @@
     const MATH_DELAY = 4000;
     const IMAGE_WIDTH = 700;
 
+    // TODO: Make sure the instruction looks good for the second experiment
     const FirstInstruction = `
       <div style="font-size: 24pt; line-height: 1.5; max-width: 800px; margin: auto; text-align: center;">
       <p>During this experiment, you will be shown photographs of different identities and, for some, their associated identity information (e.g., description of their behavior).</p>
@@ -80,45 +81,47 @@
     }
 
     // Pick each equation at most twice
+    // a list of key-value pairs stored with math expression and its answer
     const mathPool = new RandomPool(2, [
-      { expression: '12 - 3', answer: '8' }, //WRONG
-      { expression: '5 - 12', answer: '7' },
-      { expression: '11 + 2', answer: '13' },
-      { expression: '13 + 9', answer: '12' }, //WRONG
-      { expression: '7 + 2', answer: '10' }, //WRONG
-      { expression: '1 - 15', answer: '-14' },
-      { expression: '17 - 9 ', answer: '11' }, //WRONG
-      { expression: '6 + 11 ', answer: '17' },
-      { expression: '10 - 5 ', answer: '5' },
-      { expression: '6 - 2 ', answer: '3' }, //WRONG
-      { expression: '8 + 2 ', answer: '11' }, //WRONG
-      { expression: '3 + 12 ', answer: '15' },
-      { expression: '11 - 5 ', answer: '5' }, //WRONG
-      { expression: '16 - 3 ', answer: '14' }, //WRONG
-      { expression: '11 + 2 ', answer: '13' },
-      { expression: '15 + 2 ', answer: '7' }, //WRONG
-      { expression: '13 + 3 ', answer: '16' },
-      { expression: '5 - 12 ', answer: '-7' },
-      { expression: '15 - 3', answer: '-12' }, //WRONG
-      { expression: '13 - 6', answer: '-7' },
-      { expression: '19 - 2', answer: '15' }, //WRONG
-      { expression: '16 - 8', answer: '-8' },
-      { expression: '8 - 4', answer: '3' }, //WRONG
-      { expression: '18 - 2', answer: '16' },
-      { expression: '9 - 10', answer: '1' }, //WRONG
-      { expression: '2 - 11', answer: '9' }, //WRONG
-      { expression: '6 - 10', answer: '-4' },
-      { expression: '5 - 13', answer: '-8' },
-      { expression: '5 - 11', answer: '6' }, //WRONG
-      { expression: '7 - 12', answer: '-5' },
-      { expression: '19 - 5', answer: '14' },
-      { expression: '7 - 14', answer: '-7' },
-      { expression: '1 - 10', answer: '-9' },
-      { expression: '4 - 12', answer: '-9' }, //WRONG
-      { expression: '3 - 15', answer: '-12' },
-      { expression: '5 - 15', answer: '10' }, //WRONG
+    { expression: '2 + 3', answer: '5' },
+    { expression: '5 + 1 ', answer: '6' },
+    { expression: '1 + 2 ', answer: '3' },
+    { expression: '1 + 3 ', answer: '4' },
+    { expression: '7 + 2 ', answer: '9' },
+    { expression: '1 + 5 ', answer: '6' },
+    { expression: '1 + 1 ', answer: '2' },
+    { expression: '6 + 1 ', answer: '7' },
+    { expression: '0 + 5 ', answer: '5' },
+    { expression: '6 + 2 ', answer: '8' },
+    { expression: '0 + 2 ', answer: '2' },
+    { expression: '3 + 2 ', answer: '5' },
+    { expression: '1 + 5 ', answer: '6' },
+    { expression: '6 + 2 ', answer: '8' },
+    { expression: '1 + 2 ', answer: '3' },
+    { expression: '5 + 2 ', answer: '7' },
+    { expression: '3 + 5 ', answer: '8' },
+    { expression: '5 + 2 ', answer: '7' },
+    { expression: '5 - 3', answer: '2' },
+    { expression: '8 - 6', answer: '2' },
+    { expression: '4 - 0', answer: '4' },
+    { expression: '6 - 1', answer: '5' },
+    { expression: '8 - 8', answer: '0' },
+    { expression: '8 - 0', answer: '8' },
+    { expression: '9 - 0', answer: '9' },
+    { expression: '2 - 1', answer: '1' },
+    { expression: '6 - 0', answer: '6' },
+    { expression: '5 - 3', answer: '2' },
+    { expression: '5 - 1', answer: '4' },
+    { expression: '7 - 2', answer: '5' },
+    { expression: '9 - 5', answer: '4' },
+    { expression: '7 - 4', answer: '3' },
+    { expression: '1 - 0', answer: '1' },
+    { expression: '4 - 2', answer: '2' },
+    { expression: '6 - 2', answer: '4' },
+    { expression: '5 - 5', answer: '0' },
     ]);
 
+    // TODO: need to make sure names can't be used more than once 
     const maleNames = [
       'Jacob',
       'Michael',
@@ -169,7 +172,6 @@
       'Connor',
       'Aiden',
     ];
-
     const femaleNames = [
       'Emily',
       'Madison',
@@ -221,8 +223,6 @@
       'Faith',
     ];
 
-    //need to add practice learning trials 
-    
     const neutralRel = [
       'Made an excuse to get out of awkward conversation.',
       'Went to a psychic to have their fortune told.',
@@ -237,7 +237,6 @@
       'Confused the name of a famous artist with a football player.',
       'Went to get food from the convenience store at 1 AM.',
     ];
-
     const negativeRel = [
       "Leaves trash on tables after lunch, ignoring others' requests to clean.",
       'Refuses service to people because of their race or sexual orientation.',
@@ -252,7 +251,6 @@
       'Refuses to give their seat on the bus to disabled people.',
       'Convinces neighbor kids into stealing money from the cash register.',
     ];
-
     const neutralIrr = [
       'Giraffes use their long tongues to grasp leaves from trees.',
       'Dolphins surface regularly to breathe air through their blowholes.',
@@ -267,7 +265,6 @@
       'Zebras have unique stripe patterns which helps with identity recognition.',
       'Bats are capable of sustained powered flight using their wings.',
     ];
-
     const negativeIrr = [
       'Hyenas frequently gang up to rob weaker predators of their hard-earned kills.',
       'Pigeons defecate indiscriminately and spread pathogens across the city.',
@@ -294,7 +291,6 @@
       './images/AM-243.jpg',
       './images/AM-237.jpg',
     ];
-
     const latinoMaleImages = [
       './images/LM-216.jpg',
       './images/LM-231.jpg',
@@ -305,7 +301,6 @@
       './images/LM-247.jpg',
       './images/LM-242.jpg',
     ];
-
     const whiteMaleImages = [
       './images/WM-234.jpg',
       './images/WM-251.jpg',
@@ -316,7 +311,6 @@
       './images/WM-032.jpg',
       './images/WM-230.jpg',
     ];
-
     const asianFemaleImages = [
       './images/AF-247.jpg',
       './images/AF-222.jpg',
@@ -327,7 +321,6 @@
       './images/AF-251.jpg',
       './images/AF-224.jpg',
     ];
-
     const latinaFemaleImages = [
       './images/LF-204.jpg',
       './images/LF-226.jpg',
@@ -338,7 +331,6 @@
       './images/LF-230.jpg',
       './images/LF-239.jpg',
     ];
-
     const whiteFemaleImages = [
       './images/WF-030.jpg',
       './images/WF-242.jpg',
@@ -349,7 +341,6 @@
       './images/WF-038.jpg',
       './images/WF-212.jpg',
     ];
-
     const allImages = [
       ...asianMaleImages,
       ...latinoMaleImages,
@@ -359,7 +350,7 @@
       ...whiteFemaleImages,
     ];
 
-    const conditions = ['NegIrr', 'NegRel', 'NeuIrr', 'NeuRel'];
+    const condition = ['NegIrr', 'NegRel', 'NeuIrr', 'NeuRel'];
     const group = ['asian-male', 'white-male', 'hispanic-male', 'asian-female', 'white-female', 'hispanic-female'];
     const allConditionOrderings = [
       ['NegIrr', 'NegRel', 'NeuIrr', 'NeuRel'],
@@ -388,6 +379,8 @@
       ['NeuRel', 'NeuIrr', 'NegRel', 'NegIrr'],
     ];
 
+    /////////////////////////////////////////////
+    // Create math trials
     function createRandomMathTrial() {
       const { expression, answer } = mathPool.pickRandom();
 
@@ -423,9 +416,137 @@
       ];
     }
 
+    /////////////////////////////////////////////
+    // Create practice learning trials
+    function PracticeTrial_Learning() {
+      const zendaya = './practice_trials/zendaya.jpg';
+      const oscar = './practice_trials/oscar.jpg';
+      const flo = './practice_trials/florence.jpg';
+      const dangelo = './practice_trials/dangelo.jpg';
+
+      // TO DO: add semantic info for the 4 practice learning trials
+      const zendaya_bio = 'neg_rel'; // NEG-REL
+      const oscar_bio = 'neg_irr'; // NEG-IRR
+      const flo_bio = 'neu_rel'; // NEU-REL
+      const dangelo_bio = 'neu_irr'; // NEU-IRR
+
+      return [
+        // press 1 to start
+        {
+          type: jsPsychHtmlKeyboardResponse,
+          stimulus: `<p style="font-size:40px">${'To begin your practice trials, press 1.'}</p>`,
+          choices: '1',
+          trial_duration: null,
+        },
+
+       //////////////////////////////////////////////////////
+       ///////// ZENDAYA is NEGATIVE, RELEVANT behavior
+
+        // display zendaya's bio
+        {
+          type: jsPsychHtmlKeyboardResponse,
+          stimulus: `<p style="font-size:40px; line-height:1.5; margin: 0 50px 0 50px">${zendaya_bio} </p>`,
+          choices: 'NO_KEYS',
+          trial_duration: BIO_DELAY,
+        },
+
+        // display zendaya's image
+        {
+          type: jsPsychImageKeyboardResponse,
+          stimulus: zendaya,
+          stimulus_width: 500,
+          prompt: `<p style="font-size:50px;gap:50px"><br />${'Zendaya'}</p>`,
+          choices: 'NO_KEYS',
+          trial_duration: IMAGE_DELAY,
+        },
+
+        // math trial
+        ...createRandomMathTrial(), 
+
+       //////////////////////////////////////////////////////
+       ///////// OSCAR is NEGATIVE, IRRELEVANT behavior 
+
+        // display oscar's bio
+        {
+          type: jsPsychHtmlKeyboardResponse,
+          stimulus: `<p style="font-size:40px; line-height:1.5; margin: 0 50px 0 50px">${oscar_bio} </p>`,
+          choices: 'NO_KEYS',
+          trial_duration: BIO_DELAY,
+        },
+
+        // display oscar's face
+        {
+          type: jsPsychImageKeyboardResponse,
+          stimulus: oscar,
+          stimulus_width: IMAGE_WIDTH,
+          prompt: `<p style="font-size:50px;gap:50px"><br />${'Oscar'}</p>`,
+          choices: 'NO_KEYS',
+          trial_duration: IMAGE_DELAY,
+        },
+
+        // math trial
+        ...createRandomMathTrial(),
+
+       /////////////////////////////////////////////
+       ///////// FLO is NEUTRAL, RELEVANT behavior 
+
+        // display FLO's bio
+        {
+          type: jsPsychHtmlKeyboardResponse,
+          stimulus: `<p style="font-size:40px; line-height:1.5; margin: 0 50px 0 50px">${flo_bio} </p>`,
+          choices: 'NO_KEYS',
+          trial_duration: BIO_DELAY,
+        },
+
+        // display FLO's face
+        {
+          type: jsPsychImageKeyboardResponse,
+          stimulus: oscar,
+          stimulus_width: IMAGE_WIDTH,
+          prompt: `<p style="font-size:50px;gap:50px"><br />${'Florence'}</p>`,
+          choices: 'NO_KEYS',
+          trial_duration: IMAGE_DELAY,
+        },
+
+         // math trial
+         ...createRandomMathTrial(),
+
+       /////////////////////////////////////////////
+       /////// DANGELO is NEUTRAL, IRRELEVANT behavior 
+
+        // display D's bio
+        {
+          type: jsPsychHtmlKeyboardResponse,
+          stimulus: `<p style="font-size:40px; line-height:1.5; margin: 0 50px 0 50px">${dangelo_bio} </p>`,
+          choices: 'NO_KEYS',
+          trial_duration: BIO_DELAY,
+        },
+
+        // display D's face
+        {
+          type: jsPsychImageKeyboardResponse,
+          stimulus: asap,
+          stimulus_width: IMAGE_WIDTH,
+          prompt: `<p style="font-size:50px;gap:50px"><br />${'D.Angelo'}</p>`,
+          choices: 'NO_KEYS',
+          trial_duration: IMAGE_DELAY,
+        },
+
+        // displays the end of the practice trial
+        {
+          type: jsPsychHtmlKeyboardResponse,
+          stimulus: `<p style="font-size:40px"><p>${'You have completed the practice trials!'}</p>
+          <p>${'Press any key to begin the learning phase.'}</p></p>`,
+          trial_duration: null,
+        },
+      ];
+    }
+
+    //TO DO: figure out what this does??
     const identities = [];
 
-    // Helper to generate a learning trial (name->behavior->face)
+    ///////////////////////////////////////////////////////////////
+    // Create a function to generate a learning trial (behavior -> face + name)
     function createLearningTrial(name, image, condition, behavior, group) {
       identities.push({ name, image, condition, behavior, group });
 
@@ -450,7 +571,8 @@
       ];
     }
 
-    // Check it an array has 3 sequential values that are the same. It's array of objects so pass a key for the value to compare.
+    ////////////////////////////////////////////////////////////////////////
+    // Check if an array has 3 sequential values that are the same. It's array of objects so pass a key for the value toa compare.
     function hasTriplicates(arr, key) {
       if (arr.length < 3) return false;
 
@@ -461,11 +583,12 @@
       return false;
     }
 
-    //create a function that will pick a new item from the pool (no repeat)
+    ////////////////////////////////////////////////////////////////////////
+    // Create a function that will pick a new item from the pool (no repeat)
     function sequenceLearningPhase() {
       let sequence;
       let attempts = 0;
-      // Attempt to create the trails of the learning phase, and check if it's valid (no more than 2 repeating conditionals and 2 repeating groups).
+      // Attempt to create the trials of the learning phase, and check if it's valid (no more than 2 repeating conditionals and 2 repeating groups).
       // As long as it's not valid keep creating the trials.
       // Since we are guaranteed to have the correct ordering of conditionals, it seems to only take a few attempts until it's valid.
       do {
@@ -497,6 +620,7 @@
       
       console.log('attempts to generate learning phase: ', attempts);
 
+      
       // Create all of the random pools that we need
       const maleNamePool = new RandomPool(1, maleNames);
       const femaleNamePool = new RandomPool(1, femaleNames);
@@ -579,60 +703,101 @@
       './lure_images/LM-207.jpg',
     ];
 
-    // function makeRecognitionQuestion(image, answer) {
-    //   return {
-    //     type: jsPsychImageKeyboardResponse,
-    //     stimulus: image,
-    //     stimulus_width: IMAGE_WIDTH,
-    //     prompt: `<br />Press "1" if previously seen, "2" if never seen.`,
-    //     choices: ['1', '2'],
-    //     data: { image, answer },
-    //     trial_duration: null,
-    //     on_finish(data) {
-    //       // Score the keyboard response as correct or incorrect.
-    //       data.correct = jsPsych.pluginAPI.compareKeys(data.response, answer);
-    //     },
-    //   };
-    // }
+    ///////////////////////////////////////////////////////////////
+    // Create a function that creates a trial of face recognition task
+    function makeRecognitionQuestion(image, recogAnswers) {
+      return {
+        type: jsPsychImageKeyboardResponse,
+        stimulus: image,
+        stimulus_width: IMAGE_WIDTH,
+        prompt: ` 
+        <div style="text-align:center; display: flex; justify-content: space-evenly;gap: 50px;">
+          <div style="text-align:center; justify-content: space-evenly; margin: 10px 0 0 0;">
+            <p style="font-weight: bold">1</p><p style="font-size: 18pt; line-height:0.5; ">Definitely</p><p style="font-size: 18pt; line-height:0.7;color:#DC143C;">New</p>
+          </div>
+          <div style="text-align:center; justify-content: space-evenly; margin: 10px 0 0 0;">
+            <p style="font-weight: bold">2</p><p style="font-size: 18pt; line-height:0.5; ">Probably</p><p style="font-size: 18pt; line-height:0.7;color:#DC143C;">New</p>
+          </div>
+          <div style="text-align:center; justify-content: space-evenly; margin: 10px 0 0 0;">
+            <p style="font-weight: bold">3</p><p style="font-size: 18pt; line-height:0.5; ">Maybe</p><p style="font-size: 18pt; line-height:0.7;color:#DC143C;">New</p>
+          </div>
+          <div style="text-align:center; justify-content: space-evenly; margin: 10px 0 0 0;">
+            <p style="font-weight: bold">4</p><p style="font-size: 18pt; line-height:0.5; ">Maybe</p><p style="font-size: 18pt; line-height:0.7;color:#0073E6;">Old</p>
+          </div>
+          <div style="text-align:center; justify-content: space-evenly; margin: 10px 0 0 0;">
+            <p style="font-weight: bold">5</p><p style="font-size: 18pt; line-height:0.5; ">Probably</p><p style="font-size: 18pt; line-height:0.7;color:#0073E6;">Old</p>
+          </div>
+          <div style="text-align:center; justify-content: space-evenly; margin: 10px 0 0 0;">
+            <p style="font-weight: bold">6</p><p style="font-size: 18pt; line-height:0.5; ">Definitely</p><p style="font-size: 18pt; line-height:0.7;color:#0073E6;">Old</p>
+          </div>
+        </div>`,
+        // gives participants the scale on how much they are able to recognize the face displayed
+        choices: ['1', '2', '3', '4', '5', '6'],
+        data: { question_type: 'recognition', image, correct_answers: recogAnswers },
+        trial_duration: null,
+        on_finish(data) {
+          // Score the keyboard response using confidence rating, where 1-3 is new and 7-9 is old
+          data.correct = recogAnswers.includes(data.response);
+          data.participant_response = data.response;
+        },
+      };
+    }
+    
+    ///////////////////////////////////////////////////////////////
+    // Create a function that will repeat the previous function for each image displayed
+    function sequenceRecognitionTest() {
+      return shuffle([
+        // recognition question for new images
+        ...lureImages.map((image) => makeRecognitionQuestion(image, ['1', '2', '3'])),
+        // recognition question for old images
+        ...allImages.map((image) => makeRecognitionQuestion(image, ['4', '5', '6'])),
+      ]);
+    }
 
-    // function sequenceRecognitionTest() {
-    //   return shuffle([
-    //     ...lureImages.map((image) => makeRecognitionQuestion(image, '2')),
-    //     ...allImages.map((image) => makeRecognitionQuestion(image, '1')),
-    //   ]);
-    // }
+    ///////////////////////////////////////////////////////////////
+    // Create a function that maps correct response for each image 
+     function sequenceRecognitionTest() {
+       return shuffle([
+         ...lureImages.map((image) => makeRecognitionQuestion(image, '2')),
+         ...allImages.map((image) => makeRecognitionQuestion(image, '1')),
+       ]);
+     }
 
-    // function createRecallQuestion(image, guesses, answer) {
-    //   return [
-    //     {
-    //       type: jsPsychHtmlKeyboardResponse,
-    //       stimulus: "What's their name?",
-    //       trial_duration: 1000,
-    //       choices: 'NO_KEYS',
-    //     },
-    //     {
-    //       type: jsPsychImageKeyboardResponse,
-    //       stimulus: image,
-    //       stimulus_width: IMAGE_WIDTH,
-    //       prompt: guesses.map((guess, i) => `<p>${i + 1}. ${guess}</p>`).join(''),
-    //       choices: ['1', '2', '3', '4', '5'],
-    //       data: { image, answer, guesses },
-    //       trial_duration: null,
-    //       on_finish(data) {
-    //         // Score the keyboard response as correct or incorrect.
-    //         data.correct = jsPsych.pluginAPI.compareKeys(data.response, answer);
-    //       },
-    //     },
-    //   ];
-    // }
+    ///////////////////////////////////////////////////////////////
+    // Create name recall trials 
+     function createRecallQuestion(image, guesses, answer) {
+       return [
+         {
+           type: jsPsychHtmlKeyboardResponse,
+           stimulus: "What's their name?",
+           trial_duration: 1000,
+           choices: 'NO_KEYS',
+         },
+         {
+           type: jsPsychImageKeyboardResponse,
+           stimulus: image,
+           stimulus_width: IMAGE_WIDTH,
+           prompt: guesses.map((guess, i) => `<p>${i + 1}. ${guess}</p>`).join(''),
+           choices: ['1', '2', '3', '4', '5'],
+           data: { image, answer, guesses },
+           trial_duration: null,
+           on_finish(data) {
+             // Score the keyboard response as correct or incorrect.
+             data.correct = jsPsych.pluginAPI.compareKeys(data.response, answer);
+           },
+         },
+       ];
+     }
 
-    // function pickRandomNameWithCriteria(predicate) {
-    //   const results = identities.filter(predicate);
+    ///////////////////////////////////////////////////////////////
+    // Create name choice randomization function
+     function pickRandomNameWithCriteria(predicate) {
 
-    //   const identity = results[Math.floor(Math.random() * results.length)];
+       const results = identities.filter(predicate)
+       const identity = results[Math.floor(Math.random() * results.length)]
 
-    //   return identity.name;
-    // }
+       return identity.name;
+     }
 
     // function sequenceNameRecallTest() {
     //   return identities.map(({ condition, name, image, behavior, race, gender }) => {
