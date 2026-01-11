@@ -221,6 +221,8 @@
       'Faith',
     ];
 
+    //need to add practice learning trials 
+    
     const neutralRel = [
       'Made an excuse to get out of awkward conversation.',
       'Went to a psychic to have their fortune told.',
@@ -428,13 +430,6 @@
       identities.push({ name, image, condition, behavior, group });
 
       return [
-        {
-          type: jsPsychHtmlKeyboardResponse,
-          stimulus: name,
-          choices: 'NO_KEYS',
-          trial_duration: NAME_DELAY,
-          data: { name },
-        },
         {
           type: jsPsychHtmlKeyboardResponse,
           stimulus: `${behavior}`,
