@@ -544,7 +544,7 @@
       ];
     }
 
-    //TO DO: figure out what this does??
+    // Saving identities after the createLearningTrial
     const identities = [];
 
     ///////////////////////////////////////////////////////////////
@@ -618,7 +618,8 @@
           return { condition, group: conditionPools[condition].pickRandom() }
         });
         console.log(conditionSequence, sequence)
-      } while (hasTriplicates(sequence, 'condition') || hasTriplicates(sequence, 'group'));
+      } while (hasTriplicates(sequence, 'condition') || hasTriplicates(sequence, 'group')); // there cannot be more than 3 of the same group or same condition
+
       
       console.log('attempts to generate learning phase: ', attempts);
 
@@ -749,23 +750,13 @@
     // Create a function that will repeat the previous function for each image displayed
     function sequenceRecognitionTest() {
       return shuffle([
-        // recognition question for new images
+        // map correct responses for lure images
         ...lureImages.map((image) => makeRecognitionQuestion(image, ['1', '2', '3'])),
-        // recognition question for old images
+        // map correct responses for old images
         ...allImages.map((image) => makeRecognitionQuestion(image, ['4', '5', '6'])),
       ]);
     }
 
-    ///////////////////////////////////////////////////////////////
-    // Create a function that maps correct response for each image 
-     function sequenceRecognitionTest() {
-       return shuffle([
-         ...lureImages.map((image) => makeRecognitionQuestion(image, '2')),
-         ...allImages.map((image) => makeRecognitionQuestion(image, '1')),
-       ]);
-     }
-
-    ///////////////////////////////////////////////////////////////
     // Create name recall trials 
      function createRecallQuestion(image, guesses, answer) {
        return [
