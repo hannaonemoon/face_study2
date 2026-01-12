@@ -352,7 +352,7 @@
       ...whiteFemaleImages,
     ];
 
-    const condition = ['NegIrr', 'NegRel', 'NeuIrr', 'NeuRel'];
+    const conditions = ['NegIrr', 'NegRel', 'NeuIrr', 'NeuRel'];
     const group = ['asian-male', 'white-male', 'hispanic-male', 'asian-female', 'white-female', 'hispanic-female'];
     const allConditionOrderings = [
       ['NegIrr', 'NegRel', 'NeuIrr', 'NeuRel'],
@@ -564,7 +564,7 @@
           type: jsPsychImageKeyboardResponse,
           stimulus: image,
           stimulus_width: IMAGE_WIDTH,
-          prompt: `<br />${name}`,
+          prompt: `<br /><span style="font-size: 30px;">${name}</span>`,
           choices: 'NO_KEYS',
           trial_duration: IMAGE_DELAY,
           data: { image },
@@ -792,74 +792,35 @@
        return identity.name;
      }
 
-    // function sequenceNameRecallTest() {
-    //   return identities.map(({ condition, name, image, behavior, race, gender }) => {
-    //     let guesses = [name];
+     function sequenceNameRecallTest() {
+       return identities.map(({ condition, name, image, behavior }) => {
+          // There are 5 guesses
+          // - the correct name
+          // - a different name from the same group and condition
+          // - 3 names, one from each other condition
+          let guesses = [name]; 
 
-    //     if (condition === 'control') {
-    //       // same race, gender, and condition
-    //       // same race, gender and face-first w/ neutral behavior
-    //       // same race, gender behavior-first w/ neutral behavior
-    //       // same race and gender, condition 1 or 2 pos/negative behavior
-    //       guesses.push(
-    //         pickRandomNameWithCriteria(
-    //           (identity) =>
-    //             identity.race === race && identity.gender === gender && identity.condition === condition && identity.name !== name
-    //         ),
-    //         pickRandomNameWithCriteria(
-    //           (identity) => identity.race === race && identity.gender === gender && identity.condition === 'face-first'
-    //         ),
-    //         pickRandomNameWithCriteria(
-    //           (identity) => identity.race === race && identity.gender === gender && identity.condition === 'bio-first'
-    //         )
-    //       );
+          // Loop through all four conditions and pick a random name
+          for(const cond of conditions) {
+            if (cond === condition) {
+              guesses.push(pickRandomNameWithCriteria(
+                (identity) =>
+                  identity.group === group && identity.condition === condition && identity.name !== name
+              ))
+            } else {
+              guesses.push( pickRandomNameWithCriteria(
+                (identity) => 
+                identity.group === group && identity.condition !== cond
+              ))
+            }
+          }
 
-    //       guesses.push(
-    //         pickRandomNameWithCriteria(
-    //           (identity) =>
-    //             identity.race === race && identity.gender === gender && identity.condition !== 'control' && !guesses.includes(identity.name)
-    //         )
-    //       );
-    //     } else {
-    //       // same race, gender, and different condition
-    //       // same race, gender, and same condition, different behavior
-    //       // same race, gender, and same condition, different behavior
-    //       // different race, same gender, and same condition, same behavior
-    //       let b1;
-    //       let b2;
-
-    //       if (condition === 'neutral') {
-    //         b1 = 'positive';
-    //         b2 = 'negative';
-    //       } else if (condition === 'positive') {
-    //         b1 = 'neutral';
-    //         b2 = 'negative';
-    //       } else {
-    //         b1 = 'positive';
-    //         b2 = 'neutral';
-    //       }
-
-    //       guesses.push(
-    //         pickRandomNameWithCriteria(
-    //           (identity) => identity.race === race && identity.gender === gender && identity.condition !== condition
-    //         ),
-    //         pickRandomNameWithCriteria(
-    //           (identity) => identity.race === race && identity.gender === gender && identity.condition === condition
-    //         ),
-    //         pickRandomNameWithCriteria(
-    //           (identity) => identity.race === race && identity.gender === gender && identity.condition === condition
-    //         ),
-    //         pickRandomNameWithCriteria(
-    //           (identity) => identity.race !== race && identity.gender === gender && identity.condition === condition
-    //         )
-    //       );
-    //     }
-    //     guesses = shuffle(guesses);
-
-    //     const answer = guesses.findIndex((guess) => guess === name) + 1;
-    //     return createRecallQuestion(image, guesses, answer.toString());
-    //   });
-    // }
+         guesses = shuffle(guesses)
+         // The number key the user should press
+         const answer = guesses.findIndex((guess) => guess === name) + 1;
+         return createRecallQuestion(image, guesses, answer.toString());
+       });
+     }
 
     const timeline = [
       {
@@ -871,7 +832,7 @@
         type: jsPsychHtmlKeyboardResponse,
         stimulus: FirstInstruction,
       },
-      ...sequenceLearningPhase(),
+      // ...sequenceLearningPhase(),
       // {
       //   type: jsPsychHtmlKeyboardResponse,
       //   stimulus: 'You will now watch a short video. Press any key to start.',
@@ -891,7 +852,7 @@
       //   type: jsPsychHtmlKeyboardResponse,
       //   stimulus: 'Instructions for recognition test', // TODO
       // },
-      // ...sequenceRecognitionTest(),
+       ...sequenceRecognitionTest(),
       // {
       //   type: jsPsychHtmlKeyboardResponse,
       //   stimulus: 'Instructions for recall test', // TODO
