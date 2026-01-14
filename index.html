@@ -352,7 +352,7 @@
       ...whiteFemaleImages,
     ];
 
-    const conditions = ['NegIrr', 'NegRel', 'NeuIrr', 'NeuRel'];
+    const CONDITIONS = ['NegIrr', 'NegRel', 'NeuIrr', 'NeuRel'];
     const group = ['asian-male', 'white-male', 'hispanic-male', 'asian-female', 'white-female', 'hispanic-female'];
     const allConditionOrderings = [
       ['NegIrr', 'NegRel', 'NeuIrr', 'NeuRel'],
@@ -389,7 +389,7 @@
       return [
         {
           type: jsPsychHtmlKeyboardResponse,
-          stimulus: `<p>${expression} = ?</p>`,
+          stimulus: `<p style ="font-size=40xp">${expression} = ?</p>`,
           choices: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'],
           trial_duration: MATH_DELAY,
           data: { expression, answer },
@@ -527,9 +527,9 @@
         // display D's face
         {
           type: jsPsychImageKeyboardResponse,
-          stimulus: asap,
+          stimulus: dangelo,
           stimulus_width: IMAGE_WIDTH,
-          prompt: `<p style="font-size:50px;gap:50px"><br />${'D.Angelo'}</p>`,
+          prompt: `<p style="font-size:50px;gap:50px"><br />${'D-Angelo'}</p>`,
           choices: 'NO_KEYS',
           trial_duration: IMAGE_DELAY,
         },
@@ -564,7 +564,7 @@
           type: jsPsychImageKeyboardResponse,
           stimulus: image,
           stimulus_width: IMAGE_WIDTH,
-          prompt: `<br /><span style="font-size: 30px;">${name}</span>`,
+          prompt: `<p style="font-size:50px;gap:50px"><br />${name}</p>`,
           choices: 'NO_KEYS',
           trial_duration: IMAGE_DELAY,
           data: { image },
@@ -785,15 +785,13 @@
     ///////////////////////////////////////////////////////////////
     // Create name choice randomization function
      function pickRandomNameWithCriteria(predicate) {
-
        const results = identities.filter(predicate)
        const identity = results[Math.floor(Math.random() * results.length)]
-
        return identity.name;
      }
 
      function sequenceNameRecallTest() {
-       return identities.map(({ condition, name, image, behavior }) => {
+       return identities.map(({ condition, name, image, behavior,group }) => {
           // There are 5 guesses
           // - the correct name
           // - a different name from the same group and condition
@@ -801,17 +799,19 @@
           let guesses = [name]; 
 
           // Loop through all four conditions and pick a random name
-          for(const cond of conditions) {
+          for(const cond of CONDITIONS) {
             if (cond === condition) {
-              guesses.push(pickRandomNameWithCriteria(
+              const n = pickRandomNameWithCriteria(
                 (identity) =>
-                  identity.group === group && identity.condition === condition && identity.name !== name
-              ))
+                  identity.group === group && identity.condition === cond && identity.name !== name
+              )
+              guesses.push(n)
             } else {
-              guesses.push( pickRandomNameWithCriteria(
+              const n = pickRandomNameWithCriteria(
                 (identity) => 
-                identity.group === group && identity.condition !== cond
-              ))
+                identity.group === group && identity.condition === cond
+              )
+              guesses.push(n)
             }
           }
 
@@ -821,6 +821,7 @@
          return createRecallQuestion(image, guesses, answer.toString());
        });
      }
+
 
     const timeline = [
       {
@@ -832,32 +833,33 @@
         type: jsPsychHtmlKeyboardResponse,
         stimulus: FirstInstruction,
       },
-      // ...sequenceLearningPhase(),
-      // {
-      //   type: jsPsychHtmlKeyboardResponse,
-      //   stimulus: 'You will now watch a short video. Press any key to start.',
-      // },
-      // {
-      //   type: jsPsychVideoKeyboardResponse,
-      //   stimulus: ['video.mp4'],
-      //   width: document.body.clientWidth,
-      //   choices: 'NO_KEYS',
-      //   trial_ends_after_video: true,
-      // },
-      // {
-      //   type: jsPsychPreload,
-      //   images: lureImages,
-      // },
-      // {
-      //   type: jsPsychHtmlKeyboardResponse,
-      //   stimulus: 'Instructions for recognition test', // TODO
-      // },
+       ...PracticeTrial_Learning(),
+       ...sequenceLearningPhase(),
+       {
+         type: jsPsychHtmlKeyboardResponse,
+         stimulus: 'You will now watch a short video. Press any key to start.',
+       },
+       {
+         type: jsPsychVideoKeyboardResponse,
+         stimulus: ['video.mp4'],
+         width: document.body.clientWidth,
+         choices: 'NO_KEYS',
+         trial_ends_after_video: true,
+       },
+       {
+         type: jsPsychPreload,
+         images: lureImages,
+       },
+       {
+         type: jsPsychHtmlKeyboardResponse,
+         stimulus: 'Instructions for recognition test', // TODO
+       },
        ...sequenceRecognitionTest(),
-      // {
-      //   type: jsPsychHtmlKeyboardResponse,
-      //   stimulus: 'Instructions for recall test', // TODO
-      // },
-      // ...sequenceNameRecallTest(),
+       {
+         type: jsPsychHtmlKeyboardResponse,
+         stimulus: 'Instructions for recall test', // TODO
+       },
+       ...sequenceNameRecallTest(),
     ];
 
      jsPsych.run(timeline)
