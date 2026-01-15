@@ -772,15 +772,15 @@
            stimulus_width: IMAGE_WIDTH,
            prompt: guesses.map((guess, i) => `<p>${i + 1}. ${guess}</p>`).join(''),
            choices: ['1', '2', '3', '4', '5'],
-           data: { image, answer, guesses },
+           data: { question_type: 'nameRecall', image, answer, guesses, correct_answers: answer },
            trial_duration: null,
            on_finish(data) {
              // Score the keyboard response as correct or incorrect.
              data.correct = jsPsych.pluginAPI.compareKeys(data.response, answer);
            },
-         },
-       ];
-     }
+         }
+        ];
+      }
 
     ///////////////////////////////////////////////////////////////
     // Create name choice randomization function
@@ -860,6 +860,25 @@
          stimulus: 'Instructions for recall test', // TODO
        },
        ...sequenceNameRecallTest(),
+       {
+         type: jsPsychHtmlKeyboardResponse,
+         stimulus() {
+            const data = jsPsych.data.get();
+
+            const recognition = data.filter({ question_type: 'recognition' });
+            const recognitionPercent = (100 * recognition.filter({ correct: true }).count()) / recognition.count();
+
+            const recall = data.filter({ question_type: 'recall' });
+            const recallPercent = (100 * recall.filter({ correct: true }).count()) / recall.count();
+
+          return `
+          <p>You have completed the experiment. Thank you for your participation.</p>
+          <p>Your recognition score is ${Math.round(recognitionPercent)}%.</p>
+          <p>Your recall score is ${Math.round(recallPercent)}%.</p>
+          <p> Press any key to exit the study.</p>
+          `;
+         },
+        },
     ];
 
      jsPsych.run(timeline)
