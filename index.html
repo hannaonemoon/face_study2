@@ -7,13 +7,11 @@
     <script src="https://unpkg.com/@jspsych/plugin-image-keyboard-response@2.0.0"></script>
     <script src="https://unpkg.com/@jspsych/plugin-image-keyboard-response@2.0.0"></script>
     <script src="https://unpkg.com/@jspsych/plugin-video-keyboard-response@2.0.0"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-audio-keyboard-response@2.1.0"></script>
     <script src="https://unpkg.com/@jspsych/plugin-preload@2.0.0"></script>
     <link href="https://unpkg.com/jspsych@8.0.3/css/jspsych.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jspsych@7.0.0/css/jspsych.css" />
     <style>
-      * {
-        font-size: 24px;
-      }
     </style>
   </head>
   <body></body>
@@ -21,20 +19,22 @@
     const jsPsych = initJsPsych({
       override_safe_mode: true,
     });
+
+
     // Function that randomly shuffles an array.
     const shuffle = jsPsych.randomization.shuffle;
 
     // Update these values to change the delay for certain trials
-    const NAME_DELAY = 2000;
     const IMAGE_DELAY = 3000;
-    const BIO_DELAY = 4000;
+    const BIO_DELAY = 6000;
     const MATH_DELAY = 4000;
-    const IMAGE_WIDTH = 700;
+    const IMAGE_WIDTH = 600;
 
     // TODO: Make sure the instruction looks good for the second experiment
     const FirstInstruction = `
-      <div style="font-size: 24pt; line-height: 1.5; max-width: 800px; margin: auto; text-align: center;">
-      <p>During this experiment, you will be shown photographs of different identities and, for some, their associated identity information (e.g., description of their behavior).</p>
+      <div style="font-size: 20pt; line-height: 1.5; max-width: 800px; margin: auto; text-align: center;">
+      <p>During this experiment, you will be shown photographs of different identities and, for some, their associated identity information (e.g., description of their behavior). </p>
+      <p>For others, the sentence will be unrelated to the identity you'll be learning. </p>
       <p>Please try to remember all faces and identity information that has been presented. Each identity is equally important to remember, and you will be tested on your memory at the end of the experiment.</p>
       <p>When you are ready, press any key to begin.</p>
     </div>
@@ -82,16 +82,16 @@
 
     // Pick each equation at most twice
     // a list of key-value pairs stored with math expression and its answer
-    const mathPool = new RandomPool(2, [
-    { expression: '2 + 3', answer: '5' },
+    const mathPool = new RandomPool(1, [
+    { expression: '2 + 3 ', answer: '5' },
     { expression: '5 + 1 ', answer: '6' },
     { expression: '1 + 2 ', answer: '3' },
+    { expression: '11 - 3 ', answer: '8' },
+    { expression: '7 - 2 ', answer: '5' },
+    { expression: '4 + 5 ', answer: '9' },
     { expression: '1 + 3 ', answer: '4' },
-    { expression: '7 + 2 ', answer: '9' },
-    { expression: '1 + 5 ', answer: '6' },
-    { expression: '1 + 1 ', answer: '2' },
     { expression: '6 + 1 ', answer: '7' },
-    { expression: '0 + 5 ', answer: '5' },
+    { expression: '9 - 5 ', answer: '4' },
     { expression: '6 + 2 ', answer: '8' },
     { expression: '0 + 2 ', answer: '2' },
     { expression: '3 + 2 ', answer: '5' },
@@ -100,25 +100,61 @@
     { expression: '1 + 2 ', answer: '3' },
     { expression: '5 + 2 ', answer: '7' },
     { expression: '3 + 5 ', answer: '8' },
-    { expression: '5 + 2 ', answer: '7' },
-    { expression: '5 - 3', answer: '2' },
-    { expression: '8 - 6', answer: '2' },
-    { expression: '4 - 0', answer: '4' },
-    { expression: '6 - 1', answer: '5' },
-    { expression: '8 - 8', answer: '0' },
-    { expression: '8 - 0', answer: '8' },
-    { expression: '9 - 0', answer: '9' },
-    { expression: '2 - 1', answer: '1' },
-    { expression: '6 - 0', answer: '6' },
-    { expression: '5 - 3', answer: '2' },
-    { expression: '5 - 1', answer: '4' },
-    { expression: '7 - 2', answer: '5' },
-    { expression: '9 - 5', answer: '4' },
-    { expression: '7 - 4', answer: '3' },
-    { expression: '1 - 0', answer: '1' },
-    { expression: '4 - 2', answer: '2' },
-    { expression: '6 - 2', answer: '4' },
-    { expression: '5 - 5', answer: '0' },
+    { expression: '5 - 1 ', answer: '4' },
+    { expression: '15 - 13 ', answer: '2' },
+    { expression: '18 - 16 ', answer: '2' },
+    { expression: '14 - 9 ', answer: '5' },
+    { expression: '16 - 8 ', answer: '8' },
+    { expression: '18 - 17 ', answer: '1' },
+    { expression: '8 - 3 ', answer: '5' },
+    { expression: '19 - 10 ', answer: '9' },
+    { expression: '12 - 11 ', answer: '1' },
+    { expression: '6 - 0 ', answer: '6' },
+    { expression: '5 - 3 ', answer: '2' },
+    { expression: '5 - 1 ', answer: '4' },
+    { expression: '7 - 2 ', answer: '5' },
+    { expression: '9 - 5 ', answer: '4' },
+    { expression: '7 - 4 ', answer: '3' },
+    { expression: '11 - 10 ', answer: '1' },
+    { expression: '14 - 12 ', answer: '2' },
+    { expression: '6 - 2 ', answer: '4' },
+    { expression: '15 - 15 ', answer: '0' },
+    { expression: '12 - 3 ', answer: '9' },
+    { expression: '5 - 1 ', answer: '4' },
+    { expression: '1 + 2 ', answer: '3' },
+    { expression: '1 + 3 ', answer: '4' },
+    { expression: '7 + 2 ', answer: '9' },
+    { expression: '10 - 3 ', answer: '7' },
+    { expression: '1 + 1 ', answer: '2' },
+    { expression: '6 + 1 ', answer: '7' },
+    { expression: '10 - 5 ', answer: '5' },
+    { expression: '6 - 2 ', answer: '4' },
+    { expression: '0 + 2 ', answer: '2' },
+    { expression: '3 - 2 ', answer: '1' },
+    { expression: '11 - 5 ', answer: '6' },
+    { expression: '6 - 2 ', answer: '4' },
+    { expression: '11 - 8 ', answer: '3' },
+    { expression: '15 - 12 ', answer: '3' },
+    { expression: '3 + 5 ', answer: '8' },
+    { expression: '16 - 13 ', answer: '3' },
+    { expression: '5 - 3 ', answer: '2' },
+    { expression: '18 - 16 ', answer: '2' },
+    { expression: '4 - 0 ', answer: '4' },
+    { expression: '16 - 11 ', answer: '5' },
+    { expression: '19 - 10 ', answer: '9' },
+    { expression: '18 - 11 ', answer: '7' },
+    { expression: '19 - 12 ', answer: '7' },
+    { expression: '12 - 11 ', answer: '1' },
+    { expression: '16 - 9 ', answer: '7' },
+    { expression: '15 - 13 ', answer: '2' },
+    { expression: '15 - 8 ', answer: '7' },
+    { expression: '7 - 2 ', answer: '5' },
+    { expression: '9 - 5 ', answer: '4' },
+    { expression: '13 - 4 ', answer: '9' },
+    { expression: '11 - 2 ', answer: '9' },
+    { expression: '14 - 6 ', answer: '8' },
+    { expression: '16 - 9 ', answer: '7' },
+    { expression: '15 - 9 ', answer: '6' },
     ]);
 
     // TODO: need to make sure names can't be used more than once 
@@ -389,7 +425,7 @@
       return [
         {
           type: jsPsychHtmlKeyboardResponse,
-          stimulus: `<p style ="font-size=40xp">${expression} = ?</p>`,
+          stimulus: `<p style="font-size: 35pt;line-height:1.5; margin: 0 50px 0 50px">${expression} = ?</p>`,
           choices: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'],
           trial_duration: MATH_DELAY,
           data: { expression, answer },
@@ -403,7 +439,7 @@
           stimulus() {
             const lastTrial = jsPsych.data.get().last(1).values()[0];
 
-            return `<p>${expression} = ${answer}</p><p>${lastTrial.correct ? 'Correct!' : 'Wrong.'}</p>`;
+            return `<p style="font-size:35pt;line-height:1.5; margin: 0 50px 0 50px">${expression} = ${answer}<br />${lastTrial.correct ? 'Correct!' : 'Wrong.'}</p>`;
           },
           choices: 'NO_KEYS',
           trial_duration() {
@@ -436,7 +472,7 @@
         // press 1 to start
         {
           type: jsPsychHtmlKeyboardResponse,
-          stimulus: `<p style="font-size:40px">${'To begin your practice trials, press 1.'}</p>`,
+          stimulus: `<p style="font-size:24px">${'To begin your practice trials, press 1.'}</p>`,
           choices: '1',
           trial_duration: null,
         },
@@ -447,9 +483,10 @@
         // display zendaya's bio
         {
           type: jsPsychHtmlKeyboardResponse,
-          stimulus: `<p style="font-size:40px; line-height:1.5; margin: 0 50px 0 50px">${zendaya_bio} </p>`,
+          stimulus: `<p style="font-size:50px; line-height:1.5; margin: 0 50px 0 50px">${zendaya_bio} </p>`,
           choices: 'NO_KEYS',
           trial_duration: BIO_DELAY,
+          
         },
 
         // display zendaya's image
@@ -471,7 +508,7 @@
         // display oscar's bio
         {
           type: jsPsychHtmlKeyboardResponse,
-          stimulus: `<p style="font-size:40px; line-height:1.5; margin: 0 50px 0 50px">${oscar_bio} </p>`,
+          stimulus: `<p style="font-size:50px; line-height:1.5; margin: 0 50px 0 50px">${oscar_bio} </p>`,
           choices: 'NO_KEYS',
           trial_duration: BIO_DELAY,
         },
@@ -495,7 +532,7 @@
         // display FLO's bio
         {
           type: jsPsychHtmlKeyboardResponse,
-          stimulus: `<p style="font-size:40px; line-height:1.5; margin: 0 50px 0 50px">${flo_bio} </p>`,
+          stimulus: `<p style="font-size:50px; line-height:1.5; margin: 0 50px 0 50px">${flo_bio} </p>`,
           choices: 'NO_KEYS',
           trial_duration: BIO_DELAY,
         },
@@ -503,7 +540,7 @@
         // display FLO's face
         {
           type: jsPsychImageKeyboardResponse,
-          stimulus: oscar,
+          stimulus: flo,
           stimulus_width: IMAGE_WIDTH,
           prompt: `<p style="font-size:50px;gap:50px"><br />${'Florence'}</p>`,
           choices: 'NO_KEYS',
@@ -519,7 +556,7 @@
         // display D's bio
         {
           type: jsPsychHtmlKeyboardResponse,
-          stimulus: `<p style="font-size:40px; line-height:1.5; margin: 0 50px 0 50px">${dangelo_bio} </p>`,
+          stimulus: `<p style="font-size:50px; line-height:1.5; margin: 0 50px 0 50px">${dangelo_bio} </p>`,
           choices: 'NO_KEYS',
           trial_duration: BIO_DELAY,
         },
@@ -537,8 +574,9 @@
         // displays the end of the practice trial
         {
           type: jsPsychHtmlKeyboardResponse,
-          stimulus: `<p style="font-size:40px"><p>${'You have completed the practice trials!'}</p>
-          <p>${'Press any key to begin the learning phase.'}</p></p>`,
+          stimulus: `  <div style="font-size: 24pt; line-height: 1.5; max-width: 800px; margin: auto; text-align: center;">
+            <p>${'You have completed the practice trials!'}<br /></p>
+            <p>${'Please wait for the experimenter to provide further instructions.'}</p>`,
           trial_duration: null,
         },
       ];
@@ -546,6 +584,16 @@
 
     // Saving identities after the createLearningTrial
     const identities = [];
+
+    // tell browser that voice is changed to alex from default
+    speechSynthesis.onvoiceschanged = () => {
+      "Google US English en-US"
+    };
+    
+    // log the name of the voice and language that it's playing in 
+    speechSynthesis.getVoices().forEach(v =>
+    console.log(v.name, v.lang)
+    );
 
     ///////////////////////////////////////////////////////////////
     // Create a function to generate a learning trial (behavior -> face + name)
@@ -555,19 +603,35 @@
       return [
         {
           type: jsPsychHtmlKeyboardResponse,
-          stimulus: `${behavior}`,
+          stimulus: ` <div style="font-size: 24pt; line-height: 1.5; max-width: 800px; margin: auto; text-align: center;">
+            <p style="font-size:24px">${behavior}</p>`,
           choices: 'NO_KEYS',
           trial_duration: BIO_DELAY,
-          data: { behavior },
+          data: { image, name, condition, group, behavior},
+          on_start: () => {
+              speechSynthesis.cancel();
+              const synth = window.speechSynthesis;
+              const utterance = new SpeechSynthesisUtterance(behavior);
+              synth.speak(utterance)
+              
+
+        },
+          on_finish: () => {
+              speechSynthesis.cancel();
+              speechSynthesis.getVoices().forEach(v =>
+              console.log(v.name, v.lang)
+              );
+          }
+          
         },
         {
           type: jsPsychImageKeyboardResponse,
           stimulus: image,
           stimulus_width: IMAGE_WIDTH,
-          prompt: `<p style="font-size:50px;gap:50px"><br />${name}</p>`,
+          prompt: `<p style="font-size:40px;gap:50px"><br />${name}</p>`,
           choices: 'NO_KEYS',
           trial_duration: IMAGE_DELAY,
-          data: { image },
+          data: { image, name, condition, group, behavior},
         },
         ...createRandomMathTrial(),
       ];
@@ -827,13 +891,14 @@
       {
         type: jsPsychPreload,
         // paths of images to load.
-        images: allImages,
+        images: allImages
       },
+
       {
         type: jsPsychHtmlKeyboardResponse,
         stimulus: FirstInstruction,
       },
-       ...PracticeTrial_Learning(),
+       //...PracticeTrial_Learning(),
        ...sequenceLearningPhase(),
        {
          type: jsPsychHtmlKeyboardResponse,
@@ -868,14 +933,14 @@
             const recognition = data.filter({ question_type: 'recognition' });
             const recognitionPercent = (100 * recognition.filter({ correct: true }).count()) / recognition.count();
 
-            const recall = data.filter({ question_type: 'recall' });
+            const recall = data.filter({ question_type: 'nameRecall' });
             const recallPercent = (100 * recall.filter({ correct: true }).count()) / recall.count();
 
           return `
           <p>You have completed the experiment. Thank you for your participation.</p>
           <p>Your recognition score is ${Math.round(recognitionPercent)}%.</p>
           <p>Your recall score is ${Math.round(recallPercent)}%.</p>
-          <p> Press any key to exit the study.</p>
+          <p> Press any key to exit the study.</p>re
           `;
          },
         },
