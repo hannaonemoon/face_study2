@@ -12,6 +12,14 @@
     <link href="https://unpkg.com/jspsych@8.0.3/css/jspsych.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jspsych@7.0.0/css/jspsych.css" />
     <style>
+      * {
+        font-family: 'Ariel', sans-serif;
+        font-size: 30px;
+      }
+
+      br {
+        margin: 1lh;
+      }
     </style>
   </head>
   <body></body>
@@ -424,14 +432,14 @@
     function PracticeTrial_Learning() {
       const zendaya = './practice_trials/zendaya.jpg';
       const oscar = './practice_trials/oscar.jpg';
-      const flo = './practice_trials/florence.jpg';
-      const dangelo = './practice_trials/dangelo.jpg';
+      const flo = './practice_trials/flo.jpg';
+      const dangelo = './practice_trials/d.jpg';
 
       // TO DO: add semantic info for the 4 practice learning trials
-      const zendaya_bio = 'neg_rel'; // NEG-REL
-      const oscar_bio = 'neg_irr'; // NEG-IRR
-      const flo_bio = 'neu_rel'; // NEU-REL
-      const dangelo_bio = 'neu_irr'; // NEU-IRR
+      const zendaya_bio = 'Leaves trash on tables after lunch, ignoring others\' requests to clean.'; // NEG-REL
+      const oscar_bio = 'Hyenas frequently gang up to rob weaker predators of their hard-earned kills.'; // NEG-IRR
+      const flo_bio = 'Often confuses names of actors from the same movie during trivia.'; // NEU-REL
+      const dangelo_bio = 'Octopuses have three hearts and blue, copper-based blood called hemocyanin.'; // NEU-IRR
 
       return [
         // press 1 to start
@@ -458,7 +466,7 @@
         {
           type: jsPsychImageKeyboardResponse,
           stimulus: zendaya,
-          stimulus_width: 500,
+          stimulus_width: 400,
           prompt: `<p style="font-size:50px;gap:50px"><br />${'Zendaya'}</p>`,
           choices: 'NO_KEYS',
           trial_duration: IMAGE_DELAY,
@@ -531,7 +539,7 @@
           type: jsPsychImageKeyboardResponse,
           stimulus: dangelo,
           stimulus_width: IMAGE_WIDTH,
-          prompt: `<p style="font-size:50px;gap:50px"><br />${'D-Angelo'}</p>`,
+          prompt: `<p style="font-size:50px;gap:50px"><br />${'D\'Angelo'}</p>`,
           choices: 'NO_KEYS',
           trial_duration: IMAGE_DELAY,
         },
