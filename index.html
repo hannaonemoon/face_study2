@@ -39,14 +39,124 @@
     const IMAGE_WIDTH = 600;
 
     // TODO: Make sure the instruction looks good for the second experiment
-    const FirstInstruction = `
+
+    const audioInstructions = `
       <div style="font-size: 20pt; line-height: 1.5; max-width: 800px; margin: auto; text-align: center;">
-      <p>During this experiment, you will be shown photographs of different identities and, for some, their associated identity information (e.g., description of their behavior). </p>
-      <p>For others, the sentence will be unrelated to the identity you'll be learning. </p>
-      <p>Please try to remember all faces and identity information that has been presented. Each identity is equally important to remember, and you will be tested on your memory at the end of the experiment.</p>
-      <p>When you are ready, press any key to begin.</p>
-    </div>
-  `;
+      <p>This task requires audio playback. </p>
+      <p>Before you begin, please make sure your sound is on and set to a comfortable volume.</p>
+      <p> You may use headphones or your computer speakers. </p>
+      <p> Once you have adjusted to your audio, press 1 to proceed. </p>
+      </div>
+      `
+
+    function audioTest() {
+      const audioTest= "./audio/audioTest.mp3";
+      return [
+         {
+          type: jsPsychHtmlKeyboardResponse,
+          stimulus: `
+            <div style="font-size: 20pt; line-height: 1.5; max-width: 800px; margin: auto; text-align: center;">
+              <p> To verify that your audio is working, click the button below and press the number that you hear.</p>
+              <p>Press the button to hear the audio.</p>
+        
+              <button id="playAudio">Play audio</button>
+        
+              <audio id="stimAudio" src="audio/audioTest.mp3"></audio>
+            </div>
+          `,
+          choices: ['9'],   // ONLY key that advances
+          on_load: function() {
+            const audio = document.getElementById('stimAudio');
+            const button = document.getElementById('playAudio');
+        
+            button.addEventListener('click', () => {
+              audio.currentTime = 0;
+              audio.play();
+            });
+          }
+         },
+
+      ]
+    }
+
+    function Instructions_with_Diagram() {
+      const LearningDiagram= "./diagrams/LearningDiagram.png";
+      const ValenceRating= "./diagrams/ValenceRating.png";
+      const mathDiagram= "./diagrams/mathDiagram.png";
+      const instructAudio1= "./audio/instructAudio1.mp3";
+      const instructAudio2= "./audio/instructAudio2.mp3";
+      const instructAudio3= "./audio/instructAudio3.mp3";
+      const instructAudio4= "./audio/instructAudio4.mp3";
+      return [ 
+        {
+          type: jsPsychAudioKeyboardResponse,
+          stimulus: instructAudio1,
+          prompt:`
+          <div style="font-size: 25pt; line-height: 1.5; max-width: 800px; margin: auto; text-align: center;">
+
+            <p>During this experiment, you will be shown photographs of different people\'s identities (faces and names). </p>
+            <p>These identities will each be preceded by a sentence, which may or may not be relevant to the identity you\'re about to see. </p>
+            <p> To continue, press 1 </p>
+
+          </div>
+          `,
+          choices: ['1'],
+          trial_ends_after_audio: false,
+        },
+        {
+          type: jsPsychAudioKeyboardResponse,
+          prompt: `
+          <div style="font-size: 25pt; line-height: 1.5; max-width: 800px; margin: auto; text-align: center;">
+
+            <p> If the sentence is about a person, then this information describes the behavior of the person whose face and name you are about to see.</p>
+            <p> If the sentence is about an animal, then it is unrelated to the person you are about to see. </p>
+            <p><img src=${LearningDiagram} style="max-width: 800px;"> </p>
+            <p> To continue, press 1 </p>
+
+          </div>
+          `,
+          stimulus: instructAudio2,
+          choices: ['1'],
+          trial_ends_after_audio: false,
+        },
+        {
+          type: jsPsychAudioKeyboardResponse,
+          prompt: `
+          <div style="font-size: 20pt; line-height: 1.5; max-width: 800px; margin: auto; text-align: center;">
+
+            <p> After reading the sentence, you will be asked to rate how this statement makes you feel</p>
+            <p> on a 1-7 scale, where 1 = very negatively; 4 = neutral; 7= very positively. </p>
+            <p><img src=${ValenceRating} style="max-width: 800px;"> </p>
+            <p> To continue, press 1 </p>
+
+          </div>
+          `,
+          stimulus: instructAudio3,
+          choices: ['1'],
+          trial_ends_after_audio: false,
+        },
+        {
+          type: jsPsychAudioKeyboardResponse,
+          prompt: `
+          <div style="font-size: 20pt; line-height: 1.5; max-width: 800px; margin: auto; text-align: center;">
+
+            <p> Between each identity, you will be asked to solve a simple math question.</p>
+            <p> The possible answers range between 0 and 9. </p>
+            <p> Please respond by pressing a key that corresponds to the solution to the equation.</p>
+            <p><img src=${mathDiagram} style="max-width: 800px;"> </p>
+            <p> To continue, press 1 </p>
+
+          </div>
+          `,
+          stimulus: instructAudio4,
+          choices: ['1'],
+          trial_ends_after_audio: false,
+        },
+        
+      ]
+    }
+
+
 
     class RandomPool {
       #values;
@@ -181,6 +291,7 @@
       'Connor',
       'Aiden',
     ];
+
     const femaleNames = [
       'Emily',
       'Madison',
@@ -440,12 +551,17 @@
       const oscar_bio = 'Hyenas frequently gang up to rob weaker predators of their hard-earned kills.'; // NEG-IRR
       const flo_bio = 'Often confuses names of actors from the same movie during trivia.'; // NEU-REL
       const dangelo_bio = 'Octopuses have three hearts and blue, copper-based blood called hemocyanin.'; // NEU-IRR
-
+      const PracticeTrialAudio='./audio/practicetrial.mp3';
       return [
         // press 1 to start
         {
-          type: jsPsychHtmlKeyboardResponse,
-          stimulus: `<p style="font-size:24px">${'To begin your practice trials, press 1.'}</p>`,
+          type: jsPsychAudioKeyboardResponse,
+          stimulus: PracticeTrialAudio,
+          prompt:`
+          <div>
+            <p> We will first begin with some practice learning trials. </p>
+            <p style="font-size:24px">${'To begin your practice trials, press 1.'}</p>
+          </div>`,
           choices: '1',
           trial_duration: null,
         },
@@ -547,9 +663,11 @@
         // displays the end of the practice trial
         {
           type: jsPsychHtmlKeyboardResponse,
-          stimulus: `  <div style="font-size: 24pt; line-height: 1.5; max-width: 800px; margin: auto; text-align: center;">
+          stimulus: 
+          `
+            <div style="font-size: 24pt; line-height: 1.5; max-width: 800px; margin: auto; text-align: center;">
             <p>${'You have completed the practice trials!'}<br /></p>
-            <p>${'Please wait for the experimenter to provide further instructions.'}</p>`,
+          `,
           trial_duration: null,
         },
       ];
@@ -559,14 +677,14 @@
     const identities = [];
 
     // tell browser that voice is changed to alex from default
-    speechSynthesis.onvoiceschanged = () => {
-      "Google US English en-US"
-    };
+    //speechSynthesis.onvoiceschanged = () => {
+    //  "Google US English en-US"
+    //};
     
     // log the name of the voice and language that it's playing in 
-    speechSynthesis.getVoices().forEach(v =>
-    console.log(v.name, v.lang)
-    );
+    //speechSynthesis.getVoices().forEach(v =>
+    //console.log(v.name, v.lang)
+    //);
 
     ///////////////////////////////////////////////////////////////
     // Create a function to generate a learning trial (behavior -> face + name)
@@ -581,21 +699,18 @@
           choices: 'NO_KEYS',
           trial_duration: BIO_DELAY,
           data: { image, name, condition, group, behavior},
-          on_start: () => {
-              speechSynthesis.cancel();
-              const synth = window.speechSynthesis;
-              const utterance = new SpeechSynthesisUtterance(behavior);
-              synth.speak(utterance)
-              
-
-        },
-          on_finish: () => {
-              speechSynthesis.cancel();
-              speechSynthesis.getVoices().forEach(v =>
-              console.log(v.name, v.lang)
-              );
-          }
-          
+          //on_start: () => {
+          //    speechSynthesis.cancel();
+          //    const synth = window.speechSynthesis;
+          //    const utterance = new SpeechSynthesisUtterance(behavior);
+          //    synth.speak(utterance)
+          ////},
+          //on_finish: () => {
+          //    speechSynthesis.cancel();
+          //    speechSynthesis.getVoices().forEach(v =>
+          //    console.log(v.name, v.lang)
+          //    );
+          //}
         },
         {
           type: jsPsychImageKeyboardResponse,
@@ -869,9 +984,11 @@
 
       {
         type: jsPsychHtmlKeyboardResponse,
-        stimulus: FirstInstruction,
+        stimulus: audioInstructions,
       },
-       //...PracticeTrial_Learning(),
+       ...audioTest(),
+       ...Instructions_with_Diagram(),
+       ...PracticeTrial_Learning(),
        ...sequenceLearningPhase(),
        {
          type: jsPsychHtmlKeyboardResponse,
