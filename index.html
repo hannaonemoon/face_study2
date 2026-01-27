@@ -48,9 +48,29 @@
       <p> Once you have adjusted to your audio, press 1 to proceed. </p>
       </div>
       `
-
-    function audioTest() {
+      const LearningDiagram= "./diagrams/LearningDiagram.png";
+      const ValenceRating= "./diagrams/ValenceRating.png";
+      const mathDiagram= "./diagrams/mathDiagram.png";
+      const allDiagrams= [
+      ...LearningDiagram,
+      ...ValenceRating,
+      ...mathDiagram,];
+      const instructAudio1= "./audio/instructAudio1.mp3";
+      const instructAudio2= "./audio/instructAudio2.mp3";
+      const instructAudio3= "./audio/instructAudio3.mp3";
+      const instructAudio4= "./audio/instructAudio4.mp3";
       const audioTest= "./audio/audioTest.mp3";
+      const allAudio=[
+      ...instructAudio1,
+      ...instructAudio2,
+      ...instructAudio3,
+      ...instructAudio4,
+      ...audioTest,];
+      const countdown="./audio/countdown.mp4";
+      const shortVideo="./audio/video.mp4";
+      const allVideos= [...countdown,...shortVideo,];
+
+    function audioTestTrial() {
       return [
          {
           type: jsPsychHtmlKeyboardResponse,
@@ -80,13 +100,6 @@
     }
 
     function Instructions_with_Diagram() {
-      const LearningDiagram= "./diagrams/LearningDiagram.png";
-      const ValenceRating= "./diagrams/ValenceRating.png";
-      const mathDiagram= "./diagrams/mathDiagram.png";
-      const instructAudio1= "./audio/instructAudio1.mp3";
-      const instructAudio2= "./audio/instructAudio2.mp3";
-      const instructAudio3= "./audio/instructAudio3.mp3";
-      const instructAudio4= "./audio/instructAudio4.mp3";
       return [ 
         {
           type: jsPsychAudioKeyboardResponse,
@@ -999,14 +1012,20 @@
       {
         type: jsPsychPreload,
         // paths of images to load.
-        images: allImages
+        images: [allImages,allDiagrams],
+        audio: allAudio,
+        video: allVideos,
       },
-
+      {
+        type: jsPsychPreload,
+        // paths of images to load.
+        audio: audio
+      },
       {
         type: jsPsychHtmlKeyboardResponse,
         stimulus: audioInstructions,
       },
-       ...audioTest(),
+       ...audioTestTrial(),
        ...Instructions_with_Diagram(),
        ...PracticeTrial_Learning(),
        ...sequenceLearningPhase(),
@@ -1016,7 +1035,7 @@
        },
        {
          type: jsPsychVideoKeyboardResponse,
-         stimulus: ['video.mp4'],
+         stimulus: shortVideo,
          width: document.body.clientWidth,
          choices: 'NO_KEYS',
          trial_ends_after_video: true,
