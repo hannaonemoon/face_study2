@@ -38,27 +38,6 @@
     const MATH_DELAY = 4000;
     const IMAGE_WIDTH = 600;
 
-    
-    const LearningDiagram= "./diagrams/LearningDiagram.png";
-    const ValenceRating= "./diagrams/ValenceRating.png";
-    const mathDiagram= "./diagrams/mathDiagram.png";
-    const allDiagrams= [...LearningDiagram,
-    ...ValenceRating,
-    ...mathDiagram,];
-    const instructAudio1= "./audio/instructAudio1.mp3";
-    const instructAudio2= "./audio/instructAudio2.mp3";
-    const instructAudio3= "./audio/instructAudio3.mp3";
-    const instructAudio4= "./audio/instructAudio4.mp3";
-    const audioTest= "./audio/audioTest.mp3";
-    const allAudio=[
-    ...instructAudio1,
-    ...instructAudio2,
-    ...instructAudio3,
-    ...instructAudio4,
-    ...audioTest,];
-    const countdown="./audio/countdown.mp4";
-    const shortVideo="./audio/video.mp4";
-    const allVideos= [...countdown,...shortVideo,];
 
     function audioTestTrial() {
       return [
@@ -90,6 +69,23 @@
     }
 
     function Instructions_with_Diagram() {
+      const LearningDiagram= "./diagrams/LearningDiagram.png";
+      const ValenceRating= "./diagrams/ValenceRating.png";
+      const mathDiagram= "./diagrams/mathDiagram.png";
+      //const allDiagrams= [...LearningDiagram,
+      //...ValenceRating,
+      //...mathDiagram,];
+      const instructAudio1= "./audio/instructAudio1.mp3";
+      const instructAudio2= "./audio/instructAudio2.mp3";
+      const instructAudio3= "./audio/instructAudio3.mp3";
+      const instructAudio4= "./audio/instructAudio4.mp3";
+      const audioTest= "./audio/audioTest.mp3";
+      //const allAudio=[
+      //...instructAudio1,
+      //...instructAudio2,
+      //...instructAudio3,
+      //...instructAudio4,
+      //...audioTest,];
       return [ 
         {
           type: jsPsychAudioKeyboardResponse,
@@ -692,6 +688,7 @@
     // Create a function to generate a learning trial (behavior -> face + name)
     function createLearningTrial(name, image, condition, behavior, group) {
       identities.push({ name, image, condition, behavior, group });
+      const countdown= "./audio/countdown.mp4";
       return [
         {
           type: jsPsychHtmlKeyboardResponse,
