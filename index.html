@@ -70,7 +70,6 @@
 
     function Instructions_with_Diagram() {
       const LearningDiagram= "./diagrams/LearningDiagram.png";
-      const ValenceRating= "./diagrams/ValenceRating.png";
       const mathDiagram= "./diagrams/mathDiagram.png";
       //const allDiagrams= [...LearningDiagram,
       //...ValenceRating,
@@ -86,12 +85,13 @@
       //...instructAudio3,
       //...instructAudio4,
       //...audioTest,];
+      const ValenceRating= "./diagrams/ValenceRating.png";
       return [
         {
           type: jsPsychAudioKeyboardResponse,
           stimulus: instructAudio1,
           prompt:`
-          <div style="font-size: 25pt; line-height: 1.5; max-width: document.body.clientWidth; margin: auto; text-align: center;">
+          <div style="font-size: 25pt; line-height: 1.25; max-width: document.body.clientWidth; margin: auto; text-align: center;">
 
             <p>During this experiment, you will be shown photographs of different people\'s identities (faces and names). </p>
             <p>These identities will each be preceded by a sentence, which may or may not be relevant to the identity you\'re about to see. </p>
@@ -110,7 +110,7 @@
             <p> If the sentence is about a person, then this information describes the behavior of the person whose face and name you are about to see.</p>
             <p> If the sentence is about an animal, then it is unrelated to the person you are about to see. </p>
             <p><img src=${LearningDiagram} style="max-width: 800px;"> </p>
-            <p style="font-size:10pt"> To continue, press 1 </p>
+            <p style="font-size:15pt"> To continue, press 1 </p>
 
           </div>
           `,
@@ -121,12 +121,12 @@
         {
           type: jsPsychAudioKeyboardResponse,
           prompt: `
-          <div style="font-size: 20pt; line-height: 1.5; max-width: document.body.clientWidth; margin: auto; text-align: center;">
+          <div style="font-size: 20pt; line-height: 1.25; max-width: document.body.clientWidth; margin: auto; text-align: center;">
 
             <p> After reading the sentence, you will be asked to rate how this statement makes you feel</p>
             <p> on a 1-7 scale, where 1 = very negatively; 4 = neutral; 7= very positively. </p>
-            <p><img src=${ValenceRating} style="max-width: 800px;"> </p>
-            <p style="font-size:10pt"> To continue, press 1 </p>
+            <p><img src=${ValenceRating} style="max-width: 500px;"> </p>
+            <p style="font-size:15pt"> To continue, press 1 </p>
 
           </div>
           `,
@@ -137,7 +137,7 @@
         {
           type: jsPsychAudioKeyboardResponse,
           prompt: `
-          <div style="font-size: 20pt; line-height: 1.5; max-width: document.body.clientWidth; margin: auto; text-align: center;">
+          <div style="font-size: 20pt; line-height: 1.25; max-width: document.body.clientWidth; margin: auto; text-align: center;">
 
             <p> Between each identity, you will be asked to solve a simple math question.</p>
             <p> The possible answers range between 0 and 9. </p>
@@ -556,7 +556,7 @@
           type: jsPsychHtmlKeyboardResponse,
           stimulus: `
           <div>
-            <p> We will first begin with some practice learning trials. </p>
+            <p style="font-size:24px"> We will first begin with some practice learning trials. </p>
             <p style="font-size:24px">${'To begin your practice trials, press 1.'}</p>
           </div>`,
           choices: '1',
@@ -569,7 +569,7 @@
         // display zendaya's bio
         {
           type: jsPsychHtmlKeyboardResponse,
-          stimulus: `<p style="font-size:50px; line-height:1.5; margin: 0 50px 0 50px">${zendaya_bio} </p>`,
+          stimulus: `<p style="font-size:30px; line-height:1.5; margin: 0 50px 0 50px">${zendaya_bio} </p>`,
           choices: 'NO_KEYS',
           trial_duration: BIO_DELAY,
           
@@ -594,7 +594,7 @@
         // display oscar's bio
         {
           type: jsPsychHtmlKeyboardResponse,
-          stimulus: `<p style="font-size:50px; line-height:1.5; margin: 0 50px 0 50px">${oscar_bio} </p>`,
+          stimulus: `<p style="font-size:30px; line-height:1.5; margin: 0 50px 0 50px">${oscar_bio} </p>`,
           choices: 'NO_KEYS',
           trial_duration: BIO_DELAY,
         },
@@ -603,7 +603,7 @@
         {
           type: jsPsychImageKeyboardResponse,
           stimulus: oscar,
-          stimulus_width: IMAGE_WIDTH,
+          stimulus_width: 400,
           prompt: `<p style="font-size:50px;gap:50px"><br />${'Oscar'}</p>`,
           choices: 'NO_KEYS',
           trial_duration: IMAGE_DELAY,
@@ -618,7 +618,7 @@
         // display FLO's bio
         {
           type: jsPsychHtmlKeyboardResponse,
-          stimulus: `<p style="font-size:50px; line-height:1.5; margin: 0 50px 0 50px">${flo_bio} </p>`,
+          stimulus: `<p style="font-size:30px; line-height:1.5; margin: 0 50px 0 50px">${flo_bio} </p>`,
           choices: 'NO_KEYS',
           trial_duration: BIO_DELAY,
         },
@@ -627,7 +627,7 @@
         {
           type: jsPsychImageKeyboardResponse,
           stimulus: flo,
-          stimulus_width: IMAGE_WIDTH,
+          stimulus_width: 400,
           prompt: `<p style="font-size:50px;gap:50px"><br />${'Florence'}</p>`,
           choices: 'NO_KEYS',
           trial_duration: IMAGE_DELAY,
@@ -642,7 +642,7 @@
         // display D's bio
         {
           type: jsPsychHtmlKeyboardResponse,
-          stimulus: `<p style="font-size:50px; line-height:1.5; margin: 0 50px 0 50px">${dangelo_bio} </p>`,
+          stimulus: `<p style="font-size:30px; line-height:1.5; margin: 0 50px 0 50px">${dangelo_bio} </p>`,
           choices: 'NO_KEYS',
           trial_duration: BIO_DELAY,
         },
@@ -651,7 +651,7 @@
         {
           type: jsPsychImageKeyboardResponse,
           stimulus: dangelo,
-          stimulus_width: IMAGE_WIDTH,
+          stimulus_width: 400,
           prompt: `<p style="font-size:50px;gap:50px"><br />${'D\'Angelo'}</p>`,
           choices: 'NO_KEYS',
           trial_duration: IMAGE_DELAY,
@@ -662,10 +662,12 @@
           type: jsPsychHtmlKeyboardResponse,
           stimulus: 
           `
-            <div style="font-size: 24pt; line-height: 1.5; max-width: 800px; margin: auto; text-align: center;">
+            <div style="font-size: 30pt; line-height: 1.5; max-width: 800px; margin: auto; text-align: center;">
             <p>${'You have completed the practice trials!'}<br /></p>
+            <p>To continue onto the experiment, please press 1.</p>
           `,
-          trial_duration: 2000,
+          trial_duration: null,
+          choices:["1"],
         },
       ];
     }
@@ -683,16 +685,18 @@
     //console.log(v.name, v.lang)
     //);
 
+
+
     ///////////////////////////////////////////////////////////////
     // Create a function to generate a learning trial (behavior -> face + name)
     function createLearningTrial(name, image, condition, behavior, group) {
       identities.push({ name, image, condition, behavior, group });
-      const countdown= "./audio/countdown.mp4";
+      const scale='./diagrams/scale.png';
       return [
         {
           type: jsPsychHtmlKeyboardResponse,
           stimulus: ` <div style="font-size: 24pt; line-height: 1.5; max-width: 800px; margin: auto; text-align: center;">
-            <p style="font-size:24px">${behavior}</p>`,
+            <p style="font-size:30px">${behavior}</p>`,
           choices: 'NO_KEYS',
           trial_duration: 5000,
           data: { image, name, condition, group, behavior},
@@ -710,25 +714,23 @@
           //}
         },
         {
-          type: jsPsychVideoKeyboardResponse,
-          stimulus: ()=> {
-            return `        
-            <div style="
-              position: fixed;
-              bottom: 20px;
-              right: 20px;
-              font-size: 13px;
-              font-weight: bold;
-              font-color: red;
-            ">
-              ${countdown}
+          type: jsPsychHtmlKeyboardResponse,
+          stimulus:`
+            <div style="font-size: 24pt; line-height: 1.5; max-width: 800px; margin: auto; text-align: center;">
+              <p style="font-size:30px">${behavior}</p>
             </div>
-          `},
-          prompt: ` <div style="font-size: 24pt; line-height: 1.5; max-width: 800px; margin: auto; text-align: center;">
-            <p style="font-size:24px">${behavior}</p>`,
+            <div style="
+            position: fixed;
+            left: 50%;
+            top: 90%;
+            transform: translate(-50%, -100%);
+            text-align: center;">
+              <img src="${scale}" style="max-width:300px;">
+            </div>
+            `,
           choices: ['1','2','3','4','5','6','7'],
           trial_duration: 3000,
-          data: {question_type: "valence rating", image, name, condition, group, behavior}
+          data: {question_type: "valence rating", image, name, condition, group, behavior},
         },
         {
           type: jsPsychImageKeyboardResponse,
@@ -879,6 +881,7 @@
     ///////////////////////////////////////////////////////////////
     // Create a function that creates a trial of face recognition task
     function makeRecognitionQuestion(image, recogAnswers) {
+      const instructRecognition="./audio/instructRecognition.mp3";
       return {
         type: jsPsychImageKeyboardResponse,
         stimulus: image,
@@ -1018,7 +1021,7 @@
       },
        ...audioTestTrial(),
        ...Instructions_with_Diagram(),
-       ...PracticeTrial_Learning(),
+       //...PracticeTrial_Learning(),
        ...sequenceLearningPhase(),
        {
          type: jsPsychHtmlKeyboardResponse,
@@ -1028,7 +1031,7 @@
          type: jsPsychVideoKeyboardResponse,
          stimulus: ["video.mp4"],
          width: document.body.clientWidth,
-         choices: 'NO_KEYS',
+         choices: ['1'],
          trial_ends_after_video: true,
        },
        {
@@ -1036,14 +1039,19 @@
          images: lureImages,
        },
        {
-         type: jsPsychHtmlKeyboardResponse,// Face recognition instruction
-         stimulus: `<div>
-          <p>Now, you will move onto the next phase of the experiment, where you will be tested on your memory for the identities you learned at the beginning of the experiment.</p>
-          <p>First is a face recognition test. For this test, you will be shown images of faces; some of which you have seen, others you have not. </p>
-          <p>Please indicate whether you have seen the face previously or not by pressing a key that corresponds to your response. </p>
-          <p> When you are ready to begin, please press 1.'</p>
-         </div>`
-
+         type: jsPsychAudioKeyboardResponse,// Face recognition instruction
+         stimulus: ["instructRecognition.mp3"],
+         prompt:`<div style="font-size: 20pt; line-height: 1.5; max-width: 800px; margin: auto; text-align: center;">
+          <p>Now, you will take a two-part memory test for the identities you learned in the beginning of the experiment. </p>
+          <p>For the first part of the memory test, you will be shown a series of images of faces, one at a time.</p>
+          <p>For each face, please indicate whether the face was previously seen (“old”) or never seen before (“new”).</p>
+          <p>The possible responses for this memory test range depending on your confidence in your judgment,</p>
+          <p>where 1 is definitely new, 2 is probably new, 3 is maybe new, 4 is maybe old, 5 is probably old, and 6 is definitely old.</p>
+          <p>The responses and the corresponding numbers for each response will also be displayed below the screen for your convenience.</p>
+          <p>Please note that there is no time limit for this part of the test, so please answer as accurately as possible, </p>
+          <p>while using the full scale to reflect your varying degrees of confidence in each response.</p>
+         </div>`,
+         trial_ends_after_audio: false,
        },
        ...sequenceRecognitionTest(),
        {
