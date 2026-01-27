@@ -65,7 +65,8 @@
       ...instructAudio2,
       ...instructAudio3,
       ...instructAudio4,
-      ...audioTest,];
+      ...audioTest,
+      ...audioInstructions,];
       const countdown="./audio/countdown.mp4";
       const shortVideo="./audio/video.mp4";
       const allVideos= [...countdown,...shortVideo,];
@@ -1012,9 +1013,12 @@
       {
         type: jsPsychPreload,
         // paths of images to load.
-        images: [allImages,allDiagrams],
-        audio: allAudio,
-        video: allVideos,
+        images: [...allImages,...allDiagrams,],
+      },
+      {
+        type:jsPsychPreload,
+        auto_preload: true,
+        show_detailed_errors: true,
       },
       {
         type: jsPsychHtmlKeyboardResponse,
