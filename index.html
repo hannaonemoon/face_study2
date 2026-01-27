@@ -65,8 +65,7 @@
       ...instructAudio2,
       ...instructAudio3,
       ...instructAudio4,
-      ...audioTest,
-      ...audioInstructions,];
+      ...audioTest,];
       const countdown="./audio/countdown.mp4";
       const shortVideo="./audio/video.mp4";
       const allVideos= [...countdown,...shortVideo,];
@@ -82,7 +81,7 @@
         
               <button id="playAudio">Play audio</button>
         
-              <audio id="stimAudio" src="audio/audioTest.mp3"></audio>
+              <audio id="stimAudio" src="./audio/audioTest.mp3"></audio>
             </div>
           `,
           choices: ['9'],   // ONLY key that advances
@@ -564,7 +563,7 @@
       const oscar_bio = 'Hyenas frequently gang up to rob weaker predators of their hard-earned kills.'; // NEG-IRR
       const flo_bio = 'Often confuses names of actors from the same movie during trivia.'; // NEU-REL
       const dangelo_bio = 'Octopuses have three hearts and blue, copper-based blood called hemocyanin.'; // NEU-IRR
-      const PracticeTrialAudio='./audio/practicetrial.mp3';
+      const PracticeTrialAudio='./audio/PracticeTrial.mp3';
       return [
         // press 1 to start
         {
@@ -1034,7 +1033,7 @@
        },
        {
          type: jsPsychVideoKeyboardResponse,
-         stimulus: shortVideo,
+         stimulus: "./audio/video.mp4",
          width: document.body.clientWidth,
          choices: 'NO_KEYS',
          trial_ends_after_video: true,
