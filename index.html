@@ -1071,30 +1071,24 @@
          },
         },
     ];
-
-
     jsPsych.run(timeline).then(() => {
-      // Hanon: how does it know what data to grab from each function? built into psychopy? 
-      // It's built into jsPsych: it stores data in jsPsych.data automatically after each trial
-
-      // Hanon: Can you have the participant response for PI20 questions to be recorded in the final data output?
-      // Since createPI20 function is now included in the timeline, it jsPsych should automatically record the response for PI20 questions in the final data
-
-      const csvData = jsPsych.data.get().csv();
-      const participantID = jsPsych.data.get().values()[0].participant_id || "unknown";
-      sendToGoogleSheets(csvData, participantID);
-    });
+      const data = jsPsych.data.get();
+      const csvData = data.csv();
     
-    function sendToGoogleSheets(csvData, participantID) {
-      fetch('https://script.google.com/macros/s/AKfycbwW5QhaVj_UuV_LE-1xX70Xd5JlIaqHDzz02OlaSHybDnFHqIV2EsuVghemMvqHdJQ6/exec', {
-        method: 'POST',
-        mode: 'no-cors',
+      const participantID =
+        data.values()[0]?.participant_id ?? "unknown";
+    
+      fetch("https://script.google.com/macros/s/AKfycbwim7E6Amk4t2rUwgcf6rszHnsc_m8QQxNQoiH8nfwcqndQr9bDxGfyB2aXaHgdRoc5/exec", {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "application/json"
+        },
         body: JSON.stringify({
-          participant_id: jsPsych.data.get().values()[0].participant_id || "unknown",
+          participant_id: participantID,
           csv: csvData
         })
       });
-    }
-
+    });
   </script>
 </html>
