@@ -1023,30 +1023,31 @@
              // Score the keyboard response as correct or incorrect.
              data.correct = jsPsych.pluginAPI.compareKeys(data.response, answer);
            },
-         },
-         {
-          type: jsPsychHtmlKeyboardResponse,
-          stimulus: `
-          <div style="display: flex; justify-content: space-between; align-items: right;">
-            <!-- Image -->
-            <img src="${image}" alt="Recall Image" style="width: 700px;flex-shrink: 0;; margin: 0 0 0 0;">
-            <!-- Options -->
-            <div style="line-height:2;text-align:left; font-size:35px">
-              <p>1.  Relevant (i.e., biographical)</p>
-              <p>2.  Irrelevant (i.e., animal fact)</p>
-              <p>3.  Unsure</p>
-            </div>
-          </div>`,
-          choices: ['1', '2', '3'],
-          data: { question_type: 'behavior', image, behavior, behaviorAnswer },
-          trial_duration: null,
-          on_finish(data) {
-            // Determine the correct response based on `behaviorType`
-            data.correct = jsPsych.pluginAPI.compareKeys(data.response, behaviorAnswer);
-          },
-        }
-        ];
-      }
+         }
+         //{
+         // type: jsPsychHtmlKeyboardResponse,
+         // stimulus: `
+         // <div style="display: flex; justify-content: space-between; align-items: right;">
+         //   <!-- Image -->
+         //   <img src="${image}" alt="Recall Image" style="width: 700px;flex-shrink: 0;; margin: 0 0 0 0;">
+         //   <!-- Options -->
+         //   <div style="line-height:2;text-align:left; font-size:35px">
+         //     <p>1.  Relevant (i.e., biographical)</p>
+         //     <p>2.  Irrelevant (i.e., animal fact)</p>
+         //     <p>3.  Unsure</p>
+         //   </div>
+         // </div>`,
+         // choices: ['1', '2', '3'],
+         // data: { question_type: 'behavior', image, behavior, behaviorAnswer },
+         // trial_duration: null,
+         // on_finish(data) {
+         //   // Determine the correct response based on `behaviorType`
+         //   data.correct = jsPsych.pluginAPI.compareKeys(data.response, behaviorAnswer);
+         // },
+         ]
+         }
+
+      
 
     ///////////////////////////////////////////////////////////////
     // Create name choice randomization function
