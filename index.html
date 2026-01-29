@@ -1087,23 +1087,23 @@
          return createRecallQuestion(image, guesses, answer.toString());
 
           // stores the correct behavior 
-         const behaviorAnswer = (() => {
-          switch (condition) {
-            case 'negRel': //negative-relevant
-              return '1';
-            case 'neuRel': //neutral-relevant
-              return '1';
-            case 'negIrr': //negative-irrelevant
-              return '2';
-            case 'neuIrr': //neutral-irrelevant
-              return '2';
-            default: // "unsure" responses
-              return '3';
-          }
+         //const behaviorAnswer = (() => {
+         // switch (condition) {
+         //   case 'negRel': //negative-relevant
+         //     return '1';
+         //   case 'neuRel': //neutral-relevant
+         //     return '1';
+         //   case 'negIrr': //negative-irrelevant
+         //     return '2';
+         //   case 'neuIrr': //neutral-irrelevant
+         //     return '2';
+         //   default: // "unsure" responses
+         //     return '3';
+         // }
        })
       }
-      )
-    }
+      
+    
 
     const timeline = [
       {
