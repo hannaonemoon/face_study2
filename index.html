@@ -571,10 +571,27 @@
           type: jsPsychHtmlKeyboardResponse,
           stimulus: `<p style="font-size:30px; line-height:1.5; margin: 0 50px 0 50px">${zendaya_bio} </p>`,
           choices: 'NO_KEYS',
-          trial_duration: BIO_DELAY,
-          
+          trial_duration: 5000,
         },
-
+        // display zendaya's bio + valence scale 
+        {
+          type: jsPsychHtmlKeyboardResponse,
+          stimulus:`
+            <div style="font-size: 24pt; line-height: 1.5; max-width: 800px; margin: auto; text-align: center;">
+              <p style="font-size:30px">${zendaya_bio}</p>
+            </div>
+            <div style="
+            position: fixed;
+            left: 50%;
+            top: 90%;
+            transform: translate(-50%, -100%);
+            text-align: center;">
+              <img src="${scale}" style="max-width:300px;">
+            </div>
+            `,
+          choices: ['1','2','3','4','5','6','7'],
+          trial_duration: 3000,
+        },
         // display zendaya's image
         {
           type: jsPsychImageKeyboardResponse,
@@ -598,7 +615,25 @@
           choices: 'NO_KEYS',
           trial_duration: BIO_DELAY,
         },
-
+        // display oscar's bio + valence rating
+        {
+          type: jsPsychHtmlKeyboardResponse,
+          stimulus:`
+            <div style="font-size: 24pt; line-height: 1.5; max-width: 800px; margin: auto; text-align: center;">
+              <p style="font-size:30px">${oscar_bio}</p>
+            </div>
+            <div style="
+            position: fixed;
+            left: 50%;
+            top: 90%;
+            transform: translate(-50%, -100%);
+            text-align: center;">
+              <img src="${scale}" style="max-width:300px;">
+            </div>
+            `,
+          choices: ['1','2','3','4','5','6','7'],
+          trial_duration: 3000,
+        },
         // display oscar's face
         {
           type: jsPsychImageKeyboardResponse,
@@ -622,7 +657,25 @@
           choices: 'NO_KEYS',
           trial_duration: BIO_DELAY,
         },
-
+        //display flo's bio + valence rating
+        {
+          type: jsPsychHtmlKeyboardResponse,
+          stimulus:`
+            <div style="font-size: 24pt; line-height: 1.5; max-width: 800px; margin: auto; text-align: center;">
+              <p style="font-size:30px">${flo_bio}</p>
+            </div>
+            <div style="
+            position: fixed;
+            left: 50%;
+            top: 90%;
+            transform: translate(-50%, -100%);
+            text-align: center;">
+              <img src="${scale}" style="max-width:300px;">
+            </div>
+            `,
+          choices: ['1','2','3','4','5','6','7'],
+          trial_duration: 3000,
+        },
         // display FLO's face
         {
           type: jsPsychImageKeyboardResponse,
@@ -646,7 +699,25 @@
           choices: 'NO_KEYS',
           trial_duration: BIO_DELAY,
         },
-
+        //display d's bio + valence rating
+        {
+          type: jsPsychHtmlKeyboardResponse,
+          stimulus:`
+            <div style="font-size: 24pt; line-height: 1.5; max-width: 800px; margin: auto; text-align: center;">
+              <p style="font-size:30px">${zendaya_bio}</p>
+            </div>
+            <div style="
+            position: fixed;
+            left: 50%;
+            top: 90%;
+            transform: translate(-50%, -100%);
+            text-align: center;">
+              <img src="${scale}" style="max-width:300px;">
+            </div>
+            `,
+          choices: ['1','2','3','4','5','6','7'],
+          trial_duration: 3000,
+        },
         // display D's face
         {
           type: jsPsychImageKeyboardResponse,
@@ -656,15 +727,15 @@
           choices: 'NO_KEYS',
           trial_duration: IMAGE_DELAY,
         },
-
         // displays the end of the practice trial
         {
           type: jsPsychHtmlKeyboardResponse,
           stimulus: 
           `
             <div style="font-size: 30pt; line-height: 1.5; max-width: 800px; margin: auto; text-align: center;">
-            <p>${'You have completed the practice trials!'}<br /></p>
-            <p>To continue onto the experiment, please press 1.</p>
+             <p>${'You have completed the practice trials!'}<br /></p>
+             <p>To continue onto the experiment, please press 1.</p>
+            </div>
           `,
           trial_duration: null,
           choices:["1"],
@@ -951,7 +1022,28 @@
              // Score the keyboard response as correct or incorrect.
              data.correct = jsPsych.pluginAPI.compareKeys(data.response, answer);
            },
-         }
+         },
+         {
+          type: jsPsychHtmlKeyboardResponse,
+          stimulus: `
+          <div style="display: flex; justify-content: space-between; align-items: right;">
+            <!-- Image -->
+            <img src="${image}" alt="Recall Image" style="width: 700px;flex-shrink: 0;; margin: 0 0 0 0;">
+            <!-- Options -->
+            <div style="line-height:2;text-align:left; font-size:35px">
+              <p>1.  Relevant (i.e., biographical)</p>
+              <p>2.  Irrelevant (i.e., animal fact)</p>
+              <p>3.  Unsure</p>
+            </div>
+          </div>`,
+          choices: ['1', '2', '3'],
+          data: { question_type: 'behavior', image, behavior, behaviorAnswer },
+          trial_duration: null,
+          on_finish(data) {
+            // Determine the correct response based on `behaviorType`
+            data.correct = jsPsych.pluginAPI.compareKeys(data.response, behaviorAnswer);
+          },
+        }
         ];
       }
 
@@ -964,7 +1056,7 @@
      }
 
      function sequenceNameRecallTest() {
-       return identities.map(({ condition, name, image, behavior,group }) => {
+       return identities.map(({ condition, name, image, behavior, group }) => {
           // There are 5 guesses
           // - the correct name
           // - a different name from the same group and condition
@@ -992,9 +1084,25 @@
          // The number key the user should press
          const answer = guesses.findIndex((guess) => guess === name) + 1;
          return createRecallQuestion(image, guesses, answer.toString());
-       });
-     }
 
+          // stores the correct behavior 
+         const behaviorAnswer = (() => {
+          switch (condition) {
+            case 'negRel': //negative-relevant
+              return '1';
+            case 'neuRel': //neutral-relevant
+              return '1';
+            case 'negIrr': //negative-irrelevant
+              return '2';
+            case 'neuIrr': //neutral-irrelevant
+              return '2';
+            default: // "unsure" responses
+              return '3';
+          }
+       })
+      }
+      )
+    }
 
     const timeline = [
       {
