@@ -45,7 +45,8 @@
           type: jsPsychHtmlKeyboardResponse,
           stimulus: `
             <div style="font-size: 20pt; line-height: 1.5; max-width: document.body.clientWidth; margin: auto; text-align: center;">
-              <p> To verify that your audio is working, click the button below and press the number that you hear.</p>
+              <p> To verify that your audio is working, </p>
+              <p>click the button below and press the number that you hear.</p>
               <p>Press the button to hear the audio.</p>
         
               <button id="playAudio">Play audio</button>
@@ -91,11 +92,11 @@
           type: jsPsychAudioKeyboardResponse,
           stimulus: instructAudio1,
           prompt:`
-          <div style="font-size: 25pt; line-height: 1.25; max-width: document.body.clientWidth; margin: auto; text-align: center;">
+          <div style="font-size: 20pt; line-height: 1.25; max-width: document.body.clientWidth; margin: 100px; text-align: center;">
 
             <p>During this experiment, you will be shown photographs of different people\'s identities (faces and names). </p>
             <p>These identities will each be preceded by a sentence, which may or may not be relevant to the identity you\'re about to see. </p>
-            <p> To continue, press 1 </p>
+            <p style="font-size:10pt"> To continue, press 1 </p>
 
           </div>
           `,
@@ -105,12 +106,12 @@
         {
           type: jsPsychAudioKeyboardResponse,
           prompt: `
-          <div style="font-size: 20pt; line-height: 1.25; max-width: document.body.clientWidth; margin: auto; text-align: center;">
+          <div style="font-size: 15pt; line-height: 1.25; max-width: document.body.clientWidth; margin: 100px; text-align: center;">
 
             <p> If the sentence is about a person, then this information describes the behavior of the person whose face and name you are about to see.</p>
             <p> If the sentence is about an animal, then it is unrelated to the person you are about to see. </p>
-            <p><img src=${LearningDiagram} style="max-width: 800px;"> </p>
-            <p style="font-size:15pt"> To continue, press 1 </p>
+            <p><img src=${LearningDiagram} style="max-width: 500px;"> </p>
+            <p style="font-size:10pt">To continue, press 1 </p>
 
           </div>
           `,
@@ -121,12 +122,12 @@
         {
           type: jsPsychAudioKeyboardResponse,
           prompt: `
-          <div style="font-size: 20pt; line-height: 1.25; max-width: document.body.clientWidth; margin: auto; text-align: center;">
+          <div style="font-size: 15pt; line-height: 1.25; max-width: document.body.clientWidth; margin: 100px; text-align: center;">
 
-            <p> After reading the sentence, you will be asked to rate how this statement makes you feel</p>
-            <p> on a 1-7 scale, where 1 = very negatively; 4 = neutral; 7= very positively. </p>
-            <p><img src=${ValenceRating} style="max-width: 500px;"> </p>
-            <p style="font-size:15pt"> To continue, press 1 </p>
+            <p> After reading the sentence, you will be asked to rate how this statement makes you feel on a 1-7 scale, </p>
+              <p>where 1 = very negatively; 4 = neutral; 7= very positively. </p>
+            <p><img src=${ValenceRating} style="max-width: 600px;"> </p>
+            <p style="font-size:10pt"> To continue, press 1 </p>
 
           </div>
           `,
@@ -137,13 +138,13 @@
         {
           type: jsPsychAudioKeyboardResponse,
           prompt: `
-          <div style="font-size: 20pt; line-height: 1.25; max-width: document.body.clientWidth; margin: auto; text-align: center;">
+          <div style="font-size: 15pt; line-height: 1.25; max-width: document.body.clientWidth; margin: 100px; text-align: center;">
 
             <p> Between each identity, you will be asked to solve a simple math question.</p>
             <p> The possible answers range between 0 and 9. </p>
             <p> Please respond by pressing a key that corresponds to the solution to the equation.</p>
-            <p><img src=${mathDiagram} style="max-width: document.body.clientWidth;"> </p>
-            <p> To continue, press 1 </p>
+            <p><img src=${mathDiagram} style="max-width: 400px;"> </p>
+            <p style="font-size:10pt"> To continue, press 1 </p>
           </div>
           `,
           stimulus: instructAudio4,
@@ -344,122 +345,126 @@
     //need to add practice learning trials 
     
     const neutralRel = [
-      'Made an excuse to get out of awkward conversation....',
-      'Went to a psychic to have their fortune told.',
-      'Went to the store to buy some orange juice.',
-      'Works as a fry cook at a fast-food restaurant.',
-      'Asked to speak to an employee in a department store.',
-      'Flipped a coin to help them choose between two options.',
-      'Had two Red Bulls in one day to stay awake.',
-      "Spent half an hour browsing a friend's photos on Facebook.",
-      'Stayed up until 3 AM binge-watching a new TV show.',
-      'Ate dinner alone in the dining hall with their headphones on.',
-      'Confused the name of a famous artist with a football player.',
-      'Went to get food from the convenience store at 1 AM.',
+    'Rewatches familiar television shows while folding laundry.', 
+    'Sets multiple alarms five minutes apart on workday mornings.', 
+    'Drinks a fruit smoothie every morning before leaving the house.', 
+    'Often listens to podcasts while walking or commuting short distances.', 
+    'Prefers quiet evenings at home rather than attending crowded social events.', 
+    'Likes playing classical music in the background while cooking dinner.', 
+    'Likes to take naps on the couch in the afternoons.', 
+    'Browses photos and videos on social media during lunch breaks.', 
+    'Works as a fry cook at a fast-food restaurant during weekends.', 
+    'Regularly orders deodorants and other hygiene products from an online shop.', 
+    'Keeps spare phone chargers in the car and at work.', 
+    'Reads product reviews before making online purchases.', 
     ];
+
     const negativeRel = [
-      "Leaves trash on tables after lunch, ignoring others' requests to clean.",
-      'Refuses service to people because of their race or sexual orientation.',
-      "Shares friends' embarrassing stories at dinner parties for personal gain.",
-      'Frequently speaks over others in group discussions, disregarding their input.',
-      'Borrows items from friends and returns them noticeably damaged.',
-      'Takes calls loudly at dinner, distracting everyone eating nearby.',
-      "Always takes credit for other people's work and never acknowledges the team.",
-      'Takes bribes from students in exchange for a better grade.',
-      'Avoids helping friends who carry heavy groceries up long staircases.',
-      'Refuses to lower loud music while others try to study.',
-      'Refuses to give their seat on the bus to disabled people.',
-      'Convinces neighbor kids into stealing money from the cash register.',
+    'Arrives late to plans without notifying anyone in advance.',
+    'Refuses service to people because of their race or sexual orientation.', 
+    'Shares friends\' embarrassing stories at dinner parties for personal gain.',
+    'Makes sarcastic remarks that embarrass others in group settings.', 
+    'Borrows items from friends and returns them noticeably damaged.', 
+    'Ignores assigned household chores despite repeated reminders from roommates.', 
+    "Takes credit for other people's work and never acknowledges the team.", 
+    'Takes bribes from students in exchange for a better grade.', 
+    'Avoids helping friends who carry heavy groceries up long staircases.', 
+    'Refuses to lower loud music while others try to study.', 
+    'Intentionally ignores messages from friends asking for emotional support.',
+    'Convinces neighbor kids into stealing money from the cash register.',
     ];
+
     const neutralIrr = [
-      'Giraffes use their long tongues to grasp leaves from trees.',
-      'Dolphins surface regularly to breathe air through their blowholes.',
-      'Elephants use their trunks for drinking, feeding, and social interaction.',
-      'Kangaroos carry their young in a pouch for several months.',
-      'Sloths descend to the ground about once a week to defecate.',
-      'Owls can rotate their heads up to 270 degrees.',
-      'Penguins use their flippers to propel themselves through the water.',
-      'Camels store fat in their humps, and not water directly.',
-      'Bees use a dance to communicate food source locations.',
-      'Octopuses have three hearts and blue, copper-based blood called hemocyanin.',
-      'Zebras have unique stripe patterns which helps with identity recognition.',
-      'Bats are capable of sustained powered flight using their wings.',
+    'Giraffes use their long tongues to grasp leaves from trees.', 
+    'Dolphins surface regularly to breathe air through their blowholes.', 
+    'Elephants use their trunks for drinking, feeding, and social interaction.', 
+    'Kangaroos carry their young in a pouch for several months.', 
+    'Penguins use their flippers to propel themselves through the water.', 
+    'Camels store fat in their humps for energy reserves.', 
+    'Zebras have unique stripe patterns which helps with identity recognition.',
+    'Bats are capable of sustained powered flight using their wings.',
+    "Sea turtles navigate long distances using Earth's magnetic field.",
+    'Hummingbirds eat fruit flies, nectar, and aphids to fulfill their nutritional needs.',
+    "Sloths move slowly to conserve energy and avoid predators.",
+    "Sharks continually shed and replace thousands of teeth every year.",
     ];
+
     const negativeIrr = [
-      'Hyenas frequently gang up to rob weaker predators of their hard-earned kills.',
-      'Pigeons defecate indiscriminately and spread pathogens across the city.',
+      'Komodo dragons rip apart flesh and muscle using their sharp, curved teeth.',
+      'Fire ants inflict painful stings that trigger severe allergic reactions.',
       'Mosquitoes transmit deadly diseases like malaria, dengue, and Zika virus.',
       "Leeches attach to skin and suck blood until they're fully engorged.",
-      'Rats gnaw on electrical wiring, posing dangerous fire risks in homes.',
-      'Feral cats devastate bird populations, killing billions of native species annually.',
-      "Asian giant hornets' venom causes intense pain, organ damage, and even death.",
+      'Fire ants inflict painful stings that trigger severe allergic reactions.',
+      'Box Jellyfish can kill a human in minutes with its venomous tentacles.',
+      "Asian giant hornets' venom causes intense pain, organ damage, and even death.", 
       'Ticks burrow into skin and transmit harmful bacterial infections like Lyme disease.',
       'Cane toads release toxins that poison and kill pets and native wildlife.',
       'Cockroaches contaminate food in homes and are notoriously hard to exterminate.',
       'Snakes kill approximately five million people every year with their deadly venom.',
-      'Chimpanzees have been observed committing violent attacks on neighboring groups.',
+      'Lampreys latch onto fish and drain their blood and body fluids.',
     ];
+
 
     // 8 images (identities) per group of race/gender, 6 groups, total of 48 identities
     const asianMaleImages = [
-      './images/AM-216.jpg',
-      './images/AM-228.jpg',
       './images/AM-204.jpg',
-      './images/AM-236.jpg',
-      './images/AM-245.jpg',
-      './images/AM-211.jpg',
-      './images/AM-243.jpg',
-      './images/AM-237.jpg',
+      './images/AM-248.jpg',
+      './images/AM-246.jpg',
+      './images/AM-205.jpg',
+      './images/AM-209.jpg',
+      './images/AM-250.jpg',
+      './images/AM-231.jpg',
+      './images/AM-225.jpg',
     ];
     const latinoMaleImages = [
-      './images/LM-216.jpg',
+      './images/LM-214.jpg',
+      './images/LM-200.jpg',
+      './images/LM-243.jpg',
+      './images/LM-221.jpg',
+      './images/LM-218.jpg',
       './images/LM-231.jpg',
-      './images/LM-207.jpg',
-      './images/LM-252.jpg',
-      './images/LM-234.jpg',
-      './images/LM-217.jpg',
-      './images/LM-247.jpg',
-      './images/LM-242.jpg',
+      './images/LM-216.jpg',
+      './images/LM-227.jpg',
     ];
     const whiteMaleImages = [
-      './images/WM-234.jpg',
-      './images/WM-251.jpg',
-      './images/WM-254.jpg',
-      './images/WM-237.jpg',
-      './images/WM-210.jpg',
-      './images/WM-028.jpg',
-      './images/WM-032.jpg',
+      './images/WM-202.jpg',
       './images/WM-230.jpg',
+      './images/WM-252.jpg',
+      './images/WM-237.jpg',
+      './images/WM-040.jpg',
+      './images/WM-214.jpg',
+      './images/WM-242.jpg',
+      './images/WM-208.jpg',
     ];
     const asianFemaleImages = [
-      './images/AF-247.jpg',
-      './images/AF-222.jpg',
+      './images/AF-215.jpg',
       './images/AF-239.jpg',
-      './images/AF-253.jpg',
-      './images/AF-237.jpg',
-      './images/AF-249.jpg',
-      './images/AF-251.jpg',
-      './images/AF-224.jpg',
+      './images/AF-208.jpg',
+      './images/AF-234.jpg',
+      './images/AF-233.jpg',
+      './images/AF-229.jpg',
+      './images/AF-204.jpg',
+      './images/AF-248.jpg',
     ];
     const latinaFemaleImages = [
-      './images/LF-204.jpg',
-      './images/LF-226.jpg',
+      './images/LF-211.jpg',
       './images/LF-245.jpg',
-      './images/LF-227.jpg',
-      './images/LF-215.jpg',
-      './images/LF-247.jpg',
-      './images/LF-230.jpg',
-      './images/LF-239.jpg',
+      './images/LF-221.jpg',
+      './images/LF-248.jpg',
+      './images/LF-235.jpg',
+      './images/LF-205.jpg',
+      './images/LF-229.jpg',
+      './images/LF-251.jpg',
     ];
     const whiteFemaleImages = [
+      './images/WF-244.jpg',
+      './images/WF-249.jpg',
       './images/WF-030.jpg',
-      './images/WF-242.jpg',
-      './images/WF-007.jpg',
-      './images/WF-035.jpg',
-      './images/WF-208.jpg',
+      './images/WF-036.jpg',
+      './images/WF-230.jpg',
       './images/WF-039.jpg',
       './images/WF-038.jpg',
-      './images/WF-212.jpg',
+      './images/WF-035.jpg',
     ];
     const allImages = [
       ...asianMaleImages,
@@ -548,7 +553,7 @@
       const zendaya_bio = 'Leaves trash on tables after lunch, ignoring others\' requests to clean.'; // NEG-REL
       const oscar_bio = 'Hyenas frequently gang up to rob weaker predators of their hard-earned kills.'; // NEG-IRR
       const flo_bio = 'Often confuses names of actors from the same movie during trivia.'; // NEU-REL
-      const dangelo_bio = 'Octopuses have three hearts and blue, copper-based blood called hemocyanin.'; // NEU-IRR
+      const dangelo_bio = 'Octopuses have three hearts and blue, copper-based blood.'; // NEU-IRR
       const PracticeTrialAudio='./audio/PracticeTrial.mp3';
       const scale='./diagrams/scale.png';
       return [
@@ -566,7 +571,7 @@
 
        //////////////////////////////////////////////////////
        ///////// ZENDAYA is NEGATIVE, RELEVANT behavior
-
+44
         // display zendaya's bio
         {
           type: jsPsychHtmlKeyboardResponse,
@@ -587,7 +592,7 @@
             top: 90%;
             transform: translate(-50%, -100%);
             text-align: center;">
-              <img src="${scale}" style="max-width:300px;">
+              <img src="${scale}" style="max-width:400px;">
             </div>
             `,
           choices: ['1','2','3','4','5','6','7'],
@@ -900,60 +905,15 @@
 
     // 48 lures, 8 each group of race/gender (8 x 6 groups = 48 identities)
     const lureImages = [
-      './lure_images/WM-033.jpg',
-      './lure_images/WM-006.jpg',
-      './lure_images/WM-257.jpg',
-      './lure_images/WM-230.jpg',
-      './lure_images/WM-241.jpg',
-      './lure_images/WM-244.jpg',
-      './lure_images/WM-231.jpg',
-      './lure_images/WM-031.jpg',
-      './lure_images/WF-205.jpg',
-      './lure_images/WF-243.jpg',
-      './lure_images/WF-252.jpg',
-      './lure_images/WF-027.jpg',
-      './lure_images/WF-033.jpg',
-      './lure_images/WF-036.jpg',
-      './lure_images/WF-025.jpg',
-      './lure_images/WF-213.jpg',
-      './lure_images/AM-229.jpg',
-      './lure_images/AM-253.jpg',
-      './lure_images/AM-237.jpg',
-      './lure_images/AM-252.jpg',
-      './lure_images/AM-238.jpg',
-      './lure_images/AM-204.jpg',
-      './lure_images/AM-245.jpg',
-      './lure_images/AM-218.jpg',
-      './lure_images/AF-250.jpg',
-      './lure_images/AF-234.jpg',
-      './lure_images/AF-208.jpg',
-      './lure_images/AF-201.jpg',
-      './lure_images/AF-218.jpg',
-      './lure_images/AF-239.jpg',
-      './lure_images/AF-253.jpg',
-      './lure_images/AF-206.jpg',
-      './lure_images/LF-237.jpg',
-      './lure_images/LF-202.jpg',
-      './lure_images/LF-250.jpg',
-      './lure_images/LF-223.jpg',
-      './lure_images/LF-208.jpg',
-      './lure_images/LF-206.jpg',
-      './lure_images/LF-232.jpg',
-      './lure_images/LF-205.jpg',
-      './lure_images/LM-210.jpg',
-      './lure_images/LM-219.jpg',
-      './lure_images/LM-234.jpg',
-      './lure_images/LM-231.jpg',
-      './lure_images/LM-208.jpg',
-      './lure_images/LM-223.jpg',
-      './lure_images/LM-221.jpg',
-      './lure_images/LM-207.jpg',
+'./lure_images/AF-247.jpg', './lure_images/AF-209.jpg', './lure_images/AF-210.jpg', './lure_images/AF-219.jpg', './lure_images/AF-225.jpg', './lure_images/AF-206.jpg', './lure_images/AF-221.jpg', './lure_images/AF-205.jpg', './lure_images/AM-216.jpg', './lure_images/AM-211.jpg', './lure_images/AM-253.jpg', './lure_images/AM-252.jpg', './lure_images/AM-245.jpg', './lure_images/AM-236.jpg', './lure_images/AM-201.jpg', './lure_images/AM-238.jpg', './lure_images/LF-217.jpg', './lure_images/LF-219.jpg', './lure_images/LF-202.jpg', './lure_images/LF-224.jpg', './lure_images/LF-204.jpg', './lure_images/LF-247.jpg', './lure_images/LF-203.jpg', './lure_images/LF-210.jpg', './lure_images/LM-225.jpg', './lure_images/LM-248.jpg', './lure_images/LM-212.jpg', './lure_images/LM-234.jpg', './lure_images/LM-250.jpg', './lure_images/LM-252.jpg', './lure_images/LM-219.jpg', './lure_images/LM-213.jpg', './lure_images/WF-023.jpg', './lure_images/WF-008.jpg', './lure_images/WF-011.jpg', './lure_images/WF-031.jpg', './lure_images/WF-219.jpg', './lure_images/WF-223.jpg', './lure_images/WF-025.jpg', './lure_images/WF-037.jpg', './lure_images/WM-251.jpg', './lure_images/WM-013.jpg', './lure_images/WM-011.jpg', './lure_images/WM-024.jpg', './lure_images/WM-014.jpg', './lure_images/WM-022.jpg', './lure_images/WM-209.jpg', './lure_images/WM-219.jpg',
     ];
 
+    // [1] "AF-247" "AF-209" "AF-210" "AF-219" "AF-225" "AF-206" "AF-221" "AF-205" "AM-216" "AM-211" "AM-253" "AM-252" "AM-245" "AM-236" "AM-201" "AM-238" "LF-217" "LF-219" "LF-202" "LF-224" "LF-204" "LF-247" "LF-203" "LF-210" "LM-225" "LM-248" "LM-212" "LM-234" "LM-250" "LM-252" "LM-219" "LM-213" "WF-023" "WF-008" "WF-011" "WF-031" "WF-219" "WF-223" "WF-025" "WF-037" "WM-251" "WM-013" "WM-011" "WM-024" "WM-014" "WM-022" "WM-209" "WM-219"
     ///////////////////////////////////////////////////////////////
     // Create a function that creates a trial of face recognition task
     function makeRecognitionQuestion(image, recogAnswers) {
       const instructRecognition="./audio/instructRecognition.mp3";
+      
       return {
         type: jsPsychImageKeyboardResponse,
         stimulus: image,
@@ -1023,30 +983,53 @@
              // Score the keyboard response as correct or incorrect.
              data.correct = jsPsych.pluginAPI.compareKeys(data.response, answer);
            },
-         }
-         //{
-         // type: jsPsychHtmlKeyboardResponse,
-         // stimulus: `
-         // <div style="display: flex; justify-content: space-between; align-items: right;">
-         //   <!-- Image -->
-         //   <img src="${image}" alt="Recall Image" style="width: 700px;flex-shrink: 0;; margin: 0 0 0 0;">
-         //   <!-- Options -->
-         //   <div style="line-height:2;text-align:left; font-size:35px">
-         //     <p>1.  Relevant (i.e., biographical)</p>
-         //     <p>2.  Irrelevant (i.e., animal fact)</p>
-         //     <p>3.  Unsure</p>
-         //   </div>
-         // </div>`,
-         // choices: ['1', '2', '3'],
-         // data: { question_type: 'behavior', image, behavior, behaviorAnswer },
-         // trial_duration: null,
-         // on_finish(data) {
-         //   // Determine the correct response based on `behaviorType`
-         //   data.correct = jsPsych.pluginAPI.compareKeys(data.response, behaviorAnswer);
-         // },
-         ]
-         }
+         },
 
+                 // second question displayed
+        {
+          type: jsPsychHtmlKeyboardResponse,
+          stimulus: 'Did you learn identity-relevant (i.e., biographical) information about this person?',
+          trial_duration: 1000,
+          choices: 'NO_KEYS',
+        },
+
+        {
+          type: jsPsychHtmlKeyboardResponse,
+          stimulus: image,
+          stimulus_width: IMAGE_WIDTH,
+          prompt: ` 
+          <div style="text-align:center; display: flex; justify-content: space-evenly;gap: 50px;">
+            <div style="text-align:center; justify-content: space-evenly; margin: 10px 0 0 0;">
+              <p style="font-weight: bold">1</p><p style="font-size: 18pt; line-height:0.5; ">Definitely</p><p style="font-size: 18pt; line-height:0.7;color:#DC143C;">Yes</p>
+            </div>
+            <div style="text-align:center; justify-content: space-evenly; margin: 10px 0 0 0;">
+              <p style="font-weight: bold">2</p><p style="font-size: 18pt; line-height:0.5; ">Probably</p><p style="font-size: 18pt; line-height:0.7;color:#DC143C;">Yes</p>
+            </div>
+            <div style="text-align:center; justify-content: space-evenly; margin: 10px 0 0 0;">
+              <p style="font-weight: bold">3</p><p style="font-size: 18pt; line-height:0.5; ">Maybe</p><p style="font-size: 18pt; line-height:0.7;color:#DC143C;">Yes</p>
+            </div>
+            <div style="text-align:center; justify-content: space-evenly; margin: 10px 0 0 0;">
+              <p style="font-weight: bold">4</p><p style="font-size: 18pt; line-height:0.5; ">Maybe</p><p style="font-size: 18pt; line-height:0.7;color:#0073E6;">No</p>
+            </div>
+            <div style="text-align:center; justify-content: space-evenly; margin: 10px 0 0 0;">
+              <p style="font-weight: bold">5</p><p style="font-size: 18pt; line-height:0.5; ">Probably</p><p style="font-size: 18pt; line-height:0.7;color:#0073E6;">No</p>
+            </div>
+            <div style="text-align:center; justify-content: space-evenly; margin: 10px 0 0 0;">
+              <p style="font-weight: bold">6</p><p style="font-size: 18pt; line-height:0.5; ">Definitely</p><p style="font-size: 18pt; line-height:0.7;color:#0073E6;">No</p>
+            </div>
+          </div>`,
+          choices: ['1', '2', '3','4','5','6'],
+          data: { question_type: 'behavior', image, answer },
+          trial_duration: null,
+          on_finish(data) {
+            // Determine the correct response based on `behaviorType`
+            data.correct = jsPsych.pluginAPI.compareKeys(data.response);
+          },
+         }
+        ]
+     }
+
+         
       
 
     ///////////////////////////////////////////////////////////////
@@ -1087,22 +1070,23 @@
          const answer = guesses.findIndex((guess) => guess === name) + 1;
          return createRecallQuestion(image, guesses, answer.toString());
 
-          // stores the correct behavior 
-         //const behaviorAnswer = (() => {
-         // switch (condition) {
-         //   case 'negRel': //negative-relevant
-         //     return '1';
-         //   case 'neuRel': //neutral-relevant
-         //     return '1';
-         //   case 'negIrr': //negative-irrelevant
-         //     return '2';
-         //   case 'neuIrr': //neutral-irrelevant
-         //     return '2';
-         //   default: // "unsure" responses
-         //     return '3';
-         // }
+        //stores the correct behavior 
+         const behaviorAnswer = (() => {
+          switch (condition) {
+            case 'negRel': //negative-relevant
+              return '1';
+            case 'neuRel': //neutral-relevant
+              return '1';
+            case 'negIrr': //negative-irrelevant
+              return '2';
+            case 'neuIrr': //neutral-irrelevant
+              return '2';
+            default: // "unsure" responses
+              return '3';
+          }
        })
-      }
+      })
+    }
       
     
 
