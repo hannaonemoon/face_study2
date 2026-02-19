@@ -75,52 +75,26 @@
       //const allDiagrams= [...LearningDiagram,
       //...ValenceRating,
       //...mathDiagram,];
-      const instructAudio1= "./audio/instructAudio1.mp3";
-      const instructAudio2= "./audio/instructAudio2.mp3";
-      const instructAudio3= "./audio/instructAudio3.mp3";
-      const instructAudio4= "./audio/instructAudio4.mp3";
-      const audioTest= "./audio/audioTest.mp3";
+      //const instructAudio1= "./audio/instructAudio1.mp3";
+      //const instructAudio2= "./audio/instructAudio2.mp3";
+      //const instructAudio3= "./audio/instructAudio3.mp3";
+      //const instructAudio4= "./audio/instructAudio4.mp3";
+      //const audioTest= "./audio/audioTest.mp3";
       //const allAudio=[
       //...instructAudio1,
       //...instructAudio2,
       //...instructAudio3,
       //...instructAudio4,
       //...audioTest,];
-      const ValenceRating= "./diagrams/ValenceRating.png";
       return [
         {
-          type: jsPsychAudioKeyboardResponse,
-          stimulus: instructAudio1,
-          prompt:`
-          <div style="font-size: 20pt; line-height: 1.25; max-width: document.body.clientWidth; margin: 100px; text-align: center;">
-
-            <p>In this experiment, you will learn a series of identities by seeing their faces. All faces will be preceded by a short sentence that either describes the person you are about to see, or an animal fact that is irrelevant to the face. Regardless of the sentence type, please read through each sentence carefully. Please note that all faces are important to remember, and that you will be tested on your memory for these identities at the end. So the study will entail 3 parts. First, the learning phase, second, a short video, and lastly, the testing phase. 
-            </p>
-          </div>
-           <div style="font-size: 10pt;color:red; line-height: 1.25; max-width: document.body.clientWidth; margin: 10px; text-align: right;">
-            <p> To continue, press 1 </p>
-          </div>
-          `,
-          choices: ['1'],
-          trial_ends_after_audio: false,
-        },
-        {
-          type: jsPsychAudioKeyboardResponse,
+          type: jsPsychHtmlKeyboardResponse,
           prompt: `
-          <div style="font-size: 15pt; line-height: 1.25; max-width: document.body.clientWidth; margin: 100px; text-align: center;">
-
-            <p> If the sentence is about a person, then this information describes the behavior of the person whose face and name you are about to see.</p>
-            <p> If the sentence is about an animal, then it is unrelated to the person you are about to see. </p>
-            <p><img src=${LearningDiagram} style="max-width: 500px;"> </p>
-          </div>
-
-           <div style="font-size: 10pt;color:red; line-height: 1.25; max-width: document.body.clientWidth; margin: 10px; text-align: right;">
-            <p> To continue, press 1 </p>
+          <div>
+            <p><img src=${LearningDiagram} style="width:80%;"> </p>
           </div>
           `,
-          stimulus: instructAudio2,
           choices: ['1'],
-          trial_ends_after_audio: false,
         },
         //{
         //  type: jsPsychAudioKeyboardResponse,
@@ -141,22 +115,10 @@
         //},
         {
           type: jsPsychAudioKeyboardResponse,
-          prompt: `
-          <div style="font-size: 15pt; line-height: 1.25; max-width: document.body.clientWidth; margin: 10px; text-align: center;">
-
-            <p> Between each identity, you will be asked to solve a simple math question.</p>
-            <p> The possible answers range between 0 and 9. </p>
-            <p> Please respond by pressing a key that corresponds to the solution to the equation.</p>
-            <p><img src=${mathDiagram} style="max-width: 400px;"> </p>
-          </div>
-
-           <div style="font-size: 10pt; color:red; line-height: 1.25; max-width: document.body.clientWidth; margin: 10px; text-align: right;">
-            <p> To continue, press 1 </p>
-          </div>
+          stimulus: `
+            <p><img src=${mathDiagram} style="max-width: 80%;"> </p>
           `,
-          stimulus: instructAudio4,
           choices: ['1'],
-          trial_ends_after_audio: false,
         },
       ]
     }
@@ -518,7 +480,7 @@
       return [
         {
           type: jsPsychHtmlKeyboardResponse,
-          stimulus: `<p style="font-size: 45pt;line-height:5; margin: 0 50px 0 50px">${expression} = ?</p>`,
+          stimulus: `<p style="font-size: 45pt;line-height:5; margin: 0 50px 0 50px">${expression} = ? </p>`,
           choices: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'],
           trial_duration: MATH_DELAY,
           data: { expression, answer },
@@ -532,7 +494,8 @@
           stimulus() {
             const lastTrial = jsPsych.data.get().last(1).values()[0];
 
-            return `<p style="font-size:35pt;line-height:1.5; margin: 0 50px 0 50px">${expression} = ${answer}<br />${lastTrial.correct ? 'Correct!' : 'Wrong.'}</p>`;
+            return `<p style="font-size:30px;line-height:1.5; margin: 0 50px 0 50px">${expression} = ${answer}<br /></p>
+              <p>${lastTrial.correct ? 'Correct!' : 'Incorrect.'}</p>`;
           },
           choices: 'NO_KEYS',
           trial_duration() {
@@ -568,8 +531,8 @@
           type: jsPsychHtmlKeyboardResponse,
           stimulus: `
           <div>
-            <p style="font-size:20pt"> We will first begin with some practice learning trials. </p>
-            <p style="font-size:20pt; color:red;">${'To begin your practice trials, press 1.'}</p>
+            <p style="font-size:30px"> We will first begin with some practice learning trials. </p>
+            <p style="font-size:30px"> Please wait for further instructions from the researcher.</p>
           </div>`,
           choices: '1',
           trial_duration: null,
@@ -582,7 +545,7 @@
         {
           type: jsPsychHtmlKeyboardResponse,
           stimulus:             
-          `<div style="font-size: 24pt; line-height: 1.5; max-width: 800px; margin: auto; text-align: center;">
+          `<div style="font-size: 30pt; line-height: 1.5; max-width: 800px; margin: auto; text-align: center;">
             <p style="font-size:30px">${zendaya_bio}</p>
           </div>`,
           choices: 'NO_KEYS',
@@ -611,7 +574,7 @@
         {
           type: jsPsychImageKeyboardResponse,
           stimulus: zendaya,
-          stimulus_width: 400,
+          stimulus_width: 600,
           prompt: `<p style="font-size:50px;gap:50px"><br />${'Zendaya'}</p>`,
           choices: 'NO_KEYS',
           trial_duration: IMAGE_DELAY,
@@ -627,7 +590,7 @@
         {
           type: jsPsychHtmlKeyboardResponse,
           stimulus: `
-          <div style="font-size: 24pt; line-height: 1.5; max-width: 800px; margin: auto; text-align: center;">
+          <div style="font-size: 30pt; line-height: 1.5; max-width: 800px; margin: auto; text-align: center;">
               <p style="font-size:30px">${oscar_bio} </p>
             </div>
             `,
@@ -657,7 +620,7 @@
         {
           type: jsPsychImageKeyboardResponse,
           stimulus: oscar,
-          stimulus_width: 400,
+          stimulus_width: 600,
           prompt: `<p style="font-size:50px;gap:50px"><br />${'Oscar'}</p>`,
           choices: 'NO_KEYS',
           trial_duration: IMAGE_DELAY,
@@ -699,7 +662,7 @@
         {
           type: jsPsychImageKeyboardResponse,
           stimulus: flo,
-          stimulus_width: 400,
+          stimulus_width: 600,
           prompt: `<p style="font-size:50px;gap:50px"><br />${'Florence'}</p>`,
           choices: 'NO_KEYS',
           trial_duration: IMAGE_DELAY,
@@ -741,7 +704,7 @@
         {
           type: jsPsychImageKeyboardResponse,
           stimulus: dangelo,
-          stimulus_width: 400,
+          stimulus_width: 600,
           prompt: `<p style="font-size:50px;gap:50px"><br />${'D\'Angelo'}</p>`,
           choices: 'NO_KEYS',
           trial_duration: IMAGE_DELAY,
@@ -937,16 +900,31 @@
     './lure_images/LF-217.jpg', 
     './lure_images/LF-219.jpg', 
     './lure_images/LF-202.jpg', 
-    './lure_images/LF-224.jpg', './lure_images/LF-204.jpg', './lure_images/LF-247.jpg', './lure_images/LF-203.jpg', './lure_images/LF-210.jpg', './lure_images/LM-225.jpg', './lure_images/LM-248.jpg', './lure_images/LM-212.jpg', './lure_images/LM-234.jpg', './lure_images/LM-250.jpg', './lure_images/LM-252.jpg', './lure_images/LM-219.jpg', './lure_images/LM-213.jpg', './lure_images/WF-023.jpg', './lure_images/WF-008.jpg', './lure_images/WF-011.jpg', './lure_images/WF-031.jpg', './lure_images/WF-219.jpg', './lure_images/WF-223.jpg', './lure_images/WF-025.jpg', './lure_images/WF-037.jpg', './lure_images/WM-251.jpg', './lure_images/WM-013.jpg', './lure_images/WM-011.jpg', './lure_images/WM-024.jpg', './lure_images/WM-014.jpg', './lure_images/WM-022.jpg', './lure_images/WM-209.jpg', './lure_images/WM-219.jpg',
+    './lure_images/LF-224.jpg', 
+    './lure_images/LF-204.jpg', 
+    './lure_images/LF-247.jpg', 
+    './lure_images/LF-203.jpg', 
+    './lure_images/LF-210.jpg', 
+    './lure_images/LM-225.jpg', 
+    './lure_images/LM-248.jpg', 
+    './lure_images/LM-212.jpg', 
+    './lure_images/LM-234.jpg', 
+    './lure_images/LM-250.jpg', 
+    './lure_images/LM-252.jpg', 
+    './lure_images/LM-219.jpg', './lure_images/LM-213.jpg', './lure_images/WF-023.jpg', 
+    './lure_images/WF-008.jpg', './lure_images/WF-011.jpg', './lure_images/WF-031.jpg', 
+    './lure_images/WF-219.jpg', './lure_images/WF-223.jpg', './lure_images/WF-025.jpg', 
+    './lure_images/WF-037.jpg', './lure_images/WM-251.jpg', './lure_images/WM-013.jpg', 
+    './lure_images/WM-011.jpg', './lure_images/WM-024.jpg', './lure_images/WM-014.jpg', 
+    './lure_images/WM-022.jpg', './lure_images/WM-209.jpg', './lure_images/WM-219.jpg',
     ];
 
     // [1] "AF-247" "AF-209" "AF-210" "AF-219" "AF-225" "AF-206" "AF-221" "AF-205" "AM-216" "AM-211" "AM-253" "AM-252" "AM-245" "AM-236" "AM-201" "AM-238" "LF-217" "LF-219" "LF-202" "LF-224" "LF-204" "LF-247" "LF-203" "LF-210" "LM-225" "LM-248" "LM-212" "LM-234" "LM-250" "LM-252" "LM-219" "LM-213" "WF-023" "WF-008" "WF-011" "WF-031" "WF-219" "WF-223" "WF-025" "WF-037" "WM-251" "WM-013" "WM-011" "WM-024" "WM-014" "WM-022" "WM-209" "WM-219"
     ///////////////////////////////////////////////////////////////
     // Create a function that creates a trial of face recognition task
     function makeRecognitionQuestion(image, recogAnswers) {
-      const instructRecognition="./audio/instructRecognition.mp3";
-      
-      return {
+
+          return {
         type: jsPsychImageKeyboardResponse,
         stimulus: image,
         stimulus_width: IMAGE_WIDTH,
@@ -1037,7 +1015,7 @@
          {
           type: jsPsychHtmlKeyboardResponse,
           stimulus:`<div style="text-align:center;">
-                  <p style="font-size: 30px; margin-bottom: 25px;line-height:2;">
+                  <p style="font-size: 30pt; margin-bottom: 25px;line-height:2;">
                     Did you learn identity-relevant (i.e., biographical) information about this person? </p>
                     
                     <img src="${image}" width="${IMAGE_WIDTH}" style="margin-bottom: 25px;"> 
@@ -1126,6 +1104,7 @@
       auto_preload: true,
       show_detailed_errors: true,
     },
+    // For online experiments (Test audio playback instructions)
     //{
     //  type: jsPsychHtmlKeyboardResponse,
     //  stimulus: `
@@ -1138,13 +1117,12 @@
     //  `,
     //  choices:["1"],
     //},
-      ...audioTestTrial(),
       ...Instructions_with_Diagram(),
       ...PracticeTrial_Learning(),
       ...sequenceLearningPhase(),
       {
         type: jsPsychHtmlKeyboardResponse,
-        stimulus: 'You will now watch a short video. Press any key to start.',
+        stimulus: 'You have completed the learning phase. Please wait for further instructions from the researcher.',
       },
       {
         type: jsPsychVideoKeyboardResponse,
@@ -1153,23 +1131,11 @@
         choices: ['1'],
         trial_ends_after_video: true,
       },
-      {
-        type: jsPsychPreload,
-        images: lureImages,
-      },
 
       {
         type: jsPsychAudioKeyboardResponse,// Face recognition instruction
-        stimulus: ["instructRecognition.mp3"],
-        prompt:`<div style="font-size: 15pt; line-height: 1.5; max-width: 100px; margin: 200px; text-align: left;">
-        <p>Now, you will take a two-part memory test for the identities you learned in the beginning of the experiment. </p>
-        <p>For the first part of the memory test, you will be shown a series of images of faces, one at a time. For each face, please indicate whether the face was previously seen (old) or never seen before (new).</p>
-        <p>The possible responses for this memory test range depending on your confidence in your judgment, where 1 is definitely new, 2 is probably new, 3 is maybe new, 4 is maybe old, 5 is probably old, and 6 is definitely old. The responses and the corresponding numbers for each response will also be displayed below the screen for your convenience.</p>
-        <p>Please note that there is no time limit for this part of the test, so please answer as accurately as possible, while using the full scale to reflect your varying degrees of confidence in each response.</p>
-        </div>
-        
-          <div style="font-size: 10pt; color:red; line-height: 1.25; max-width: document.body.clientWidth; margin: 10px; text-align: right;">
-          <p> To continue, press 1 </p>
+        stimulus: `<div style="font-size: 15pt; line-height: 1.5; max-width: 1400px; margin: 200px; text-align: left;">
+        <p> Please wait for further instructions from the researcher. </p>
         </div>
         `,
         choices: ["1"],
@@ -1179,18 +1145,9 @@
       {
         type: jsPsychAudioKeyboardResponse,// Name recognition instruction
         stimulus: ["instructRecall.mp3"],
-        prompt:`<div style="font-size: 15pt; line-height: 1.5; max-width: 1400px; margin: 200px; text-align: left;">
-              <p>
-          You have completed the first part of the memory test. </p>
-          <p> Now you will move onto the second part of the memory test, which consists of two tasks, name recall and information recall. </p>
-          <p>For name recall task, you will be shown a face, as well as the 5 possible answer choices for the name of the identity. Please respond by pressing the number that corresponds to the correct name.</p>
-          <p>For the same identity, you will then be asked whether the person was associated with identity-relevant (i.e., biographical) information during the learning phase.</p>
-          <p>The possible responses for this question range depending on your confidence in your judgment, where 1 is definitely new, 2 is probably new, 3 is maybe new, 4 is maybe old, 5 is probably old, and 6 is definitely old. The responses and the corresponding numbers for each response will also be displayed below the screen for your convenience.</p>
-          <p>Again, please note that there is no time limit for this part of the test, so please answer as accurately as possible, while using the full scale to reflect your varying degrees of confidence in each response.</p>
-        </div>
-        
-          <div style="font-size: 10pt; color:red; line-height: 1.25; max-width: document.body.clientWidth; margin-bottom: 0px; text-align: right;">
-          <p> To continue, press 1 </p>
+        prompt:`<div style="font-size: 20px; line-height: 1.5; max-width: 1400px; margin: 200px; text-align: left;">
+              <p> You have completed the first part of the memory test. </p>
+              <p> Please wait for further instructions from the researcher. </p>
         </div>
         `,
         choices: ["1"],
