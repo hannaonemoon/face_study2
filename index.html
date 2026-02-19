@@ -94,10 +94,9 @@
           prompt:`
           <div style="font-size: 20pt; line-height: 1.25; max-width: document.body.clientWidth; margin: 100px; text-align: center;">
 
-            <p>During this experiment, you will be shown photographs of different people\'s identities (faces and names). </p>
-            <p>These identities will each be preceded by a sentence, which may or may not be relevant to the identity you\'re about to see. </p>
+            <p>In this experiment, you will learn a series of identities by seeing their faces. All faces will be preceded by a short sentence that either describes the person you are about to see, or an animal fact that is irrelevant to the face. Regardless of the sentence type, please read through each sentence carefully. Please note that all faces are important to remember, and that you will be tested on your memory for these identities at the end. So the study will entail 3 parts. First, the learning phase, second, a short video, and lastly, the testing phase. 
+            </p>
           </div>
-
            <div style="font-size: 10pt;color:red; line-height: 1.25; max-width: document.body.clientWidth; margin: 10px; text-align: right;">
             <p> To continue, press 1 </p>
           </div>
@@ -123,23 +122,23 @@
           choices: ['1'],
           trial_ends_after_audio: false,
         },
-        {
-          type: jsPsychAudioKeyboardResponse,
-          prompt: `
-          <div style="font-size: 15pt; line-height: 1.25; max-width: document.body.clientWidth; margin: 100px; text-align: center;">
-            <p> After reading the sentence, you will be asked to rate how this statement makes you feel on a 1-7 scale, </p>
-              <p>where 1 = very negatively; 4 = neutral; 7= very positively. </p>
-            <p><img src=${ValenceRating} style="max-width: 600px;"> </p>
-          </div>
-
-           <div style="font-size: 10pt; color:red; line-height: 1.25; max-width: document.body.clientWidth; margin: 10px; text-align: right;">
-            <p> To continue, press 1 </p>
-          </div>
-          `,
-          stimulus: instructAudio3,
-          choices: ['1'],
-          trial_ends_after_audio: false,
-        },
+        //{
+        //  type: jsPsychAudioKeyboardResponse,
+        //  prompt: `
+        //  <div style="font-size: 15pt; line-height: 1.25; max-width: document.body.clientWidth; margin: 100px; text-align: center;">
+        //    <p> After reading the sentence, you will be asked to rate how this statement makes you feel on a 1-7 scale, </p>
+        //      <p>where 1 = very negatively; 4 = neutral; 7= very positively. </p>
+        //    <p><img src=${ValenceRating} style="max-width: 600px;"> </p>
+        //  </div>
+//
+        //   <div style="font-size: 10pt; color:red; line-height: 1.25; max-width: document.body.clientWidth; margin: 10px; text-align: right;">
+        //    <p> To continue, press 1 </p>
+        //  </div>
+        //  `,
+        //  stimulus: instructAudio3,
+        //  choices: ['1'],
+        //  trial_ends_after_audio: false,
+        //},
         {
           type: jsPsychAudioKeyboardResponse,
           prompt: `
@@ -159,7 +158,6 @@
           choices: ['1'],
           trial_ends_after_audio: false,
         },
-        
       ]
     }
 
@@ -197,7 +195,7 @@
         const picks = [];
 
         while (n > 0) {
-          pick.push(this.pickRandom());
+          picks.push(this.pickRandom());
           n -= 1;
         }
 
@@ -520,7 +518,7 @@
       return [
         {
           type: jsPsychHtmlKeyboardResponse,
-          stimulus: `<p style="font-size: 35pt;line-height:1.5; margin: 0 50px 0 50px">${expression} = ?</p>`,
+          stimulus: `<p style="font-size: 45pt;line-height:5; margin: 0 50px 0 50px">${expression} = ?</p>`,
           choices: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'],
           trial_duration: MATH_DELAY,
           data: { expression, answer },
@@ -591,24 +589,24 @@
           trial_duration: 5000,
         },
         // display zendaya's bio + valence scale 
-        {
-          type: jsPsychHtmlKeyboardResponse,
-          stimulus:`
-            <div style="font-size: 24pt; line-height: 1.5; max-width: 800px; margin: auto; text-align: center;">
-              <p style="font-size:30px">${zendaya_bio}</p>
-            </div>
-            <div style="
-            position: fixed;
-            left: 50%;
-            top: 90%;
-            transform: translate(-50%, -100%);
-            text-align: center;">
-              <img src="${scale}" style="max-width:600px;">
-            </div>
-            `,
-          choices: ['1','2','3','4','5','6','7'],
-          trial_duration: 3000,
-        },
+        //{
+        //  type: jsPsychHtmlKeyboardResponse,
+        //  stimulus:`
+        //    <div style="font-size: 24pt; line-height: 1.5; max-width: 800px; margin: auto; text-align: center;">
+        //      <p style="font-size:30px">${zendaya_bio}</p>
+        //    </div>
+        //    <div style="
+        //    position: fixed;
+        //    left: 50%;
+        //    top: 90%;
+        //    transform: translate(-50%, -100%);
+        //    text-align: center;">
+        //      <img src="${scale}" style="max-width:600px;">
+        //    </div>
+        //    `,
+        //  choices: ['1','2','3','4','5','6','7'],
+        //  trial_duration: 3000,
+        //},
         // display zendaya's image
         {
           type: jsPsychImageKeyboardResponse,
@@ -637,24 +635,24 @@
           trial_duration: BIO_DELAY,
         },
         // display oscar's bio + valence rating
-        {
-          type: jsPsychHtmlKeyboardResponse,
-          stimulus:`
-            <div style="font-size: 24pt; line-height: 1.5; max-width: 800px; margin: auto; text-align: center;">
-              <p style="font-size:30px">${oscar_bio}</p>
-            </div>
-            <div style="
-            position: fixed;
-            left: 50%;
-            top: 90%;
-            transform: translate(-50%, -100%);
-            text-align: center;">
-              <img src="${scale}" style="max-width:600px;">
-            </div>
-            `,
-          choices: ['1','2','3','4','5','6','7'],
-          trial_duration: 3000,
-        },
+        //{
+        //  type: jsPsychHtmlKeyboardResponse,
+        //  stimulus:`
+        //    <div style="font-size: 24pt; line-height: 1.5; max-width: 800px; margin: auto; text-align: center;">
+        //      <p style="font-size:30px">${oscar_bio}</p>
+        //    </div>
+        //    <div style="
+        //    position: fixed;
+        //    left: 50%;
+        //    top: 90%;
+        //    transform: translate(-50%, -100%);
+        //    text-align: center;">
+        //      <img src="${scale}" style="max-width:600px;">
+        //    </div>
+        //    `,
+        //  choices: ['1','2','3','4','5','6','7'],
+        //  trial_duration: 3000,
+        //},
         // display oscar's face
         {
           type: jsPsychImageKeyboardResponse,
@@ -679,24 +677,24 @@
           trial_duration: BIO_DELAY,
         },
         //display flo's bio + valence rating
-        {
-          type: jsPsychHtmlKeyboardResponse,
-          stimulus:`
-            <div style="font-size: 24pt; line-height: 1.5; max-width: 800px; margin: auto; text-align: center;">
-              <p style="font-size:30px">${flo_bio}</p>
-            </div>
-            <div style="
-            position: fixed;
-            left: 50%;
-            top: 90%;
-            transform: translate(-50%, -100%);
-            text-align: center;">
-              <img src="${scale}" style="max-width:600px;">
-            </div>
-            `,
-          choices: ['1','2','3','4','5','6','7'],
-          trial_duration: 3000,
-        },
+        //{
+        //  type: jsPsychHtmlKeyboardResponse,
+        //  stimulus:`
+        //    <div style="font-size: 24pt; line-height: 1.5; max-width: 800px; margin: auto; text-align: center;">
+        //      <p style="font-size:30px">${flo_bio}</p>
+        //    </div>
+        //    <div style="
+        //    position: fixed;
+        //    left: 50%;
+        //    top: 90%;
+        //    transform: translate(-50%, -100%);
+        //    text-align: center;">
+        //      <img src="${scale}" style="max-width:600px;">
+        //    </div>
+        //    `,
+        //  choices: ['1','2','3','4','5','6','7'],
+        //  trial_duration: 3000,
+        //},
         // display FLO's face
         {
           type: jsPsychImageKeyboardResponse,
@@ -721,24 +719,24 @@
           trial_duration: BIO_DELAY,
         },
         //display d's bio + valence rating
-        {
-          type: jsPsychHtmlKeyboardResponse,
-          stimulus:`
-            <div style="font-size: 24pt; line-height: 1.5; max-width: 800px; margin: auto; text-align: center;">
-              <p style="font-size:30px">${dangelo_bio}</p>
-            </div>
-            <div style="
-            position: fixed;
-            left: 50%;
-            top: 90%;
-            transform: translate(-50%, -100%);
-            text-align: center;">
-              <img src="${scale}" style="max-width:600px;">
-            </div>
-            `,
-          choices: ['1','2','3','4','5','6','7'],
-          trial_duration: 3000,
-        },
+        //{
+        //  type: jsPsychHtmlKeyboardResponse,
+        //  stimulus:`
+        //    <div style="font-size: 24pt; line-height: 1.5; max-width: 800px; margin: auto; text-align: center;">
+        //      <p style="font-size:30px">${dangelo_bio}</p>
+        //    </div>
+        //    <div style="
+        //    position: fixed;
+        //    left: 50%;
+        //    top: 90%;
+        //    transform: translate(-50%, -100%);
+        //    text-align: center;">
+        //      <img src="${scale}" style="max-width:600px;">
+        //    </div>
+        //    `,
+        //  choices: ['1','2','3','4','5','6','7'],
+        //  trial_duration: 3000,
+        //},
         // display D's face
         {
           type: jsPsychImageKeyboardResponse,
@@ -805,25 +803,25 @@
           //    );
           //}
         },
-        {
-          type: jsPsychHtmlKeyboardResponse,
-          stimulus:`
-            <div style="font-size: 24pt; line-height: 1.5; max-width: 800px; margin: auto; text-align: center;">
-              <p style="font-size:30px">${behavior}</p>
-            </div>
-            <div style="
-            position: fixed;
-            left: 50%;
-            top: 90%;
-            transform: translate(-50%, -100%);
-            text-align: center;">
-              <img src="${scale}" style="max-width:600px;">
-            </div>
-            `,
-          choices: ['1','2','3','4','5','6','7'],
-          trial_duration: 3000,
-          data: {question_type: "valence rating", image, name, condition, group, behavior},
-        },
+        //{
+        //  type: jsPsychHtmlKeyboardResponse,
+        //  stimulus:`
+        //    <div style="font-size: 24pt; line-height: 1.5; max-width: 800px; margin: auto; text-align: center;">
+        //      <p style="font-size:30px">${behavior}</p>
+        //    </div>
+        //    <div style="
+        //    position: fixed;
+        //    left: 50%;
+        //    top: 90%;
+        //    transform: translate(-50%, -100%);
+        //    text-align: center;">
+        //      <img src="${scale}" style="max-width:600px;">
+        //    </div>
+        //    `,
+        //  choices: ['1','2','3','4','5','6','7'],
+        //  trial_duration: 3000,
+        //  data: {question_type: "valence rating", image, name, condition, group, behavior},
+        //},
         {
           type: jsPsychImageKeyboardResponse,
           stimulus: image,
@@ -884,7 +882,7 @@
         console.log(conditionSequence, sequence)
       } while (hasTriplicates(sequence, 'condition') || hasTriplicates(sequence, 'group')); // there cannot be more than 3 of the same group or same condition
 
-      
+
       console.log('attempts to generate learning phase: ', attempts);
 
       
@@ -920,7 +918,26 @@
 
     // 48 lures, 8 each group of race/gender (8 x 6 groups = 48 identities)
     const lureImages = [
-'./lure_images/AF-247.jpg', './lure_images/AF-209.jpg', './lure_images/AF-210.jpg', './lure_images/AF-219.jpg', './lure_images/AF-225.jpg', './lure_images/AF-206.jpg', './lure_images/AF-221.jpg', './lure_images/AF-205.jpg', './lure_images/AM-216.jpg', './lure_images/AM-211.jpg', './lure_images/AM-253.jpg', './lure_images/AM-252.jpg', './lure_images/AM-245.jpg', './lure_images/AM-236.jpg', './lure_images/AM-201.jpg', './lure_images/AM-238.jpg', './lure_images/LF-217.jpg', './lure_images/LF-219.jpg', './lure_images/LF-202.jpg', './lure_images/LF-224.jpg', './lure_images/LF-204.jpg', './lure_images/LF-247.jpg', './lure_images/LF-203.jpg', './lure_images/LF-210.jpg', './lure_images/LM-225.jpg', './lure_images/LM-248.jpg', './lure_images/LM-212.jpg', './lure_images/LM-234.jpg', './lure_images/LM-250.jpg', './lure_images/LM-252.jpg', './lure_images/LM-219.jpg', './lure_images/LM-213.jpg', './lure_images/WF-023.jpg', './lure_images/WF-008.jpg', './lure_images/WF-011.jpg', './lure_images/WF-031.jpg', './lure_images/WF-219.jpg', './lure_images/WF-223.jpg', './lure_images/WF-025.jpg', './lure_images/WF-037.jpg', './lure_images/WM-251.jpg', './lure_images/WM-013.jpg', './lure_images/WM-011.jpg', './lure_images/WM-024.jpg', './lure_images/WM-014.jpg', './lure_images/WM-022.jpg', './lure_images/WM-209.jpg', './lure_images/WM-219.jpg',
+    './lure_images/AF-247.jpg', 
+    './lure_images/AF-209.jpg', 
+    './lure_images/AF-210.jpg', 
+    './lure_images/AF-219.jpg', 
+    './lure_images/AF-225.jpg', 
+    './lure_images/AF-206.jpg', 
+    './lure_images/AF-221.jpg', 
+    './lure_images/AF-205.jpg', 
+    './lure_images/AM-216.jpg', 
+    './lure_images/AM-211.jpg', 
+    './lure_images/AM-253.jpg', 
+    './lure_images/AM-252.jpg', 
+    './lure_images/AM-245.jpg', 
+    './lure_images/AM-236.jpg', 
+    './lure_images/AM-201.jpg', 
+    './lure_images/AM-238.jpg', 
+    './lure_images/LF-217.jpg', 
+    './lure_images/LF-219.jpg', 
+    './lure_images/LF-202.jpg', 
+    './lure_images/LF-224.jpg', './lure_images/LF-204.jpg', './lure_images/LF-247.jpg', './lure_images/LF-203.jpg', './lure_images/LF-210.jpg', './lure_images/LM-225.jpg', './lure_images/LM-248.jpg', './lure_images/LM-212.jpg', './lure_images/LM-234.jpg', './lure_images/LM-250.jpg', './lure_images/LM-252.jpg', './lure_images/LM-219.jpg', './lure_images/LM-213.jpg', './lure_images/WF-023.jpg', './lure_images/WF-008.jpg', './lure_images/WF-011.jpg', './lure_images/WF-031.jpg', './lure_images/WF-219.jpg', './lure_images/WF-223.jpg', './lure_images/WF-025.jpg', './lure_images/WF-037.jpg', './lure_images/WM-251.jpg', './lure_images/WM-013.jpg', './lure_images/WM-011.jpg', './lure_images/WM-024.jpg', './lure_images/WM-014.jpg', './lure_images/WM-022.jpg', './lure_images/WM-209.jpg', './lure_images/WM-219.jpg',
     ];
 
     // [1] "AF-247" "AF-209" "AF-210" "AF-219" "AF-225" "AF-206" "AF-221" "AF-205" "AM-216" "AM-211" "AM-253" "AM-252" "AM-245" "AM-236" "AM-201" "AM-238" "LF-217" "LF-219" "LF-202" "LF-224" "LF-204" "LF-247" "LF-203" "LF-210" "LM-225" "LM-248" "LM-212" "LM-234" "LM-250" "LM-252" "LM-219" "LM-213" "WF-023" "WF-008" "WF-011" "WF-031" "WF-219" "WF-223" "WF-025" "WF-037" "WM-251" "WM-013" "WM-011" "WM-024" "WM-014" "WM-022" "WM-209" "WM-219"
@@ -978,74 +995,81 @@
     }
 
     // Create name recall trials 
-     function createRecallQuestion(image, guesses, answer) {
+     function createRecallQuestion(image, guesses,answer,group) {
+
        return [
          {
            type: jsPsychHtmlKeyboardResponse,
-           stimulus: "What's their name?",
-           trial_duration: 1000,
-           choices: 'NO_KEYS',
-         },
-         {
-           type: jsPsychImageKeyboardResponse,
-           stimulus: image,
+           stimulus: 
+           
+           `<div style= "display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-content: center;
+              width: 100%;
+              min-height: 80vh;">
+
+              <p style="font-size: 40px; margin-bottom: 100px;">
+              What's their name? </p>
+
+              <div style="
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              gap: 100px;">
+                
+              <img src="${image}" width="${IMAGE_WIDTH}" style="margin-bottom: 25px;">
+                
+                <div style="text-align:left;font-size=22px;line-height:2;">
+                  ${guesses.map((guess, i) => `<p>${i + 1}. ${guess}</p>`)
+                    .join('')}
+                </div>
+            </div>`,
            stimulus_width: IMAGE_WIDTH,
-           prompt: guesses.map((guess, i) => `<p>${i + 1}. ${guess}</p>`).join(''),
            choices: ['1', '2', '3', '4', '5'],
-           data: { question_type: 'nameRecall', image, answer, guesses, correct_answers: answer },
+           data: { question_type: 'nameRecall', image, guesses,answer, correct_answers: answer},
            trial_duration: null,
            on_finish(data) {
              // Score the keyboard response as correct or incorrect.
              data.correct = jsPsych.pluginAPI.compareKeys(data.response, answer);
            },
          },
-
-                 // second question displayed
-        {
+         {
           type: jsPsychHtmlKeyboardResponse,
-          stimulus: 'Did you learn identity-relevant (i.e., biographical) information about this person?',
-          trial_duration: 1000,
-          choices: 'NO_KEYS',
-        },
+          stimulus:`<div style="text-align:center;">
+                  <p style="font-size: 30px; margin-bottom: 25px;line-height:2;">
+                    Did you learn identity-relevant (i.e., biographical) information about this person? </p>
+                    
+                    <img src="${image}" width="${IMAGE_WIDTH}" style="margin-bottom: 25px;"> 
 
-        {
-          type: jsPsychHtmlKeyboardResponse,
-          stimulus: image,
-          stimulus_width: IMAGE_WIDTH,
-          prompt: ` 
-          <div style="text-align:center; display: flex; justify-content: space-evenly;gap: 50px;">
+            <div style="text-align:center; display: flex; justify-content: space-evenly;gap: 50px;">
             <div style="text-align:center; justify-content: space-evenly; margin: 10px 0 0 0;">
-              <p style="font-weight: bold">1</p><p style="font-size: 18pt; line-height:0.5; ">Definitely</p><p style="font-size: 18pt; line-height:0.7;color:#DC143C;">Yes</p>
+              <p style="font-weight: bold">1</p><p style="font-size: 18pt; line-height:0.5; ">Definitely</p><p style="font-size: 18pt; line-height:0.7;color:#DC143C;">No</p>
             </div>
             <div style="text-align:center; justify-content: space-evenly; margin: 10px 0 0 0;">
-              <p style="font-weight: bold">2</p><p style="font-size: 18pt; line-height:0.5; ">Probably</p><p style="font-size: 18pt; line-height:0.7;color:#DC143C;">Yes</p>
+              <p style="font-weight: bold">2</p><p style="font-size: 18pt; line-height:0.5; ">Probably</p><p style="font-size: 18pt; line-height:0.7;color:#DC143C;">No</p>
             </div>
             <div style="text-align:center; justify-content: space-evenly; margin: 10px 0 0 0;">
-              <p style="font-weight: bold">3</p><p style="font-size: 18pt; line-height:0.5; ">Maybe</p><p style="font-size: 18pt; line-height:0.7;color:#DC143C;">Yes</p>
+              <p style="font-weight: bold">3</p><p style="font-size: 18pt; line-height:0.5; ">Maybe</p><p style="font-size: 18pt; line-height:0.7;color:#DC143C;">No</p>
             </div>
             <div style="text-align:center; justify-content: space-evenly; margin: 10px 0 0 0;">
-              <p style="font-weight: bold">4</p><p style="font-size: 18pt; line-height:0.5; ">Maybe</p><p style="font-size: 18pt; line-height:0.7;color:#0073E6;">No</p>
+              <p style="font-weight: bold">4</p><p style="font-size: 18pt; line-height:0.5; ">Maybe</p><p style="font-size: 18pt; line-height:0.7;color:#0073E6;">Yes</p>
             </div>
             <div style="text-align:center; justify-content: space-evenly; margin: 10px 0 0 0;">
-              <p style="font-weight: bold">5</p><p style="font-size: 18pt; line-height:0.5; ">Probably</p><p style="font-size: 18pt; line-height:0.7;color:#0073E6;">No</p>
+              <p style="font-weight: bold">5</p><p style="font-size: 18pt; line-height:0.5; ">Probably</p><p style="font-size: 18pt; line-height:0.7;color:#0073E6;">Yes</p>
             </div>
             <div style="text-align:center; justify-content: space-evenly; margin: 10px 0 0 0;">
-              <p style="font-weight: bold">6</p><p style="font-size: 18pt; line-height:0.5; ">Definitely</p><p style="font-size: 18pt; line-height:0.7;color:#0073E6;">No</p>
+              <p style="font-weight: bold">6</p><p style="font-size: 18pt; line-height:0.5; ">Definitely</p><p style="font-size: 18pt; line-height:0.7;color:#0073E6;">Yes</p>
             </div>
           </div>`,
-          choices: ['1', '2', '3','4','5','6'],
-          data: { question_type: 'behavior', image, answer },
+          choices: ['1', '2', '3', '4', '5', '6'],
+          data: { question_type: 'behaviorRecall', image, name, group},
           trial_duration: null,
-          on_finish(data) {
+          on_finish(data) {data.pResponse=data.response;
             // Determine the correct response based on `behaviorType`
-            data.correct = jsPsych.pluginAPI.compareKeys(data.response);
           },
-         }
-        ]
-     }
-
-         
-      
+        }];
+      }
 
     ///////////////////////////////////////////////////////////////
     // Create name choice randomization function
@@ -1060,9 +1084,10 @@
           // There are 5 guesses
           // - the correct name
           // - a different name from the same group and condition
-          // - 3 names, one from each other condition
-          let guesses = [name]; 
-
+          // - 3 names, one from each condition
+          let guesses =  [name];
+          
+          identities.find(id => id.name === name); 
           // Loop through all four conditions and pick a random name
           for(const cond of CONDITIONS) {
             if (cond === condition) {
@@ -1083,129 +1108,130 @@
          guesses = shuffle(guesses)
          // The number key the user should press
          const answer = guesses.findIndex((guess) => guess === name) + 1;
-         return createRecallQuestion(image, guesses, answer.toString());
+         return createRecallQuestion(          
+        image, guesses, name, group, answer.toString, behavior);
+    })
+    .flat();
+  }
 
-        //stores the correct behavior 
-         const behaviorAnswer = (() => {
-          switch (condition) {
-            case 'negRel': //negative-relevant
-              return '1';
-            case 'neuRel': //neutral-relevant
-              return '1';
-            case 'negIrr': //negative-irrelevant
-              return '2';
-            case 'neuIrr': //neutral-irrelevant
-              return '2';
-            default: // "unsure" responses
-              return '3';
-          }
-       })
-      })
-    }
-      
-    
+    console.log(sequenceLearningPhase());
+    console.log(sequenceRecognitionTest());
+    console.log(sequenceNameRecallTest());
 
-    const timeline = [
-      {
-        type: jsPsychPreload,
-        // paths of images to load.
-        images: allImages,
-      },
-      {
-        type:jsPsychPreload,
-        auto_preload: true,
-        show_detailed_errors: true,
-      },
+  const timeline = [
+    {
+      type: jsPsychPreload,
+      // paths of images to load.
+      images: allImages,
+    },
+    {
+      type:jsPsychPreload,
+      auto_preload: true,
+      show_detailed_errors: true,
+    },
+    //{
+    //  type: jsPsychHtmlKeyboardResponse,
+    //  stimulus: `
+    //  <div style="font-size: 20pt; line-height: 1.5; max-width: 800px; margin: auto; text-align: center;">
+    //    <p>This task requires audio playback. </p>
+    //    <p>Before you begin, please make sure your sound is on and set to a comfortable volume.</p>
+    //    <p> You may use headphones or your computer speakers. </p>
+    //    <p> Once you have adjusted to your audio, press 1 to proceed. </p>
+    //  </div>
+    //  `,
+    //  choices:["1"],
+    //},
+      ...audioTestTrial(),
+      ...Instructions_with_Diagram(),
+      ...PracticeTrial_Learning(),
+      ...sequenceLearningPhase(),
       {
         type: jsPsychHtmlKeyboardResponse,
-        stimulus: `
-        <div style="font-size: 20pt; line-height: 1.5; max-width: 800px; margin: auto; text-align: center;">
-          <p>This task requires audio playback. </p>
-          <p>Before you begin, please make sure your sound is on and set to a comfortable volume.</p>
-          <p> You may use headphones or your computer speakers. </p>
-          <p> Once you have adjusted to your audio, press 1 to proceed. </p>
+        stimulus: 'You will now watch a short video. Press any key to start.',
+      },
+      {
+        type: jsPsychVideoKeyboardResponse,
+        stimulus: ["video.mp4"],
+        width: document.body.clientWidth,
+        choices: ['1'],
+        trial_ends_after_video: true,
+      },
+      {
+        type: jsPsychPreload,
+        images: lureImages,
+      },
+
+      {
+        type: jsPsychAudioKeyboardResponse,// Face recognition instruction
+        stimulus: ["instructRecognition.mp3"],
+        prompt:`<div style="font-size: 15pt; line-height: 1.5; max-width: 100px; margin: 200px; text-align: left;">
+        <p>Now, you will take a two-part memory test for the identities you learned in the beginning of the experiment. </p>
+        <p>For the first part of the memory test, you will be shown a series of images of faces, one at a time. For each face, please indicate whether the face was previously seen (old) or never seen before (new).</p>
+        <p>The possible responses for this memory test range depending on your confidence in your judgment, where 1 is definitely new, 2 is probably new, 3 is maybe new, 4 is maybe old, 5 is probably old, and 6 is definitely old. The responses and the corresponding numbers for each response will also be displayed below the screen for your convenience.</p>
+        <p>Please note that there is no time limit for this part of the test, so please answer as accurately as possible, while using the full scale to reflect your varying degrees of confidence in each response.</p>
+        </div>
+        
+          <div style="font-size: 10pt; color:red; line-height: 1.25; max-width: document.body.clientWidth; margin: 10px; text-align: right;">
+          <p> To continue, press 1 </p>
         </div>
         `,
-        choices:["1"],
+        choices: ["1"],
+        trial_ends_after_audio: false,
       },
-       ...audioTestTrial(),
-       ...Instructions_with_Diagram(),
-       ...PracticeTrial_Learning(),
-       ...sequenceLearningPhase(),
-       {
-         type: jsPsychHtmlKeyboardResponse,
-         stimulus: 'You will now watch a short video. Press any key to start.',
-       },
-       {
-         type: jsPsychVideoKeyboardResponse,
-         stimulus: ["video.mp4"],
-         width: document.body.clientWidth,
-         choices: ['1'],
-         trial_ends_after_video: true,
-       },
-       {
-         type: jsPsychPreload,
-         images: lureImages,
-       },
-       {
-         type: jsPsychAudioKeyboardResponse,// Face recognition instruction
-         stimulus: ["instructRecognition.mp3"],
-         prompt:`<div style="font-size: 20pt; line-height: 1.5; max-width: 800px; margin: auto; text-align: center;">
-          <p>Now, you will take a two-part memory test for the identities you learned in the beginning of the experiment. </p>
-          <p>For the first part of the memory test, you will be shown a series of images of faces, one at a time.</p>
-          <p>For each face, please indicate whether the face was previously seen (“old”) or never seen before (“new”).</p>
-          <p>The possible responses for this memory test range depending on your confidence in your judgment,</p>
-          <p>where 1 is definitely new, 2 is probably new, 3 is maybe new, 4 is maybe old, 5 is probably old, and 6 is definitely old.</p>
-          <p>The responses and the corresponding numbers for each response will also be displayed below the screen for your convenience.</p>
-          <p>Please note that there is no time limit for this part of the test, so please answer as accurately as possible, </p>
-          <p>while using the full scale to reflect your varying degrees of confidence in each response.</p>
-         </div>`,
-         trial_ends_after_audio: false,
-       },
-       ...sequenceRecognitionTest(),
-       {
-         type: jsPsychHtmlKeyboardResponse,// Name recognition instruction
-         stimulus: 'Instructions for recall test', 
-       },
-       ...sequenceNameRecallTest(),
-       {
-         type: jsPsychHtmlKeyboardResponse,
-         stimulus() {
-            const data = jsPsych.data.get();
+      ...sequenceRecognitionTest(),
+      {
+        type: jsPsychAudioKeyboardResponse,// Name recognition instruction
+        stimulus: ["instructRecall.mp3"],
+        prompt:`<div style="font-size: 15pt; line-height: 1.5; max-width: 1400px; margin: 200px; text-align: left;">
+              <p>
+          You have completed the first part of the memory test. </p>
+          <p> Now you will move onto the second part of the memory test, which consists of two tasks, name recall and information recall. </p>
+          <p>For name recall task, you will be shown a face, as well as the 5 possible answer choices for the name of the identity. Please respond by pressing the number that corresponds to the correct name.</p>
+          <p>For the same identity, you will then be asked whether the person was associated with identity-relevant (i.e., biographical) information during the learning phase.</p>
+          <p>The possible responses for this question range depending on your confidence in your judgment, where 1 is definitely new, 2 is probably new, 3 is maybe new, 4 is maybe old, 5 is probably old, and 6 is definitely old. The responses and the corresponding numbers for each response will also be displayed below the screen for your convenience.</p>
+          <p>Again, please note that there is no time limit for this part of the test, so please answer as accurately as possible, while using the full scale to reflect your varying degrees of confidence in each response.</p>
+        </div>
+        
+          <div style="font-size: 10pt; color:red; line-height: 1.25; max-width: document.body.clientWidth; margin-bottom: 0px; text-align: right;">
+          <p> To continue, press 1 </p>
+        </div>
+        `,
+        choices: ["1"],
+      },
+      ...sequenceNameRecallTest(),
+      {
+        type: jsPsychHtmlKeyboardResponse,
+        stimulus() {
+          const data = jsPsych.data.get();
 
-            const recognition = data.filter({ question_type: 'recognition' });
-            const recognitionPercent = (100 * recognition.filter({ correct: true }).count()) / recognition.count();
+          const recognition = data.filter({ question_type: 'recognition' });
+          const recognitionPercent = (100 * recognition.filter({ correct: true }).count()) / recognition.count();
 
-            const recall = data.filter({ question_type: 'nameRecall' });
-            const recallPercent = (100 * recall.filter({ correct: true }).count()) / recall.count();
+          const recall = data.filter({ question_type: 'nameRecall' });
+          const recallPercent = (100 * recall.filter({ correct: true }).count()) / recall.count();
 
-          return `
-          <p>You have completed the experiment. Thank you for your participation.</p>
-          <p>Your recognition score is ${Math.round(recognitionPercent)}%.</p>
-          <p>Your recall score is ${Math.round(recallPercent)}%.</p>
-          <p> Press any key to exit the study.</p>re
-          `;
-         },
+        return `
+        <p>You have completed the experiment. Thank you for your participation.</p>
+        <p>Your recognition score is ${Math.round(recognitionPercent)}%.</p>
+        <p>Your recall score is ${Math.round(recallPercent)}%.</p>
+        <p> Press any key to exit the study.</p>
+        `;
         },
-    ];
-    jsPsych.run(timeline).then(() => {
-      const data = jsPsych.data.get();
-      const csvData = data.csv();
-    
-      const participantID =
-        data.values()[0]?.participant_id ?? "unknown";
-    
-      fetch("https://script.google.com/macros/s/AKfycbwim7E6Amk4t2rUwgcf6rszHnsc_m8QQxNQoiH8nfwcqndQr9bDxGfyB2aXaHgdRoc5/exec", {
-        method: "POST",
-        mode: "no-cors",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          participant_id: participantID,
-          csv: csvData
-        })
-      });
-    });
-  </script>
+      },
+  ];
+  jsPsych.run(timeline).then(() => {
+    // this code runs when the timeline finishes
+    downloadCSV('trial_result.csv', jsPsych.data.get().csv());
+  });
+
+  function downloadCSV(filename, table) {
+    const link = document.createElement('a');
+    link.href = encodeURI(`data:text/csv;charset=utf-8,${table}`);
+    link.setAttribute('download', filename);
+    link.style.display = 'none';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+</script>
 </html>
