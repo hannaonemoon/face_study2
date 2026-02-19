@@ -36,7 +36,7 @@
     const IMAGE_DELAY = 3000;
     const BIO_DELAY = 6000;
     const MATH_DELAY = 4000;
-    const IMAGE_WIDTH = 600;
+    const IMAGE_WIDTH = 800;
 
     // Load diagrams
     const RecogDiagram= "./diagrams/RecogDiagram.png";
@@ -93,7 +93,8 @@
         {
           type: jsPsychHtmlKeyboardResponse,
           stimulus: `
-          <p style="font-size: 30pt; line-height:1.25; text-align:center;"> Welcome to the Experiment! </br>
+          <div style="font-size: 30pt; line-height: 3; margin: 200px; text-align: center;">
+            Welcome to the Experiment! </br>
             Please wait for further instructions from the experimenter. 
           </p>
           `,
@@ -103,7 +104,7 @@
           type: jsPsychHtmlKeyboardResponse,
           stimulus: `
           <div>
-            <p><img src=${LearningDiagram} style="width:80%;"> </p>
+            <p><img src=${LearningDiagram} style="width:100%;"> </p>
           </div>
           `,
           choices: ['1'],
@@ -128,7 +129,7 @@
         {
           type: jsPsychHtmlKeyboardResponse,
           stimulus: `
-            <p><img src=${mathDiagram} style="max-width: 80%;"> </p>
+            <p><img src=${mathDiagram} style="max-width: 100%;"> </p>
           `,
           choices: ['1'],
         },
@@ -374,13 +375,13 @@
       'Fire ants inflict painful stings that trigger severe allergic reactions.',
       'Mosquitoes transmit deadly diseases like malaria, dengue, and Zika virus.',
       "Leeches attach to skin and suck blood until they're fully engorged.",
-      'Fire ants inflict painful stings that trigger severe allergic reactions.',
+      'Pigeons defecate indiscriminately and spread pathogens across the city.',
       'Box Jellyfish can kill a human in minutes with its venomous tentacles.',
       "Asian giant hornets' venom causes intense pain, organ damage, and even death.", 
       'Ticks burrow into skin and transmit harmful bacterial infections like Lyme disease.',
       'Cane toads release toxins that poison and kill pets and native wildlife.',
       'Cockroaches contaminate food in homes and are notoriously hard to exterminate.',
-      'Snakes kill approximately five million people every year with their deadly venom.',
+      'Snakes attack approximately five million people every year with their deadly venom.',
       'Lampreys latch onto fish and drain their blood and body fluids.',
     ];
 
@@ -492,7 +493,8 @@
       return [
         {
           type: jsPsychHtmlKeyboardResponse,
-          stimulus: `<p style="font-size: 45pt;line-height:5; margin: 0 50px 0 50px">${expression} = ? </p>`,
+          stimulus: `<div style="font-size: 50pt;line-height:5; margin: 0 50px 0 50px">
+            ${expression} = ? </div>`,
           choices: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'],
           trial_duration: MATH_DELAY,
           data: { expression, answer },
@@ -506,8 +508,11 @@
           stimulus() {
             const lastTrial = jsPsych.data.get().last(1).values()[0];
 
-            return `<p style="font-size:30px;line-height:1.5; margin: 0 50px 0 50px">${expression} = ${answer}<br /></p>
-              <p>${lastTrial.correct ? 'Correct!' : 'Incorrect.'}</p>`;
+            return `<div>
+              <p style="font-size:50pt;line-height:3">${expression} = ${answer} </p>
+              <p style="font-size:40pt;line-height:3"> ${lastTrial.correct ? 'Correct!' : 'Incorrect.'}</p>
+            </div>
+            `
           },
           choices: 'NO_KEYS',
           trial_duration() {
@@ -540,9 +545,9 @@
         {
           type: jsPsychHtmlKeyboardResponse,
           stimulus: `
-          <div>
-            <p style="font-size:30px"> We will first begin with some practice learning trials. </p>
-            <p style="font-size:30px"> Please wait for further instructions from the researcher.</p>
+            <div style="font-size: 40pt; line-height: 3; margin: 200px; text-align: center;">
+            <p> We will first begin with some practice learning trials. </p>
+            <p> Please wait for further instructions from the experimenter.</p>
           </div>`,
           choices: '1',
           trial_duration: null,
@@ -555,11 +560,11 @@
         {
           type: jsPsychHtmlKeyboardResponse,
           stimulus:             
-          `<div style="font-size: 30pt; line-height: 1.5; max-width: 800px; margin: auto; text-align: center;">
-            <p style="font-size:30px">${zendaya_bio}</p>
+          `<div style="font-size: 30pt; line-height: 1.5; max-width: 1400pt; margin: auto; text-align: center;">
+            <p style="font-size:30pt">${zendaya_bio}</p>
           </div>`,
           choices: 'NO_KEYS',
-          trial_duration: 5000,
+          trial_duration: 6000,
         },
         // display zendaya's bio + valence scale 
         //{
@@ -599,7 +604,7 @@
         {
           type: jsPsychHtmlKeyboardResponse,
           stimulus: `
-          <div style="font-size: 30pt; line-height: 1.5; max-width: 800px; margin: auto; text-align: center;">
+          <div style="font-size: 30pt; line-height: 1.5; max-width: 1400pt; margin: auto; text-align: center;">
               <p style="font-size:30px">${oscar_bio} </p>
             </div>
             `,
@@ -630,7 +635,7 @@
           type: jsPsychImageKeyboardResponse,
           stimulus: oscar,
           stimulus_width: 600,
-          prompt: `<p style="font-size:50px;gap:50px"><br />${'Oscar'}</p>`,
+          prompt: `<p style="font-size:50pt;gap:50pt"><br />${'Oscar'}</p>`,
           choices: 'NO_KEYS',
           trial_duration: IMAGE_DELAY,
         },
@@ -644,7 +649,10 @@
         // display FLO's bio
         {
           type: jsPsychHtmlKeyboardResponse,
-          stimulus: `<p style="font-size:30px; line-height:1.5; margin: 0 50px 0 50px">${flo_bio} </p>`,
+          stimulus: `
+          <div style="font-size: 30pt; line-height: 1.5; max-width: 1400pt; margin: auto; text-align: center;">
+          <p >${flo_bio} </p>
+          </div>`,
           choices: 'NO_KEYS',
           trial_duration: BIO_DELAY,
         },
@@ -672,7 +680,7 @@
           type: jsPsychImageKeyboardResponse,
           stimulus: flo,
           stimulus_width: 600,
-          prompt: `<p style="font-size:50px;gap:50px"><br />${'Florence'}</p>`,
+          prompt: `<p style="font-size:50pt;gap:50pt"><br />${'Florence'}</p>`,
           choices: 'NO_KEYS',
           trial_duration: IMAGE_DELAY,
         },
@@ -686,7 +694,7 @@
         // display D's bio
         {
           type: jsPsychHtmlKeyboardResponse,
-          stimulus: `<p style="font-size:30px; line-height:1.5; margin: 0 50px 0 50px">${dangelo_bio} </p>`,
+          stimulus: `<p style="font-size:30pt;line-height:1.5; max-width: 1400px; margin: auto; text-align: center;">${dangelo_bio} </p>`,
           choices: 'NO_KEYS',
           trial_duration: BIO_DELAY,
         },
@@ -714,7 +722,7 @@
           type: jsPsychImageKeyboardResponse,
           stimulus: dangelo,
           stimulus_width: 600,
-          prompt: `<p style="font-size:50px;gap:50px"><br />${'D\'Angelo'}</p>`,
+          prompt: `<p style="font-size:50px;gap:50pt"><br />${'D\'Angelo'}</p>`,
           choices: 'NO_KEYS',
           trial_duration: IMAGE_DELAY,
         },
@@ -723,9 +731,9 @@
           type: jsPsychHtmlKeyboardResponse,
           stimulus: 
           `
-            <div style="font-size: 30pt; line-height: 1.5; max-width: 800px; margin: auto; text-align: center;">
+            <div style="font-size: 30pt; line-height: 1.5; max-width: 1400px; margin: auto; text-align: center;">
              <p>${'You have completed the practice trials!'}<br /></p>
-             <p>To continue onto the experiment, please press 1.</p>
+             <p>Please wait for further instructions from the experimenter.</p>
             </div>
           `,
           trial_duration: null,
@@ -753,14 +761,14 @@
     // Create a function to generate a learning trial (behavior -> face + name)
     function createLearningTrial(name, image, condition, behavior, group) {
       identities.push({ name, image, condition, behavior, group });
-      const scale='./diagrams/scale.png';
       return [
         {
           type: jsPsychHtmlKeyboardResponse,
-          stimulus: ` <div style="font-size: 24pt; line-height: 1.5; max-width: 800px; margin: auto; text-align: center;">
-            <p style="font-size:30px">${behavior}</p>`,
+          stimulus: ` <div style="font-size: 30pt; line-height: 1.5; max-width: 1400px; margin: auto; text-align: center;">
+            <p>${behavior}</p> 
+          </div>`,
           choices: 'NO_KEYS',
-          trial_duration: 5000,
+          trial_duration: 6000,
           data: { image, name, condition, group, behavior},
           //on_start: () => {
           //    speechSynthesis.cancel();
@@ -798,9 +806,9 @@
           type: jsPsychImageKeyboardResponse,
           stimulus: image,
           stimulus_width: IMAGE_WIDTH,
-          prompt: `<p style="font-size:40px;gap:50px"><br />${name}</p>`,
+          prompt: `<p style="font-size:50pt;gap:50px"><br />${name}</p>`,
           choices: 'NO_KEYS',
-          trial_duration: IMAGE_DELAY,
+          trial_duration: 3000,
           data: { image, name, condition, group, behavior},
         },
         ...createRandomMathTrial(),
@@ -996,7 +1004,7 @@
               width: 100%;
               min-height: 80vh;">
 
-              <p style="font-size: 40px; margin-bottom: 100px;">
+              <p style="font-size: 40pt; margin-bottom: 100px;">
               What's their name? </p>
 
               <div style="
@@ -1005,9 +1013,9 @@
               justify-content: center;
               gap: 100px;">
                 
-              <img src="${image}" width="${IMAGE_WIDTH}" style="margin-bottom: 25px;">
+              <img src="${image}";width=${IMAGE_WIDTH};style="margin-bottom: 25px;">
                 
-                <div style="text-align:left;font-size=22px;line-height:2;">
+                <div style="text-align:left;font-size=22pt;line-height:2;">
                   ${guesses.map((guess, i) => `<p>${i + 1}. ${guess}</p>`)
                     .join('')}
                 </div>
@@ -1024,10 +1032,10 @@
          {
           type: jsPsychHtmlKeyboardResponse,
           stimulus:`<div style="text-align:center;">
-                  <p style="font-size: 30pt; margin-bottom: 25px;line-height:2;">
+                  <p style="font-size: 30pt; margin: auto;line-height:2;">
                     Did you learn identity-relevant (i.e., biographical) information about this person? </p>
                     
-                    <img src="${image}" width="${IMAGE_WIDTH}" style="margin-bottom: 25px;"> 
+                    <img src="${image}" style="margin-bottom: 25px;width=${IMAGE_WIDTH};"> 
 
             <div style="text-align:center; display: flex; justify-content: space-evenly;gap: 50px;">
             <div style="text-align:center; justify-content: space-evenly; margin: 10px 0 0 0;">
@@ -1132,7 +1140,7 @@
       {
         type: jsPsychHtmlKeyboardResponse,
         stimulus: 
-        `<div style="font-size: 30pt; line-height: 1.5; max-width: 1400px; margin: 200px; text-align: center;">
+        `<div style="font-size: 30pt; line-height: 3; max-width: 1400px; margin: 200px; text-align: center;">
           <p> You have completed the learning phase.</p>
           <p> Please wait for further instructions from the researcher.</p>
         </div>
@@ -1149,7 +1157,7 @@
       {
         type: jsPsychHtmlKeyboardResponse,
         stimulus: `
-        <div style="font-size: 30pt; line-height: 1.5; max-width: 1400px; margin: 200px; text-align: center;">
+        <div style="font-size: 30pt; line-height: 3; max-width: 1400px; margin: 200px; text-align: center;">
         <p> Please wait for further instructions from the researcher. </p>
         </div>
         `,
@@ -1165,7 +1173,7 @@
       {
         type: jsPsychHtmlKeyboardResponse,
         stimulus:
-        `<div style="font-size: 30pt; line-height: 1.5; max-width: 1400px; margin: 200px; text-align: center;">
+        `<div style="font-size: 30pt; line-height: 3; max-width: 1400px; margin: 200px; text-align: center;">
               <p> You have completed the first part of the memory test. </p>
               <p> Please wait for further instructions from the researcher. </p>
         </div>
