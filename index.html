@@ -114,7 +114,7 @@
         //  trial_ends_after_audio: false,
         //},
         {
-          type: jsPsychAudioKeyboardResponse,
+          type: jsPsychHtmlKeyboardResponse,
           stimulus: `
             <p><img src=${mathDiagram} style="max-width: 80%;"> </p>
           `,
@@ -1133,19 +1133,17 @@
       },
 
       {
-        type: jsPsychAudioKeyboardResponse,// Face recognition instruction
+        type: jsPsychHtmlKeyboardResponse,// Face recognition instruction
         stimulus: `<div style="font-size: 15pt; line-height: 1.5; max-width: 1400px; margin: 200px; text-align: left;">
         <p> Please wait for further instructions from the researcher. </p>
         </div>
         `,
         choices: ["1"],
-        trial_ends_after_audio: false,
       },
       ...sequenceRecognitionTest(),
       {
-        type: jsPsychAudioKeyboardResponse,// Name recognition instruction
-        stimulus: ["instructRecall.mp3"],
-        prompt:`<div style="font-size: 20px; line-height: 1.5; max-width: 1400px; margin: 200px; text-align: left;">
+        type: jsPsychHtmlKeyboardResponse,// Name recognition instruction
+        stimulus:`<div style="font-size: 20px; line-height: 1.5; max-width: 1400px; margin: 200px; text-align: left;">
               <p> You have completed the first part of the memory test. </p>
               <p> Please wait for further instructions from the researcher. </p>
         </div>
