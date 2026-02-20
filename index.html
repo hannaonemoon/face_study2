@@ -891,12 +891,11 @@
           const behavior = behaviorPool[condition].pickRandom();
           return createLearningTrial(name, image, condition, behavior, group)
         })
-        .flat();
-        
+       .flat();
     }
 
 
-    //console.log(sequenceLearningPhase());
+    console.log(sequenceLearningPhase());
 
     // 48 lures, 8 each group of race/gender (8 x 6 groups = 48 identities)
     const lureImages = [
@@ -943,7 +942,7 @@
     // Create a function that creates a trial of face recognition task
     function makeRecognitionQuestion(image, recogAnswers) {
 
-          return {
+      return {
         type: jsPsychImageKeyboardResponse,
         stimulus: image,
         stimulus_width: IMAGE_WIDTH,
@@ -992,80 +991,74 @@
     }
 
     // Create name recall trials 
-     function createRecallQuestion(image, guesses,answer,group) {
+     function createRecallQuestion(image, guesses, condition, answer) {
+      return [
+      {
+        type: jsPsychHtmlKeyboardResponse,
+        stimulus:`
+        <div style= "display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+          min-height: 80vh;">
+          
+          <p style="font-size: 40pt; margin-bottom: 100px;">
+          What's their name? </p>
 
-       return [
-         {
-           type: jsPsychHtmlKeyboardResponse,
-           stimulus: 
-           
-           `<div style= "display: flex;
-              flex-direction: column;
-              align-items: center;
-              justify-content: center;
-              width: 100%;
-              min-height: 80vh;">
-
-              <p style="font-size: 40pt; margin-bottom: 100px;">
-              What's their name? </p>
-
-              <div style="
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              gap: 100px;">
-                
-              <img src="${image}" style="max-width: 40vw;height:auto;margin-bottom: 25px;">
-                
-                <div style="text-align:left;font-size=80pt;line-height:2;">
-                  ${guesses.map((guess, i) => `<p>${i + 1}. ${guess}</p>`)
-                    .join('')}
-                </div>
-            </div>`,
-           choices: ['1', '2', '3', '4', '5'],
-           data: { question_type: 'nameRecall', image, guesses,answer, correct_answers: answer},
-           trial_duration: null,
-           on_finish(data) {
-             // Score the keyboard response as correct or incorrect.
-             data.correct = jsPsych.pluginAPI.compareKeys(data.response, answer);
-           },
-         },
-         {
-          type: jsPsychHtmlKeyboardResponse,
-          stimulus:`<div style="text-align:center;">
-                  <p style="font-size: 30pt; margin: 80px; line-height:2;">
-                    Did you learn identity-relevant (i.e., biographical) information about this person? </p>
-                    
-                    <img src="${image}" style= "max-width: 40vw; height:auto; margin-bottom: 40px;" >
-
-            <div style="text-align:center; display: flex; justify-content: space-evenly;gap: 50px;">
-            <div style="text-align:center; justify-content: space-evenly; margin: 10px 0 0 0;">
-              <p style="font-weight: bold">1</p><p style="font-size: 20pt; line-height:0.5; ">Definitely</p><p style="font-size: 20pt; line-height:0.7;color:#DC143C;">No</p>
-            </div>
-            <div style="text-align:center; justify-content: space-evenly; margin: 10px 0 0 0;">
-              <p style="font-weight: bold">2</p><p style="font-size: 20pt; line-height:0.5; ">Probably</p><p style="font-size: 20pt; line-height:0.7;color:#DC143C;">No</p>
-            </div>
-            <div style="text-align:center; justify-content: space-evenly; margin: 10px 0 0 0;">
-              <p style="font-weight: bold">3</p><p style="font-size: 20pt; line-height:0.5; ">Maybe</p><p style="font-size: 20pt; line-height:0.7;color:#DC143C;">No</p>
-            </div>
-            <div style="text-align:center; justify-content: space-evenly; margin: 10px 0 0 0;">
-              <p style="font-weight: bold">4</p><p style="font-size: 20pt; line-height:0.5; ">Maybe</p><p style="font-size: 20pt; line-height:0.7;color:#0073E6;">Yes</p>
-            </div>
-            <div style="text-align:center; justify-content: space-evenly; margin: 10px 0 0 0;">
-              <p style="font-weight: bold">5</p><p style="font-size: 20pt; line-height:0.5; ">Probably</p><p style="font-size: 20pt; line-height:0.7;color:#0073E6;">Yes</p>
-            </div>
-            <div style="text-align:center; justify-content: space-evenly; margin: 10px 0 0 0;">
-              <p style="font-weight: bold">6</p><p style="font-size: 20pt; line-height:0.5; ">Definitely</p><p style="font-size: 20pt; line-height:0.7;color:#0073E6;">Yes</p>
-            </div>
-          </div>`,
-          choices: ['1', '2', '3', '4', '5', '6'],
-          data: { question_type: 'behaviorRecall', image, name, group},
-          trial_duration: null,
-          on_finish(data) {data.pResponse=data.response;
-            // Determine the correct response based on `behaviorType`
-          },
-        }];
-      }
+          <div style="
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 100px;">
+            
+          <img src="${image}" style="max-width: 40vw;height:auto;margin-bottom: 25px;">
+          <div style="text-align:left;font-size=80pt;line-height:2;">
+            ${guesses.map((guess, i) => `<p>${i + 1}. ${guess}</p>`).join('')}
+          </div>
+        </div>
+        </div>`,
+        choices: ['1', '2', '3', '4', '5'],
+        data: {question_type: 'nameRecall', image, guesses, correct_answers: answer},
+        trial_duration: null,
+        on_finish(data) {
+          // Score the keyboard response as correct or incorrect.
+          data.participant_response = data.response;
+          console.log("nameRecall finished:", data.response);
+        },
+      },
+      {
+        type: jsPsychHtmlKeyboardResponse,
+        stimulus:
+        `<div style="text-align:center;">
+          <p style="font-size: 30pt; margin: 80px; line-height:2;"> Did you learn identity-relevant (i.e., biographical) information about this person? </p>
+          <img src="${image}" style= "max-width: 40vw; height:auto; margin-bottom: 40px;">
+        </div>
+        <div style="text-align:center; display: flex; justify-content: space-evenly;gap: 50px;">
+          <div style="text-align:center; justify-content: space-evenly; margin: 10px 0 0 0;"> <p style="font-weight: bold">1</p><p style="font-size: 20pt; line-height:0.5;">Definitely</p><p style="font-size: 20pt; line-height:0.7;color:#DC143C;">No</p>
+          </div>
+          <div style="text-align:center; justify-content: space-evenly; margin: 10px 0 0 0;"> <p style="font-weight: bold">2</p><p style="font-size: 20pt; line-height:0.5; ">Probably</p><p style="font-size: 20pt; line-height:0.7;color:#DC143C;">No</p> 
+          </div>
+          <div style="text-align:center; justify-content: space-evenly; margin: 10px 0 0 0;"> <p style="font-weight: bold">3</p><p style="font-size: 20pt; line-height:0.5; ">Maybe</p><p style="font-size: 20pt; line-height:0.7;color:#DC143C;">No</p>
+          </div>
+          <div style="text-align:center; justify-content: space-evenly; margin: 10px 0 0 0;"> <p style="font-weight: bold">4</p><p style="font-size: 20pt; line-height:0.5; ">Maybe</p><p style="font-size: 20pt; line-height:0.7;color:#0073E6;">Yes</p>
+          </div>
+          <div style="text-align:center; justify-content: space-evenly; margin: 10px 0 0 0;"> <p style="font-weight: bold">5</p><p style="font-size: 20pt; line-height:0.5; ">Probably</p><p style="font-size: 20pt; line-height:0.7;color:#0073E6;">Yes</p>
+          </div>
+          <div style="text-align:center; justify-content: space-evenly; margin: 10px 0 0 0;"> <p style="font-weight: bold">6</p><p style="font-size: 20pt; line-height:0.5; ">Definitely</p><p style="font-size: 20pt; line-height:0.7;color:#0073E6;">Yes</p>
+          </div>
+        </div>`,
+        choices: ['1', '2', '3', '4', '5', '6'],
+        data: { question_type: 'behaviorRecall', image},
+        trial_duration: null,
+        on_finish(data) {
+          data.participant_response = data.response;
+          console.log("behaviorRecall finished:", data.response);
+          // Determine the correct response based on `behaviorType`
+        },
+      },
+      ];
+    }
 
     ///////////////////////////////////////////////////////////////
     // Create name choice randomization function
@@ -1104,11 +1097,9 @@
          guesses = shuffle(guesses)
          // The number key the user should press
          const answer = guesses.findIndex((guess) => guess === name) + 1;
-         return createRecallQuestion(          
-        image, guesses, name, group, answer.toString, behavior);
-    })
-    .flat();
-  }
+         return createRecallQuestion(image, guesses, name, group, answer.toString(), behavior);
+        })
+      }
 
 
   const timeline = [
@@ -1154,7 +1145,7 @@
         choices: ['1'],
         trial_ends_after_video: true,
       },
-
+//
       {
        type: jsPsychHtmlKeyboardResponse,
        stimulus: `
@@ -1164,7 +1155,7 @@
        `,
        choices: ["1"],
       },
-
+//
       {
         type: jsPsychImageKeyboardResponse,// Face recognition instruction + Diagram
         stimulus: "./diagrams/RecogDiagram.png",
@@ -1197,13 +1188,9 @@
           const recognition = data.filter({ question_type: 'recognition' });
           const recognitionPercent = (100 * recognition.filter({ correct: true }).count()) / recognition.count();
 
-          const recall = data.filter({ question_type: 'nameRecall' });
-          const recallPercent = (100 * recall.filter({ correct: true }).count()) / recall.count();
-
         return `
         <p>You have completed the experiment. Thank you for your participation.</p>
         <p>Your recognition score is ${Math.round(recognitionPercent)}%.</p>
-        <p>Your recall score is ${Math.round(recallPercent)}%.</p>
         <p> Press any key to exit the study.</p>
         `;
         },
