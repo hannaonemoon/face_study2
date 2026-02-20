@@ -38,9 +38,6 @@
     const MATH_DELAY = 4000;
     const IMAGE_WIDTH = 800;
 
-    // Load diagrams
-    const RecogDiagram= "./diagrams/RecogDiagram.png";
-    const RecallDiagram= "./diagrams/RecallDiagram.png";
 
     //function audioTestTrial() {
     //  return [
@@ -1020,7 +1017,6 @@
                     .join('')}
                 </div>
             </div>`,
-           stimulus_width: IMAGE_WIDTH,
            choices: ['1', '2', '3', '4', '5'],
            data: { question_type: 'nameRecall', image, guesses,answer, correct_answers: answer},
            trial_duration: null,
@@ -1166,7 +1162,7 @@
 
       {
         type: jsPsychHtmlKeyboardResponse,// Face recognition instruction + Diagram
-        stimulus: RecogDiagram,
+        stimulus: `<img src="./Diagram/RecogDiagram.png" style="max-width: 100%;">`,
         choices: ["1"],
       },
       ...sequenceRecognitionTest(),
@@ -1182,7 +1178,7 @@
       },
       {
         type: jsPsychHtmlKeyboardResponse,// Recall instruction + Diagram
-        stimulus: RecallDiagram,
+        stimulus: `<img src="./Diagram/RecallDiagram.png" style="max-width: 100%;">`,
         choices: ["1"],
       },
       ...sequenceNameRecallTest(),
