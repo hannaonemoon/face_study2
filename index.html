@@ -1106,7 +1106,7 @@
          guesses = shuffle(guesses)
          // The number key the user should press
          const answer = guesses.findIndex((guess) => guess === name) + 1;
-         return createRecallQuestion(image, guesses, name, answer.toString(),behavior, condition);
+         return createRecallQuestion(image, guesses, name, answer.toString(), behavior, condition);
         })
       }
       
@@ -1136,57 +1136,57 @@
     //  `,
     //  choices:["1"],
     //},
-      //...Instructions_with_Diagram(),
-      //...PracticeTrial_Learning(),
-      //...sequenceLearningPhase(),
-      //{
-      //  type: jsPsychHtmlKeyboardResponse,
-      //  stimulus: 
-      //  `<div style="font-size: 30pt; line-height: 3; max-width: 1400px; margin: 200px; text-align: center;">
-      //    <p> You have completed the learning phase.</p>
-      //    <p> Please wait for further instructions from the researcher.</p>
-      //  </div>
-      //  `
-      //  },
-      //{
-      //  type: jsPsychVideoKeyboardResponse,
-      //  stimulus: ["video.mp4"],
-      //  width: document.body.clientWidth,
-      //  choices: ['1'],
-      //  trial_ends_after_video: true,
-      //},
-      //{
-      // type: jsPsychHtmlKeyboardResponse,
-      // stimulus: `
-      // <div style="font-size: 30pt; line-height: 3; max-width: 1400px; margin: 200px; text-align: center;">
-      // <p> Please wait for further instructions from the researcher. </p>
-      // </div>
-      // `,
-      // choices: ["1"],
-      //},
-      //{
-      //  type: jsPsychImageKeyboardResponse,// Face recognition instruction + Diagram
-      //  stimulus: "./diagrams/RecogDiagram.png",
-      //  stimulus_width: 800,
-      //  choices: ["1"],
-      //},
-      //...sequenceRecognitionTest(),
-      //{
-      //  type: jsPsychHtmlKeyboardResponse,
-      //  stimulus:
-      //  `<div style="font-size: 30pt; line-height: 3; max-width: 1400px; margin: 200px; text-align: center;">
-      //        <p> You have completed the first part of the memory test. </p>
-      //        <p> Please wait for further instructions from the researcher. </p>
-      //  </div>
-      //  `,
-      //  choices: ["1"],
-      //},
-      //{
-      //  type: jsPsychImageKeyboardResponse,// Recall instruction + Diagram
-      //  stimulus:"./diagrams/RecallDiagram.png",
-      //  stimulus_width: 800,
-      //  choices: ["1"],
-      //},
+      ...Instructions_with_Diagram(),
+      ...PracticeTrial_Learning(),
+      ...sequenceLearningPhase(),
+      {
+        type: jsPsychHtmlKeyboardResponse,
+        stimulus: 
+        `<div style="font-size: 30pt; line-height: 3; max-width: 1400px; margin: 200px; text-align: center;">
+          <p> You have completed the learning phase.</p>
+          <p> Please wait for further instructions from the researcher.</p>
+        </div>
+        `
+        },
+      {
+        type: jsPsychVideoKeyboardResponse,
+        stimulus: ["video.mp4"],
+        width: document.body.clientWidth,
+        choices: ['1'],
+        trial_ends_after_video: true,
+      },
+      {
+       type: jsPsychHtmlKeyboardResponse,
+       stimulus: `
+       <div style="font-size: 30pt; line-height: 3; max-width: 1400px; margin: 200px; text-align: center;">
+       <p> Please wait for further instructions from the researcher. </p>
+       </div>
+       `,
+       choices: ["1"],
+      },
+      {
+        type: jsPsychImageKeyboardResponse,// Face recognition instruction + Diagram
+        stimulus: "./diagrams/RecogDiagram.png",
+        stimulus_width: 800,
+        choices: ["1"],
+      },
+      ...sequenceRecognitionTest(),
+      {
+        type: jsPsychHtmlKeyboardResponse,
+        stimulus:
+        `<div style="font-size: 30pt; line-height: 3; max-width: 1400px; margin: 200px; text-align: center;">
+              <p> You have completed the first part of the memory test. </p>
+              <p> Please wait for further instructions from the researcher. </p>
+        </div>
+        `,
+        choices: ["1"],
+      },
+      {
+        type: jsPsychImageKeyboardResponse,// Recall instruction + Diagram
+        stimulus:"./diagrams/RecallDiagram.png",
+        stimulus_width: 800,
+        choices: ["1"],
+      },
       ...sequenceNameRecallTest(),
       {
         type: jsPsychHtmlKeyboardResponse,
